@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link href="../../css/public.css"  rel="stylesheet" type="text/css"  />
+	    <link href="../../css/top.css"  rel="stylesheet" type="text/css"  />
+	    <link href="../../css/myCenter/myBorrow/myBorrow.css"  rel="stylesheet" type="text/css"  />
+	    <link href="../../css/app_popup.css"  rel="stylesheet" type="text/css"  />
+	</head>
+	<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="back();">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">还款详情</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div class="_lborrow_topmessage clearfix">
+			<div class="_lborrow_cont_title">
+				<div class="_lborrow_h1_title">
+					<h1>借款金额（元）</h1>
+					<p id="strAmount"></p>	
+				</div>
+				<div class="_lborrow_xx_det">
+					<time id="strCreateTime"></time>   
+					<span id="strBorrowerMonthRate"></span>
+				</div>
+				<div class="_lborrow_xx_det">
+					<time id="lId"></time>
+				</div>
+				<div class="_lborrow_xxxy_det">
+					<!-- 现金协议 -->
+					<span id="xieyi1" style="display: none;" onclick="toLinkAgreementContractNo();">《<u>借款协议</u>》</span>
+					<span id="xieyi2" style="display: none;" onclick="toLinkAgreementConsultNo();">《<u>服务协议</u>》</span>
+					
+					<!-- 海尔协议 -->
+					<span id="xieyi3" style="display: none;"  onclick="toLinkAgreementAuthorizeNum();">《<u>个人征信查询授权书</u>》</span>
+					<span id="xieyi4" style="display: none;"  onclick="toLinkAgreementContractNo();">《<u>借款及咨询服务协议</u>》</span>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 还款账单模板	海尔-->
+		<div id="modelHaierDiv" style="display: none;">
+			<div class="_Wperiods_message">
+				<div class="_Wperiods_hr">
+					<span class="_Wperiods_name">还款时间：</span>
+					<span class="_wperiods_cont">#strRepayDate#</span>
+				</div>
+				<div class="_Wperiods_hr">
+					<span class="_Wperiods_name">逾期天数：</span>
+					<span class="_wperiods_cont">#nOverdueDays#天</span>
+				</div>
+				<div class="_Wperiods_hr">
+					<span class="_Wperiods_name">应还本金：</span>
+					<span class="_wperiods_cont">#lPrincipal#元</span>
+				</div>
+				<div class="_Wperiods_hr" id="_haier_1">
+					<span class="_Wperiods_name">应还服务费：</span>
+					<span class="_wperiods_cont">#lInterest#元</span>
+				</div>
+				<div class="_Wperiods_hr" id="_haier_2" style="#_haier_2#">
+					<span class="_Wperiods_name">应还利息：</span>
+					<span class="_wperiods_cont">#lHaierInterest#元</span>
+				</div>
+				<div class="_Wperiods_hr" id="_haier_3" style="#_haier_3#">
+					<span class="_Wperiods_name">服务费违约金：</span>
+					<span class="_wperiods_cont">#lOverdueInterestAmount#元</span>
+				</div>
+				<div class="_Wperiods_hr" id="_haier_4" style="#_haier_4#">
+					<span class="_Wperiods_name">本金逾期罚息：</span>
+					<span class="_wperiods_cont">#lHaierOverdueAmount#元</span>
+				</div>
+				<div class="_Wperiods_hr" id="_haier_5" style="#_haier_5#">
+					<span class="_Wperiods_name">逾期管理费：</span>
+					<span class="_wperiods_cont">#lOverduePrincipalAmount#元</span>
+				</div>
+				<div class="_Wperiods_hr" id="_haier_6" style="#_haier_6#">
+					<span class="_Wperiods_name">逾期违约金：</span>
+					<span class="_wperiods_cont">#lOverdueInterestAmount#元</span>
+				</div>
+				<div class="_Wperiods_hr" id="_haier_7">
+					<span class="_Wperiods_name">总计金额：</span>
+					<span class="_wperiods_cont">#lTotalAmount#元<span>#strState#</span>
+					</span>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 还款账单模板	现金循环贷 -->
+		<div id="modelXJXHDDiv" style="display: none;">
+			<div class="_Wperiods_message">
+				<div class="_Wperiods_hr">
+					<span class="_Wperiods_name">还款时间：</span>
+					<span class="_wperiods_cont">#strRepayDate#</span>
+				</div>
+				<div class="_Wperiods_hr">
+					<span class="_Wperiods_name">逾期天数：</span>
+					<span class="_wperiods_cont">#nOverdueDays#天</span>
+				</div>
+				<div class="_Wperiods_hr">
+					<span class="_Wperiods_name">应还本金：</span>
+					<span class="_wperiods_cont">#lPrincipal#元</span>
+				</div>
+				<div class="_Wperiods_hr" id="_xjxhd_1">
+					<span class="_Wperiods_name">应还利息：</span>
+					<span class="_wperiods_cont">#lInterest#元</span>
+				</div>
+				<div class="_Wperiods_hr" id="_xjxhd_2">
+					<span class="_Wperiods_name">#_xjxhd_2#</span>
+					<span class="_wperiods_cont">#lOverdueAmount#元</span>
+				</div>
+				<div class="_Wperiods_hr" id="_xjxhd_3">
+					<span class="_Wperiods_name">#_xjxhd_3#</span>
+					<span class="_wperiods_cont">#lTotalAmount#元<span>#strState#</span></span>
+					#borrowPay#
+				</div>
+			</div>
+		</div>
+		
+		<!-- 数据展示DIV -->		
+		<div class="_lborrow_details_list">
+			<ul id="borrowList">
+			</ul>
+		</div>
+	</div>
+	<div class="_lborrow_fixed_submit" id="repmentDiv"><a href="javascript:void(0);" onclick="recharge()">立即还款</a></div>	 			
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script type="text/javascript" src="borrowInfo.js"></script>
+</html>

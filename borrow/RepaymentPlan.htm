@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>还款计划</title>
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/borrow/borrow.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="back();">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="app_title font-size6">还款计划</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div class="WborrowTopmessage clearfix">
+			<div class="WborrowContTitle colorF">
+				<div class="Wborrowh1Title">
+					<h1>还款总额（元）</h1>
+					<p id="repayTotal"></p>
+				</div>
+				<div class="WborrowScheduleDet font-size3">
+					<div class="borrow_jh_bj">
+						本金 <span id="repayPrincipal"></span>元
+					</div>
+
+					<div class="borrow_jh_lx">
+						利息 <span id="interest"></span>元
+					</div>
+				</div>
+				<div class="WborrowScheduleDet font-size3">
+					<div class="borrow_jh_bj hide" id="serviceMoneyDiv">
+						服务费 <span id="repayServiceMoney"></span>元
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+		<!-- 还款列表模板 -->
+		<!-- 现金循环贷： 
+		    还款日  yyyy-mm-dd   利息： xx元
+		    还款日  yyyy-mm-dd   利息： xx元
+		    还款日  yyyy-mm-dd   本金： xx元
+		                         利息： xx元
+		                         
+		     海尔： 
+		    还款日  yyyy-mm-dd   服务费： xx元
+		    还款日  yyyy-mm-dd   服务费： xx元
+		    还款日  yyyy-mm-dd   本金： xx元
+					                         利息： xx元
+					                         服务费：xx元                    
+		 -->
+		<ul id="repayPlanTemplate" style="display: none">
+			<li >
+			<!-- 海尔   还款日样式：  style="padding-top:4%;" -->
+			<!-- 循环贷   还款日样式：  style="padding-top:2%;" -->
+				<span class="schedule_name">还款日</span>
+				<span class='schedule_money'>本金：元<br/>利息：元<br>服务费：元</span>
+			</li>
+		</ul>		
+		<div class="WrepayCon">
+			<div class="repayment_text">具体还款金额以放款实际发生为准。</div>
+			<div class="WrepaymentHaierList">
+				<ul id="dataShow">
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../js/Common.js"></script>
+<script src="../js/common/jquery-1.8.3.min.js"></script>
+<script src="../js/CDOLib/ClientEngine.js"></script>
+<script src="../js/CDOLib/CDO.js"></script>
+<script src="../js/CDOLib/Utility.js"></script>
+<script src="../js/CDOLib/HttpClient.js"></script>
+<!-- <script src="RepaymentPlan.js"></script> -->
+<script src="RepaymentPlanNew.js"></script>
+</html>

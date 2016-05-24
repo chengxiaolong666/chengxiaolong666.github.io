@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title>注册</title>
+		<link type="text/css" href="css/public.css"  rel="stylesheet"/>
+		<link type="text/css" href="css/top.css"  rel="stylesheet"/>
+		<link type="text/css" href="css/loginReg.css"  rel="stylesheet"/>
+		<link type="text/css" href="css/inputStyle.css"  rel="stylesheet"/>
+	    <link type="text/css" href="css/body_backcolor.css"  rel="stylesheet"/>
+	</head>
+	
+	<body>
+		<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" onclick="openDelayWindow('login.htm','登录','',1,'',1);">
+						<img src="img/top/_We_return.png" />返回
+					</div> 
+					<div class="_Wedafytop_title font-size6">注册</div>
+			   </div>
+		</div>
+	    </header>
+			<div id="container">
+				<div class="z_reg_note">
+						<h1>请务必填写本机号码</h1>
+				</div>
+				<div class="z_regcon_input">
+					<div class="z_reg_list clearfix">
+						<b>手机号：</b>
+						<input  name="strMobile" id="strMobile"  type="number" maxlength="11"  placeholder="请输入11位手机号码"/>
+					</div>
+					<div class="z_reg_pwd clearfix">
+						<b>登录密码：</b>
+						<input  name="strPassword" id="strPassword"  type="password" maxlength="20" placeholder="6-20位数字、字母或字符组合"  />
+						<span class="z_user_Arrowimg"><img src="img/register/reg_password.png" id="Display_strPassword" onclick="onclick_pwd('strPassword')"/></span>
+					</div>
+					<div class="z_confirm_pwd clearfix">
+						<b>确认密码：</b>
+						<input  name="strConfirmPassword" id="strConfirmPassword"   maxlength="20" type="password" placeholder="6-20位数字、字母或字符组合" />
+						<span class="z_user_Arrowimg"><img src="img/register/reg_password.png" id="Display_strConfirmPassword" onclick="onclick_pwd('strConfirmPassword')"/></span>
+					</div>
+					<div class="z_reg_list clearfix">
+						<b>推荐码：</b>
+						<input  name="strRecommendedCode" id="strRecommendedCode"   type="number" maxlength="11" placeholder="请输入推荐人手机号（必填）" />
+					</div>	
+					<div class="_wreg_voice_del clearfix">
+						<b>图形验证码：</b>
+						<span onclick="createCode()" class="_wregnew_yzm reg_yzm" ><img src="img/register/code.jpg" />
+						<div class="yzmposition">
+							<p class="codetext" id="checkCode"></p>
+						</div>
+						</span>
+						<input  name="input1" id="input1"  type="text" maxlength="4" placeholder="请输入图形验证码" />
+					</div>				
+					
+					<div class="_wreg_voice_del clearfix">
+						<b>手机验证码：</b>
+						<span class="_wregnew_yzm reg_yzm" id="btn"  onclick="sendSMSCodeF(1,1)"><u>获取验证码</u></span>
+						<input  name="strVerifyCode" id="strVerifyCode"  type="number" maxlength="4" placeholder="请输入验证码" />
+					</div>
+					
+					<!-- 开发者使用 变成灰色不可点击的时候把U去掉
+					<div class="reg_voice_tishi" style="display: block;">获取不到验证码?免费语音获取</div>  
+					 -->				
+					<div class="_wreg_voice_tishi" id="bdTishi1"  style="display: block;">获取不到验证码?<u id="btn1" onclick="sendSMSCodeF(2,1)">免费语音获取</u></div>  
+					<!--点击语音以后切换这个颜色-->
+					<div class="_wreg_voice_after" id="bdTishi2" style="display: none;">拨打中......请注意接听</div> 
+					
+					
+					
+					<div class="z_reg_checkbox color9  clearfix" style="margin-top:3%;">
+						<a id="staging_fq" href="javascript:void(0)" choice="1" onclick="chooseAgreeMent()"><img id="img_reg" src="img/public/dx_02.png"  /></a><span onclick="openWindow('model/xieyi_dafy_zcfwxy.htm','注册服务协议','',0,'');">同意<u>《达飞注册服务协议》</u></span>
+					</div>
+					<div class="z_reg_checkbox color9  clearfix"  style="margin-bottom:5%;">
+						<a id="staging_fq" href="javascript:void(0)" choice="1" onclick="chooseCFCAAgreeMent()"><img id="img_cfca" src="img/public/dx_02.png"  /></a><span onclick="openWindow('model/xieyi_dafy_CFCA.htm','CFCA','',0,'');">同意<u>《CFCA证书服务协议》</u></span>
+					</div>
+					<input type="hidden" id="reg_agreement" value="0">
+					<input type="hidden" id="reg_agreement_cfca" value="0">
+					<input type="hidden" id="islogintype" value="0"/>
+					<div class="z_reg_btn" id="reg_zc1"   onclick="register()"><a href="javascript:void(0)">注册</a></div>
+					<div class="rech_request_submit colorc1" id="reg_zc2" style="display: none;"><a href="javascript:void(0)">注册中，请稍后 ...</a></div>
+					<div class="rech_request_submit colorc1" id="reg_zc3" style="display: none;"><a href="javascript:void(0)">登录中，请稍后 ...</a></div>
+			
+			  
+			</div>
+</body>
+<script type="text/javascript" src="js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS()</script>
+<script type="text/javascript" src="login.js"></script>
+<script type="text/javascript" src="register.js"></script>
+<script type="text/javascript" src="js/VerifyCode.js"></script><!-- 验证码发送js -->
+
+<script type="text/javascript">
+setposition();
+function setposition(){
+	var ua = navigator.userAgent.toLowerCase();	
+	if (/iphone|ipad|ipod/.test(ua)) {
+		jQuery(".lo_bj").css("position","absolute");
+	}else if (/android/.test(ua)) {
+	   	jQuery(".lo_bj").css("position","fixed");
+	}
+}
+
+$(".z_reg_btn").bind("touchstart", function(){
+   $(this).css("box-shadow","inset 0px 20px 20px #f06011")
+
+})
+$(".z_reg_btn").bind("touchend", function(){
+   $(this).css("box-shadow","inset 0px 1px 0px #fc731c")
+
+}) 
+createCode();
+</script>
+</html>

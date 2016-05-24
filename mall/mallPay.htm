@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>支付</title>
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/mall/Mall.css" rel="stylesheet" type="text/css" />
+<link href="../css/app_popup.css" rel="stylesheet" type="text/css" />
+<style>
+
+</style>
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="back();">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6" id="title_id">收银台</div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>
+	<!-- 提交按钮 -->
+	<div class="mallpay_submit colorbutton" id="mall_pay_id" onclick="payment()">确认支付</div>
+	<div class="mallpay_submit colorc1" id="mall_pay_id_disabled" style="display:none;">确认支付</div>		
+	<!-- 提交按钮end -->
+	<div id="container">
+		<div id="content_id" style="display:block;">
+			<div class="mallpay_money">
+				<div class="mallpay_payment font-size3">请支付金额：</div>
+				<div class="mallpay_payment_rmb">
+					<span id="money_id"></span>元
+				</div>
+			</div>
+			<div class="mallpay_account">
+				<div class="mallpay_form clearfix" name="z_div" choice="0" id="div_balance_id" typeVal="0">
+					<div class="mallpay_payment_name font-size3" id="text_balance_id">个人账户：</div>
+					<div class="mallpay_payment_text font-size3" id="balance_id"></div>
+					<div class="mallpay_activity_credit_cz clearfix" id="recharge_id" style="display: none;">
+						<span class="colorF font-size3" onclick="goToRechargePage()">充值</span>
+					</div>
+					<!-- 选中样式   payment_row -->
+				</div>
+			</div>
+			<div class="mallpay_paynotice_note font-size3">
+				<p>客服电话：400-6259-898</p>
+				<p>工作日：8：30-20：00</p>
+				<p>周六日：9：00-18：00</p>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript" src="mallPay.js"></script>
+<script type="text/javascript">
+	jsHeight.bodyheight();  //获取页面高度
+</script>
+</html>

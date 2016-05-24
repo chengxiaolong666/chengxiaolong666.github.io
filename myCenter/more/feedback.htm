@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>意见反馈</title>
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../../css/myCenter/more/more.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="container">
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" onclick="openDelayWindow('myCenter/more/more.htm','更多','',1,'','1');">
+						<img src="../../img/top/_We_return.png" />返回
+					</div>
+					<div class="_Wedafytop_title font-size6">关于我们</div>
+					<div class="_Wedafytop_righttext font-size3"></div>
+				</div>
+			</div>
+		</header>
+		<!--与aboutUs 公用aboutUs.css-->
+		<section class="z_main_bor">
+
+			<div class="z_about_main">
+
+				<div style="padding:10px 0;">
+					<textarea id="strFeedback" name="textarea" cols="" rows="" placeholder="建议反馈字数小于200."></textarea>
+				</div>
+				<div class="yijian_annu" onclick="feedback()">提交</div>
+
+			</div>
+
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2);</script>
+<script type="text/javascript">
+jsHeight.bodyheight();  //加载页面BODY高度
+var feedbackFlag = true;
+function feedback(){
+	if(!feedbackFlag){
+		return;
+	}
+	var strFeedback = $("#strFeedback").val();
+	if(strFeedback == null || strFeedback == "" || strFeedback.length < 1){
+		info("请输入意见反馈.");
+		return;
+	}
+	if(strFeedback.length > 200){
+		info("字数过多,请您简述意见,字数保留200字内.");
+		return;
+	}
+	var cdoRequest=new CDO();
+	var lUserId = getStringValue("lUserId");
+	var strLoginId = getStringValue("strLoginId");
+	var strName = getStringValue("strName");
+	var strMobile = getStringValue("strMobile");
+	cdoRequest.setStringValue("strServiceName","UserService");
+	cdoRequest.setStringValue("strTransName","createFeedback");
+	cdoRequest.setStringValue("strMobile",strMobile);
+	cdoRequest.setStringValue("strUserName",strName);
+	cdoRequest.setStringValue("strContent",strFeedback);
+	cdoRequest.setStringValue("lUserId",lUserId);
+	feedbackFlag = false;
+	raiseTrans(cdoRequest,"callBackForFeedback");
+}
+
+function callBackForFeedback(cdoRequest,cdoResponse,ret){
+	feedbackFlag = true;
+	if(ret == undefined ||ret==null  ){
+		info("请求失败!");
+		return false;
+	}
+	if(ret.nCode==0){
+		info("您的反馈已提交");
+		setTimeout(function(){
+			back();
+		}, 500);
+	} else {
+		info("请求失败："+ret.strText);
+	}
+}
+
+</script>
+</html>

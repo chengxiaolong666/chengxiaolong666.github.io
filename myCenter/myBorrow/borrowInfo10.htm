@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link href="../../css/public.css"  rel="stylesheet" type="text/css"  />
+	    <link href="../../css/top.css"  rel="stylesheet" type="text/css"  />
+	    <link href="../../css/myCenter/myBorrow/myBorrow.css"  rel="stylesheet" type="text/css"  />
+	    <link href="../../css/app_popup.css"  rel="stylesheet" type="text/css"  />
+	</head>	
+	<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="back();">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">还款明细</div>
+			</div>
+		</div>
+	</header>			
+	<div id="container">
+		<div class="borrow_topmessage clearfix">
+			<div class="borrow_cont_title colorF">
+				<div class="borrow_h1_title">
+					<h1>借款金额（元）</h1>
+					<p id="strAmount"></p>	
+				</div>
+				<div class="borrow_xx_det font-size3">
+					<time id="strCreateTime"></time>   
+					<span id="strBorrowerMonthRate"></span>
+				</div>
+				<div class="borrow_xxxy_det font-size3">
+					<time id="lId"></time>
+				</div>
+			</div>
+		</div>
+	     
+       <!-- 还款明细strat -->     
+       <div class="fin_refund_list">
+       		<div id="borrowInfo10ModelDiv" style="display: none;">
+				<div class="fin_css_detailransom drefund circumference _WWFin_drefundPadding" style="#isViewHK#" onclick="doRepayment('#applyId#','#repayDate#','#isViewBFHK#');">还款</div>
+				<div class="fin_i_detail  clearfix">
+					<p>
+						<label>应还本金：</label>							
+						<span>#repayMoney#元</span>
+					</p>
+						<p>
+						<label>应还利息：</label>							
+						<span>#repayInterest#元</span>
+					</p>
+					 <p>
+						<label>还款时间：</label>							
+						<span>#repayTime#</span>
+					</p>
+					 <p>
+						<label>逾期天数：</label>							
+						<span>#beOverdueDays#天</span>
+					</p>
+					 <p>
+						<label>逾期违约金：</label>							
+						<span>#beOverdueMoney#元</span>
+					</p>
+				</div>       			
+       		</div>
+			<ul id="borrowList">
+			</ul>
+	  </div>  
+      <!-- 还款明细end -->
+      <div id="payInfo" style="display: none;"></div>
+	</div>
+	</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script type="text/javascript" src="borrowInfo10.js"></script>
+</html>

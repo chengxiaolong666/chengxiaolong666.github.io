@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>借款申请</title>
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/borrow/borrow.css" rel="stylesheet" type="text/css" />
+<link href="../css/app_popup.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="openDelayWindow('borrow/borrowFirst.htm','借款','pageFrom=2',1,'',1);">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="app_title font-size6">借款申请</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div class="WborrowMuiCon">
+			<!--  -->
+			<div id="content_id2" style="display: none;">
+				<div class="api_fenqi_borrowxy font-size2 clearfix" id="content_id">
+					合同内容未知<br>
+				</div>
+			</div>
+
+			<div class="WborrowhrAccount">
+				<div class="WborrowHrregApply clearfix">
+					<div class="WborrowMoneyclose" id="elementXX" style="display:none;" onclick="javascript:document.getElementById('elementXX').style.display='none';clearTextById('moneyInto','');">
+						<img src="../img/borrow/eliminate_q.png">
+					</div>
+					<b>借款金额：</b> <input id="moneyInto" maxlength="8" type="number" placeholder="" onfocus="controlXX(this);" onblur="controlXX(this);">
+				</div>
+				<div class="WapplyHint" id="moneyValidateShow">贷款发放日起，开始计算利息</div>
+			</div>
+
+			<div class="WborrowApplyDetail" id="WborrowApplyDetail">
+				<span class="row_name">还款方式</span><span class="row_sum" id="strSelectRepayWay"></span><br> 
+				<span class="row_name">期限</span><span class="row_sum" id="strSelectDays"></span><br>
+				<!-- 
+				<span class="row_name">日服务费率</span>
+				<span class="row_sum" id ="strSelectBorrowerMonthRate" ></span></br>  
+				<span class="row_name">日利息</span>
+				<span class="row_sum" id ="strSelectBorrowerMonthRate" ></span></br>   
+				-->
+				<span class="row_name">日综合费率</span><span class="row_sum" id="strDayRate">1.167‰</span><br>
+				 <span class="row_name">收款账户</span><span class="row_sum" id="accountInfo"></span><br>
+			</div>
+			<div class="WborrowPaymentApply clearfix" onclick="doRepayPlan()">
+				<img src="../img/public/api_Arrow_row.png"> 还款计划
+			</div>
+			<div class="WborrowEmfwdeal clearfix" id="4sborrw">
+				账单日系统自动扣款，请确定您银行卡资金充足！
+				<div style="display: none;" style="" id="xianjinxieyi1" class="borrow_emcheckbox color9">
+					<img src="../img/public/dx_02.png" id="xieyi_1" onclick="changePic(this,1)">同意《<u onclick="openWindow('model/xieyi_dafy_jkzxfwxy.htm','借款咨询服务协议','',0,'');">借款咨询服务协议</u>》
+				</div>
+				<div style="display: none;" style="" id="xianjinxieyi1_new" class="borrow_emcheckbox color9">
+					<img src="../img/public/dx_02.png" id="xieyi_1" onclick="changePic(this,1)">同意《<u onclick="openWindow('model/xieyi_dafy_jkzxfwxy_new.htm','借款咨询服务协议','',0,'');">借款咨询服务协议</u>》
+				</div>
+				
+				<div style="display: none;" style="" id="xianjinxieyi2" class="borrow_emcheckbox color9">
+					<img src="../img/public/dx_02.png" id="xieyi_2" onclick="changePic(this,2)">同意《<u onclick="openWindow('model/xieyi_dafy_xjxhdjkxy.htm','现金循环贷借款协议','',0,'');">现金循环贷借款协议</u>》
+				</div>
+
+				<div style="display: none;" id="haerxieyi1" class="borrow_emcheckbox color9">
+					<img src="../img/public/dx_02.png" id="xieyi_1" onclick="changePic(this,1)">同意《<u onclick="openWindow('model/xieyi_dafy_haier.htm','个人征信查询授权书','',0,'');">个人征信查询授权书</u>》
+				</div>
+				<div style="display: none;" id="haerxieyi2" class="borrow_emcheckbox color9">
+					<img src="../img/public/dx_02.png" id="xieyi_2" onclick="changePic(this,2)">同意《<u onclick="openWindow('model/xieyi_dafy_xunhuandai.htm','借款及咨询服务协议','',0,'');">借款及咨询服务协议</u>》
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="WborrowPullUp color_22 font-size3" onclick="toBorrowDetail()">
+		<img src="../img/public/api_Arrow.png">查看产品详情
+	</div>	
+	<div class="WborrowRechargSubmit colorbutton">
+		<a href="javascript:void(0);" onclick="doBorrow()">确认提交</a>
+	</div>
+	<div id="c_id02"></div>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script src="borrowSecond.js"></script>
+<script type="text/javascript">
+	jsHeight.bodyheight("4sborrw");  //获取页面高度
+</script>
+</html>

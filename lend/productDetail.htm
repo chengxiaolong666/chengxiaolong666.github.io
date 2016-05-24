@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>产品详情</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/lend/lend.css" rel="stylesheet" type="text/css" />
+<link href="../css/lend/lendPublic.css" rel="stylesheet" type="text/css" />
+<link href="../css/app_popup.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="_obj.back()">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6" id="title_id"></div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div id="content_id" style="display:none;">
+			<div class="z_financial_det clearfix">
+				<div class="z_financial_details_person" id="numberPeople_id" style="display: none">累计加入12456人</div>
+				<div class="z_financial_rate clearfix">
+					<!-- 普通理财显示模块 -->
+					<div id="div_half_id" style="display: none">
+						<div class="z_financial_yq colorF">
+							<b id="nLenderYearRate_id"></b>
+							<p id="profit_id">预期年化收益率</p>
+						</div>
+
+						<div class="z_financial_date colorF">
+							<b id="deadline_id"></b>
+							<p>封闭期限</p>
+						</div>
+					</div>
+					<!-- 悟空理财理财显示模块 -->
+					<div id="div_half_id2" style="display: none">
+						<div class="z_financial_yq colorF">
+							<b id="nLenderYearRate_id2">6.52%-12%</b>
+							<p id="profit_id2">预期年化最高收益率</p>
+						</div>
+
+						<div class="z_financial_date colorF">
+							<b id="deadline_id2">12个月</b>
+							<p>封闭期限</p>
+						</div>
+					</div>
+
+				</div>
+				<div class="z_financial_det_text font-size3" id="info_id" style="display:none"></div>
+				<div class="z_financial_wklc_det_text font-size3" style="display:none" id="info_id2">
+					6%起,逐月涨 0.5%,<br />最高 12%每月随取1次机会
+				</div>
+
+			</div>
+
+			<div class="z_financial_state_cz clearfix" id="balance_div_id" style="display:none;">
+				<div class="z_financial_cz_credit_available color6 font-size5">
+					可用余额：<span id="balance_money_id">0</span>元
+				</div>
+				<div class="z_financial_credit_cz">
+					<span class="colorF font-size3" onclick="_obj.goVoucherBefore()">充值</span>
+				</div>
+			</div>
+			<!-- 普通理财产品输入金额 -->
+			<div class="z_activity_product_account" id="edit_money_id">
+				<div class="z_bo_product_reg_apply clearfix">
+					<b>金额：</b> <input id="lMinInvestAmount_id" oninput="_obj.inputMoney(this)"  maxlength="10" name="number" type="number" class="font-size2 color_bb" />
+				</div>
+			</div>
+
+			<!-- 固定投资金额 -->
+			<div class="z_financial_xlyedit_available_i" id="fix_money_id" style="display:none;">
+				<div class="z_finnacial_xly_money color6 font-size5" id="fix_child_money_id"></div>
+			</div>
+			<div class="z_finnacial_tsxmrys_bage">
+				<div class="z_finnacial_bage_text" id="hint_id"></div>
+			</div>
+			<div id="mrys_bag" class="z_finnacial_mrys_bage">
+				<div class="z_finnacial_bage_deal">
+					<div class="z_bage_deal_left font-size3">
+						<img src="../img/public/dx_02.png" id="xieyi_id" onclick="_obj.changePic(this)" />同意<span onclick="_obj.openDeal()">《投资协议》</span>
+					</div>
+					<!-- <div class="z_bage_deal_right  font-size3" id="xutou_id" style="display:none;"><img src="../img/dx_01.png" onclick="_obj.changePic(this,'1')"/>是否同意续投</div> -->
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+			<div class="z_finnacial_pull_up color_22 font-size3" onclick="_obj.loadInvestList()">
+				<img src="../img/public/api_Arrow.png" /> 查看产品详情
+			</div>
+			<div class="z_financial_order_inc_submit colorbutton" id="buy_id">
+				<a href="javascript:_obj.buy()">立即投资 </a>
+			</div>
+			<div class="z_financial_order_inc_timesubmit colorc1" id="buy_in_id" style="display:none;">立即投资</div>			
+</body>
+<script type="text/javascript" src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript" src="productDetail.js"></script>
+</html>
+

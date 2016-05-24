@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+	<meta name="format-detection" content="telephone=no">
+	<link href="../../css/public.css"  rel="stylesheet" type="text/css"  />
+    <link href="../../css/top.css"  rel="stylesheet" type="text/css"  />
+    <link href="../../css/myCenter/myBorrow/myBorrow.css"  rel="stylesheet" type="text/css"  />
+    <link href="../../css/body_backcolor.css"  rel="stylesheet" type="text/css"  />
+    <link href="../../css/app_popup.css" type="text/css" rel="stylesheet"   />	
+</head>
+<body>
+<section>
+	<article>
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" onclick="openWindow('myCenter/myIndex.htm','我的','',1,'',1);">
+						<img src="../../img/top/_We_return.png" />返回
+					</div> 
+					<div class="_Wedafytop_title font-size6">我的借款</div>
+					<div class="_Wedafytop_righttext font-size3" onclick="toBorrow();">我要借款</div>
+				</div>
+			</div>
+	    </header>
+	    <div class="_lcontainer_list clearfix">		
+			<div id="borrow_financial_class" class="_lborrow_financial_class font-size3">
+				<ul>
+					<li class="row" id="li_b1">待还款</li>
+					<li id="li_b2">已还款</li>			
+				</ul>
+			</div>	
+		</div>
+		<div id="container">
+			<div class="borrow_management_list clearfix">
+				<!-- 待还款数据模板 -->
+				<div id="data_model_div" style="display: none;">
+                    <a href="javascript:void(0);">
+						 <div class="borrow_list_rech_deta">
+						 	<div class="borrow_management_img" id="img_grey_#lId#" onclick="chooseRepayment('#payTypeBorrow1#','#strPendingAmount#','#strBorrowerMonthRate#','#nState#','#lId#','#strVersionType#','#nHaier#','#nRepay#')">
+						 		<img src="../../img/myCenter/myBorrow/api_management_hsRight.png"/>
+						 	</div>
+						 	<div class="borrow_management_img" style="display: none;" id="img_red_#lId#" onclick="cancelRepayment('#strAmount#','#lId#');"><img src="../../img/myCenter/myBorrow/api_management_Right.png"/></div>
+							 <div class="borrow_czjl_management clearfix" onclick="showBorrowInfo('#payTypeBorrow2#','#strAmount#','#strCreateTime#','#strBorrowerMonthRate#','#nState#','#lId#','#strContractNo#','#strConsultNo#','#strVersionType#','#nHaier#','#nRepay#','#strAuthorizeNum#');">
+							 	 <img src="../../img/public/api_Arrow.png" />
+								 <div class="borrow_management_wid">
+									 <div class="borrow_management_us">借款金额</div>
+									 <div class="borrow_management_cont">#borrowMoney#元</div>
+								 </div>
+							 	 <div class="borrow_management_wid">
+									 <div class="borrow_management_us">待还本金</div>
+									 <div class="borrow_management_cont">#repayMoney#元</div>
+							 	 </div>
+								 <div class="borrow_management_wid">
+								 	<div class="borrow_management_us">借款编号</div>
+								 	<div class="borrow_management_cont">#borrowNo#</div>
+								 </div>
+								 <div class="borrow_management_wid">
+								 	<div class="borrow_management_us">借款时间</div>
+								 	<div class="borrow_management_cont">#borrowDate#</div>
+								 </div>
+								 <div class="borrow_management_wid">
+								 	<div class="borrow_management_us">借款产品</div>
+								 	<div class="borrow_management_cont">#borrowProduct#</div>
+								 </div>
+							 	 <div class="borrow_management_wid" style="#endRepayDateStyle#">
+								 	<div class="borrow_management_us">最终还款日</div>
+								 	<div class="borrow_management_cont">#endRepayDate#</div>
+								 </div>
+								 <div class="borrow_management_wid">
+							 		<div class="borrow_management_us">还款状态</div>
+							 		<div class="borrow_management_cont" style="color:#fc651c">#repayType#</div>
+							 	 </div>
+							 </div>
+						 </div>
+						 <input type="hidden" value="#lId#" id="hidden_lId_#generatedCount#" />
+						 <input type="hidden" value="#strBorrowerMonthRate#" id="hidden_MonthRate_#generatedCount#" />
+				    </a>
+				</div>
+				
+				<!-- 还款完成列表模板 -->
+				<div id="repayover_model_div" style="display: none;">
+                    <a href="javascript:void(0);">
+                    	<div class="borrowListDeta">
+                    		<div class="borrowAlreadyMent clearfix" onclick="showBorrowInfo('','#strAmount#','#strCreateTime#','#strBorrowerMonthRate#','#nState#','#lId#','#strContractNo#','#strConsultNo#','#strVersionType#')">
+                    			<img src="../../img/public/api_Arrow.png" />
+                    			<div class="borrowGementWid">
+	                    			<div class="borrowGementUs">还款金额</div>
+	                    			<div class="borrowGementCont">#repmentMoney#元</div>
+                    			</div>
+                    			<div class="borrowGementWid">
+                    				<div class="borrowGementUs">还款时间</div>
+                    				<div class="borrowGementCont">#repmentTime#</div>
+                    			</div>
+                    			<div class="borrowGementWid">
+	                    			<div class="borrowGementUs">借款金额</div>
+	                    			<div class="borrowGementCont">#borrowMoney#元</div>
+                    			</div>
+                    			<div class="borrowGementWid">
+	                    			<div class="borrowGementUs">借款时间</div>
+	                    			<div class="borrowGementCont">#borrowTime#</div>
+                    			</div>
+                    			<div class="borrowGementWid">
+	                    			<div class="borrowGementUs">还款产品</div>
+	                    			<div class="borrowGementCont">#productName#</div>
+                    			</div>
+                    			<div class="borrowGementWid">
+	                    			<div class="borrowGementUs">还款状态</div>
+	                    			<div class="borrowGementCont" style="color:#fc651c">#strStateDesc#</div>
+                    			</div>
+                    		</div>
+                    	</div>
+                    	<input type="hidden" value="#lId#" id="hidden_lId_#generatedCount#" />
+				    </a>					
+				</div>
+				
+				<ul id="dataList_id_repayment">
+				</ul>
+			</div>
+			
+			<!-- 无数据时展示的提示内容 -->
+			<div id="div_b1"></div>
+			
+			<!-- 立即还款按钮 -->
+			<div class="borromHkSubmit clearfix" id="totalAmount_div" style="display: none;"> 
+				<div class="borrowBjMone"><span class="fontcolor">还款本金：</span><span class="fontmoney" id="totalAmount">￥0.00</span></div>
+				<input id="totalAmount_hidden" type="hidden" value="0.00"/>
+				<input id="nHaier" type="hidden" value="0"/>
+				<div class="borromLjSubmit" onclick="reCharge()">立即还款</div>
+				<input id="check_lId" type="hidden" value="-1"/>
+				<input id="check_MonthRate" type="hidden" value="-1"/>
+				<input id="check_versionType" type="hidden" value="-1"/>
+				<input id="payTypeBorrow" type="hidden" value="-1"/>
+			</div>
+		</div>
+	</article>
+</section>
+</body>
+
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script type="text/javascript" src="../../applyCredit/creditManage.js"></script>
+<script type="text/javascript" src="repaymentList.js"></script>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>悟空-理财详情</title>
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../../css/myCenter/myLend/myLend.css" rel="stylesheet" type="text/css" />
+<link href="../../css/app_popup.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="backList()">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">理财详情</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div id="fin_i_table_list" class="_lfinancial_ob_explain clearfix">
+			<div style="padding-left: 10px;">
+				<b>赚取收益<span id="lTotalInterest_id_2"></span>
+				</b>
+				<p>
+					截止到昨日，持有的理财产品累计收益总和。（预估收益不代表实际收益，请您以平台实际到账收益为准）<Br>
+				</p>
+			</div>
+		</div>
+		<div onclick="stages_close()" class="_lblack_overlayasd" id="black_stages_overlayasd"></div>
+
+
+		<div class="_lfin_i_mainrap">
+			<div class="_lfin_i_details_title clearfix">
+				<h1 id="strLendProductName"></h1>
+			</div>
+			<div class="_lfinancial_wklc_det clearfix">
+				<div class="_lfin_wklc_title">
+					<h3 id="ljsy"></h3>
+					<p>
+						<img onclick="stagespopup()" src="../../img/public/fin_i_wh_02.png" />已赚取收益（元）
+					</p>
+				</div>
+				<div class="_lfin_wklc_title">
+					<h2 id="qxsy"></h2>
+					<div class="_lwklc_title_p">可取现收益（元）</div>
+				</div>
+			</div>
+			<div class="_lfin_topwklc_details_list">
+				<ul>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">投资金额（元）</div>
+						<div class="_lfin_i_dxb_tz_amount" id="lAmount"></div></li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">预期年化收益率（%）</div>
+						<div class="_lfin_i_dxb_tz_amount" id="nLenderYearRate"></div></li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">
+							封闭期（<span id="nDayUnit">天</span>）
+						</div>
+						<div class="_lfin_i_dxb_tz_amount" id="nDayCount"></div></li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">购买时间</div>
+						<div class="_lfin_i_dxb_tz_amount" id="dtCreateTime"></div></li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">计息日</div>
+						<div class="_lfin_i_dxb_tz_amount" id="strStartDate"></div></li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">是否自动续投</div>
+						<div class="_lfin_i_dxb_tz_amount" id="nContinue"></div></li>
+				</ul>
+			</div>
+			<div class="_lfin_wklc_dxb_details_list">
+				<ul>
+					<li id="qx_id"><img src="../../img/public/api_Arrow.png" />
+						<div class="_lfin_wklc_dxb_tz_name">取现详情</div></li>
+					<li id="xy_id"><img src="../../img/public/api_Arrow.png" />
+						<div class="_lfin_wklc_dxb_tz_name">理财协议</div></li>
+				</ul>
+			</div>
+			<div class="_lfinancial_i_syjl_submit" onclick="toProductList();">我要赚钱</div>
+		</div>
+	</div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<!-- 需求业务-->
+<script type="text/javascript" src="lendDetail_wk.js"></script>
+<script type="text/javascript">
+	function backList() {
+		openWindow('myCenter/myLend/list.htm', '理财列表', '', '1', '', '1');
+	}
+	function stagespopup() {
+		document.ontouchmove = function(e) {
+			e.preventDefault();
+		}
+		document.getElementById("fin_i_table_list").style.display = "block";
+		document.getElementById("black_stages_overlayasd").style.display = "block";
+	}
+
+	function stages_close() {
+		document.ontouchmove = function(e) {
+		}
+		document.getElementById('fin_i_table_list').style.display = 'none';
+		document.getElementById('black_stages_overlayasd').style.display = 'none';
+	}
+</script>
+</html>

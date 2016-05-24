@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<link type="text/css" href="../../css/public.css" rel="stylesheet" />
+<link type="text/css" href="../../css/top.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../css/myCenter/securityCenter/accountCenter.css" />
+<title>扫描到的银行卡</title>
+</head>
+<body>
+    <header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5"  onclick="back();">
+					<img src="../../img/top/_We_return.png" />重拍
+				</div> 
+				<div class="_Wedafytop_title font-size6">银行卡信息</div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+    </header>
+	<!-- 扫描出来的卡号图片 -->
+	<div class="San_banner">
+		<img id="card_url" alt="" src="">
+	</div>
+	
+	<!-- 银行卡输入框 -->
+	<div class="Sanbank_input">
+		<input type="text" id="card_number" onkeyup="formatBankNo(this,1);"/>
+	</div>
+	
+	<!-- 扫描的银行卡信息 -->
+	<div class="bank_list" id="bank_list_div" style="display: none;">
+		<!-- 银行图标 -->
+		<div class="bankimg" id="bank_img">
+			<img id="bank_logo" src=""/>
+		</div>
+		<!-- 银行名称和银行卡类型 -->
+		<span id="bank_name"></span>——<span id="bank_type"></span>
+	</div>
+	
+	<!-- 提示信息 -->
+	<div id="sub_ok_mark" class="bank_message" style="display: none;">请核对银行卡信息，确认无误！</div>
+ 	<div id="mark" class="bank_tsred" style="display: none;">不支持信用卡！</div> 
+	
+	<div class="san_inc_submit" id="sub_ok" onclick="submitBankCard();">确定</div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script type="text/javascript" src="scanningBankcard.js"></script>
+<script type="text/javascript" src="bankMapping.js"></script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>资金详情</title>
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/myCenter/fundDetali/myCapital.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" id="app_bj_raw">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">详情</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div class="capitalDetails_cen" id="capitalDetails_cen" style="display: none;">
+			<div class="capitalDetails_title font-size3  clearfix">
+				<div class="h2_title clearfix">
+					<span id="detailjiaoyi"></span><img src="../../img/myCenter/fundDetail/app_record-02.png">
+				</div>
+			</div>
+			<div class="capitalDetails_list font-size3">
+				<ul>
+					<li>
+						<div class="app_b_state">交易状态</div>
+						<div class="app_b_cotent" id="state"></div></li>
+					<li>
+						<div class="app_b_state">交易方式</div>
+						<div class="app_b_cotent" id="strTradeMode"></div></li>
+					<li>
+						<div class="app_b_state">交易金额</div>
+						<div class="app_b_cotent" id="price"><!-- 0元 -->
+						</div>
+					</li>
+					<li style="display: none;" id="JYCP">
+						<div class="app_b_state">交易产品</div>
+						<div class="app_b_cotent" id="jycpName"></div></li>
+					<li>
+						<div class="app_b_state">发起时间</div>
+						<div class="app_b_cotent" id="dtCreateTime"></div></li>
+					<li>
+						<div class="app_b_state">受理时间</div>
+						<div class="app_b_cotent" id="dtModifyTime"></div></li>
+					<li>
+						<div class="app_b_state">交易单号</div>
+						<div class="app_b_cotent br_width" id="strTradeNo"></div></li>
+
+					<li style="display: none;" id="msgHide">
+						<div class="app_b_state">失败原因</div>
+						<div class="app_b_cotent" id="strMsg"></div></li>
+				</ul>
+			</div>
+			<div class="capitalDetails_recrodlist clearfix font-size2">
+				<ul id="dataLi">
+					<!-- <li>
+						<div class="recrod_time">09\28 15:18:22</div>
+						<div class="recrod_money">10,00000.00元</div>
+						<div class="recrod_result">失败，银行卡金额不足</div>
+					</li> -->
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2);</script>
+<script src="fundDetail.js"></script>
+</html>

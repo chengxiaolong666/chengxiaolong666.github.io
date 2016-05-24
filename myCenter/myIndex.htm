@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>我的</title>
+<link type="text/css" href="../css/plugin/mui.min.css"  rel="stylesheet"   />
+<link type="text/css" href="../css/public.css" rel="stylesheet" />
+<link type="text/css" href="../css/top.css" rel="stylesheet" />  
+<link type="text/css" href="../css/myCenter/myIndex.css" rel="stylesheet" />
+<link type="text/css" href="../css/app_popup.css" rel="stylesheet" />
+</head>
+<body>
+	<nav class="mui-bar mui-bar-tab z_wdcorl">
+		<a class="mui-tab-item" href="javascript:void(0)" id="goToIndex"> 
+			<span class="iconrep"><img src="../img/footer/zy_01.png"> </span> 
+			<span class="iconwd">首页</span> 
+		</a> 
+		<a class="mui-tab-item" href="javascript:void(0)" id="goToFind"> 
+		    <span class="iconrep"><img src="../img/footer/fx_01.png"> </span> 
+		    <span class="iconwd">发现</span> 
+	   </a> 
+		<a class="mui-tab-item" href="javascript:void(0)" id="goToMall"> 
+		    <span class="iconrep">
+		    <img src="../img/footer/sc_01.png"> </span> 
+		    <span class="iconwd">商城</span> 
+		</a> 
+		<a class="mui-tab-item mui-active" href="javascript:void(0)"> 
+		    <span class="iconrep"><img src="../img/footer/wo_02.png"> </span> 
+		    <span class="iconwd">我的</span> 
+		</a>
+	</nav>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" >	
+				</div> 
+				<div class="_Wedafytop_title font-size6">我的</div>
+				<div class="_Wedafytop_righttext node_bj_row font-size3" onclick="openWindow('notice/list.htm','公告','',0)"><img src="../img/top/notice_ico.png" /></div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div id="content">
+			<div class="z_mine_portrait" id="userPhoto">			    
+				<div class="app_yrz2attest" id="attest">
+					<a><img src="" id="attestpic"></a>
+				</div>
+				<div id="grxx" class="z_minetop_img">
+					<img id="user_img" src="../img/login/userPhoto.png" />
+				</div><br> 
+				<span id="myLoginId">&nbsp;</span>
+			</div>
+			<!-- 用户积分 -->
+			<div class="MyIntegral clearfix" style="display: none" id="availablebalanceDiv">积分:<span>4000</span></div>			
+			<div class="z_mine_mone_bottom" id="accountAmount">
+				<ul>
+					<li id="lAccountBalance_parent">
+						<h3 id="lAccountBalance">0元</h3> <span>账户余额</span>
+					</li>
+					<li id="LenderMoney_parent">
+						<h3 id="LenderMoney">0元</h3> <span>累计收益</span>
+					</li>
+					<li id="lPendingPrincipalMoney_parent">
+						<h3 id="lPendingPrincipalMoney">0元</h3> <span>待还本金</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="z_app_s9 clearfix">
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<li id="wdlc" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a> <span class="mui-icon"><img src="../img/myCenter/i_matters.png" /> </span>
+							<div class="mui-media-body">我的理财</div> </a></li>
+
+					<li id="lscf" style="display: none;" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a> <span class="mui-icon"><img src="../img/myCenter/my_history_ico.png" /> </span>
+							<div class="mui-media-body">历史财富</div> </a></li>
+					<li id="wdjk" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a href="javascript:void(0);"> <span class="mui-icon"><img src="../img/myCenter/i_borrow.png" /> </span>
+							<div class="mui-media-body">我的借款</div> </a></li>
+
+					<li id="zjmx" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a> <span class="mui-icon"><img src="../img/myCenter/zj_detail.png" /> </span>
+							<div class="mui-media-body">资金明细</div> </a></li>
+
+					<li id="aqzx" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a> <span class="mui-icon"><img src="../img/myCenter/i_safety.png" /> </span>
+							<div class="mui-media-body">安全中心</div> </a></li>
+
+					<li id="cztx" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a> <span class="mui-icon"><img src="../img/myCenter/i_deposit.png" /> </span>
+							<div class="mui-media-body">充值提现</div> </a></li>
+
+					<!--  <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" onclick="openWindow('redPack/red_list_receive.htm','我的红包','backType=1',1,'');"><a>
+		                    <span class="mui-icon"><img src="../img/myCenter/i_red.png"/></span>
+		                    <div class="mui-media-body">我的红包</div></a></li> -->
+
+					<li id="scdd" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a> <span class="mui-icon"><img src="../img/myCenter/i_indent.png" /> </span>
+							<div class="mui-media-body">商城订单</div> </a></li>
+
+					<li id="grzl" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a> <span class="mui-icon"><img src="../img/myCenter/i_grxx.png" /> </span>
+							<div class="mui-media-body">个人信息</div> </a></li>
+
+					<li id="more" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a> <span class="mui-icon"><img src="../img/myCenter/i_more.png" /> </span>
+							<div class="mui-media-body">更多...</div> </a></li>
+
+					<li id="longCss" style="display: none;" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a> <span class="mui-icon"><img /> </span>
+							<div class="mui-media-body"></div> </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script src="../js/common/NoClickDelay.js"></script>
+<script src="../js/common/fastclick.js"></script>
+<script src="../js/certificationCommon.js"></script>
+<script src="myIndex.js"></script>
+</html>

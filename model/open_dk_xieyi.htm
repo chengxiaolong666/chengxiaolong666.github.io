@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link href="../css/public.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/top.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/model/agreement.style.css"  rel="stylesheet" type="text/css"  />
+		<script type="text/javascript" src="../js/common/js_height.js"  ></script>
+		<script type="text/javascript" src="../js/CDOLib/ClientEngine.js"></script> 
+		<script type="text/javascript" src="../js/common/jquery-1.8.3.min.js" ></script>
+	</head>
+
+	<body>						
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="back();">
+					<img src="../img/top/_We_return.png" />返回
+				</div> 
+				<div class="_Wedafytop_title font-size6" id="modelname"> </div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>	
+	<div id="container">
+	  <iframe src="" id="model" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" ></iframe>
+	</div>
+	</body>
+	<script type="text/javascript" src="../js/common/shade_layer.js"></script>
+	
+	<script type="text/javascript">
+	var back_url = "";
+	window.onload = function(){
+		_shade_layer.show("努力加载中,请稍候...");//等待标识
+		setTimeout(function() {
+			var xieyi = getQueryString("xieyi");
+			var modelType = getQueryString("modelType");
+			//info(modelType);
+			var strModel = "";
+			if(modelType == 1){
+				strModel = "达飞注册服务协议";
+			}else if(modelType == 11){
+				strModel = "CFCA证书服务协议";
+			}else if(modelType == 2){
+				strModel = "借款咨询服务协议";
+			}else if(modelType == 3){
+				strModel = "现金循环贷借款协议";
+			}else if(modelType == 4){
+				strModel = "债权转让协议";
+			}else if(modelType == 51){
+				strModel = "非固定期限";
+			}else if(modelType == 52){
+				strModel = "固定期限达飞宝";
+			}else if(modelType == 53){
+				strModel = "投资协议";
+			}else if(modelType == 6){
+				strModel = "分期购买协议";
+			}else if(modelType == 0){
+				strModel = "电子协议";
+			}
+			document.getElementById("model").src = xieyi;
+			document.getElementById("modelname").innerHTML = strModel;
+		}, 500)
+		_shade_layer.hide();//等待标识关闭
+	}
+	</script>
+</html>

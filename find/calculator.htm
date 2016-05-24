@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+	<meta name="format-detection" content="telephone=no">
+	<title></title>
+	<link href="../css/public.css" rel="stylesheet" type="text/css" />
+	<link href="../css/top.css" rel="stylesheet" type="text/css" />
+	<link href="../css/find/find.css"  rel="stylesheet" type="text/css"  />
+</head>
+<body>
+   <header class="_Wedafytop">
+	<div class="_Wedafytopback">
+		<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="openDelayWindow('find/discover_list.htm','发现','',1,'',1);">
+					<img src="../img/top/_We_return.png" />返回
+				</div> 
+				<div class="_Wedafytop_title font-size6">理财计算器</div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+		   </div>
+	</div>
+   </header>
+<div id="container">
+  	<div class="z_discover_form  z_discover_form_sec2 clearfix">
+  	  <div class="z_discover_cont">
+  		<div class="z_discover_domlist_hr clearfix">
+  			<div class="z_discover_downame">投资金额：</div>	
+  			<div class="z_discover_dowinput">
+  				<input  type="number" id="money_id" placeholder="请输入投资金额" />
+  			</div>
+  			<div class="z_discleartext">元</div> 
+  		</div>
+  		<div class="z_discover_domlist_hr z_padding_disc clearfix" >
+  			<div class="z_discover_downamefloat">理财模式：</div>	
+  			<div class="z_discover_dowspan">
+	  			<span id="way1" class="row">等额本息</span>
+	  			<span id="way2" class="row">每月付息到期还本</span>
+  			</div> 
+  		</div>	
+    	<div class="discover_domlist_hr clearfix">
+  			<div class="z_discover_downame">年利率：</div>	
+  			<div class="z_discover_dowinput">
+  				<input  type="number" placeholder="请输入年利率" id="rate_id"  num="100" msg="请输入100以内的年利率" oninput=""/>
+  			</div> 
+  			<div class="z_discleartext">%</div> 
+  		</div>	
+    	<div class="z_discover_domlist_hr clearfix">
+  			<div class="z_discover_downame">投资期限：</div>	
+  			<div class="z_discover_dowinput">
+  				<input  type="number" id="deadline_id" num="99" msg="请输入99以内的期限" oninput="" placeholder="请输入投资期限" />
+  			</div> 
+  			<div class="z_discleartext">月</div> 
+  		</div>	
+    	<div class="z_discover_domlist_hr clearfix">	
+  			<div class="z_discover_dowinput _ldiscover_float">
+  				<div class="bootom" onclick="_obj.calculate()">开始计算</div>
+  			</div> 
+  		</div>
+  	   </div>
+  		<div class="z_discover_jg" id="tips_id">
+ 			
+	  		<!-- <h3>计算结果</h3>
+	  		预计收益：<span>100.11</span><Br>
+	  		元本金：<span>100元</span><Br>
+	  		利息：<span>0.11元</span> -->
+	  		
+	  	</div>	
+  	</div>
+</div>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script src="calc.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var _obj = {};
+	
+	_obj.way = -1;
+	
+	//绑定还款方式1
+	$("#way1").bind("click", function(){
+		$("#way2").removeClass("rowone");
+		$("#way1").addClass("rowone");
+		_obj.way = 0;
+	});
+	//绑定还款方式2
+	$("#way2").bind("click", function(){
+		$("#way1").removeClass("rowone");
+		$("#way2").addClass("rowone");
+		_obj.way = 1;
+	});
+	
+	_obj.verifyNumber=function(that){
+		var val = that.value;
+		var maxNum = that.getAttribute("num");
+		var msg = that.getAttribute("msg");
+		if(val && val.length>0){
+			if(isNaN(val)){
+				info("请输入数字类型");
+				return false;
+			}
+		}
+		
+		if(Number(val) > maxNum){
+			info(msg);
+			return false;
+		}
+		return true;
+	}
+	
+	_obj.calculate=function(){
+		var money_id_value = document.getElementById("money_id").value;
+		var rate_id_value = document.getElementById("rate_id").value;
+		var deadline_id_value = document.getElementById("deadline_id").value;
+		if(money_id_value == null || money_id_value == ""){
+			info("请输入投资金额!");
+			return;
+		}
+		if(isNaN(money_id_value) == true){
+			info("您输入了非数字类型数据请更正");
+			return false;
+		}else if(money_id_value % 100 != 0){
+			info("投资金额是100的倍数");
+			return false;
+		}
+		if(_obj.way == -1){
+			info("请选择理财模式!");
+			return;
+		}
+		if(rate_id_value == null || rate_id_value == ""){
+			info("请输入年利率!");
+			return;
+		}
+		if(deadline_id_value == null || deadline_id_value == ""){
+			info("请输入投资期限!");
+			return;
+		}
+		var money = Number(money_id_value);
+		if(money == -1){	return ;}
+		
+		var bb = rate_id_value.toString().split('.');
+		if(bb.length > 1) {
+			if(bb[1].length > 1){
+				info("年利率只能有一位小数");
+				return false;
+			}
+		}
+		
+		var rate = Number(_obj.getVal("rate_id"))/100;
+		if(rate == -1){	return ;}
+		
+		var deadline = Number(_obj.getVal("deadline_id"));
+		if(deadline == -1){	return ;}
+		
+		//var way = Number(_obj.get("way_id"));
+		var way = Number(_obj.way);
+		var interest = 0;
+		var monthlyRate = rate / 12;// 将年利率转成运算系数
+		switch(way) 
+		{ 
+			case 1: 
+				interest = Number((money*rate/12*deadline).toFixed(2));
+				break; 
+			default: 
+				//interest = Number((money*rate/12*deadline).toFixed(2));
+				var monthlyAmount = Number((money*monthlyRate*Math.pow((1+monthlyRate),deadline)/(Math.pow((1+monthlyRate),deadline)-1)).toFixed(2));
+				var sum = Number(monthlyAmount*deadline);//收益总金额
+				interest = Number((sum-money).toFixed(2));
+		}
+		var money2 = (money+interest).toFixed(2);
+		var content = "预计收益："+money2+"元,本金："+money+"元,利息："+interest+"元";
+		var content = "<div>预计收益：<span>"+money2+"</span>元</div><div>本金：<span>"+money.toFixed(2)+"</span>元</div><div>利息：<span>"+interest.toFixed(2)+"</span>元</div>";
+		_obj.html("tips_id",content);
+		document.body.scrollTop =3000;//滚动条感动到底部
+	}
+	
+	_obj.get=function(id){
+		return document.getElementById(id).value;
+	}
+	
+	_obj.getVal=function(id){
+		var dom = document.getElementById(id);
+		var flag = _obj.verifyNumber(dom);
+		if(flag == true){
+			return dom.value;
+		}else{
+			return -1;
+		}
+	}
+	
+	_obj.html = function(dom,data){
+		if((typeof dom === 'string') && dom.constructor==String){dom = document.getElementById(dom)}
+		if(dom){
+			dom.innerHTML = '';
+			dom.innerHTML = data;
+		}
+	}
+	
+	_obj.show=function(dom,flag){
+		if((typeof dom === 'string') && dom.constructor==String){dom = document.getElementById(dom)}
+		if(dom){
+			var _style = flag == true ? "block" : "none";
+			dom.style.display = _style;
+		}
+	}
+	
+	function setposition(){
+		var ua = navigator.userAgent.toLowerCase();	
+		if (/iphone|ipad|ipod/.test(ua)) {
+			jQuery(".lo_bj").css("position","absolute");
+		}else if (/android/.test(ua)) {
+		   	jQuery(".lo_bj").css("position","fixed");
+		}
+	}
+	setposition();
+</script>
+</html>

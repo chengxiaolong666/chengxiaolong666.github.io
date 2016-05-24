@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="../css/public.css" />
+		<link type="text/css" rel="stylesheet" href="../css/top.css"  />		
+		<link type="text/css" rel="stylesheet" href="../css/app_popup.css"  />
+		<link type="text/css" rel="stylesheet" href="../css/mobileRecharge/mobileRecharge.css"  />
+	</head>
+<body>
+<header class="_Wedafytop">
+	<div class="_Wedafytopback">
+		<div class="_Wedafytop_positon">
+			<div class="_Wedafytop_return font-size5" onclick="openDelayWindow('mobileRecharge/sj_Rech.htm','产品详情','',1,'',1);">
+				<img src="../img/top/_We_return.png" />返回
+			</div>
+			<div class="_Wedafytop_title font-size6">手机充值记录</div>
+		</div>
+	</div>
+</header>
+<!-- 数据模板 -->
+<div id="rechargeModelDiv" style="display: none;">
+	<div class="list_rech_deta">
+		<div class="Business_logo">
+			<img src="#icon_path#"/>
+		</div>
+		<div class="api_czjl_a clearfix">
+			<p>
+				充值 #lRechargeMoney#元- #strOrderSn2#<Br>
+				<span>#dtCreateTime#</span>
+			</p>
+			<div class="api_rech_Success" onclick="shouRechargeRecord('#strOrderSn#')">
+				#lRechargeRealMoney#<Br>
+				<span>#chargeStatus#</span>
+				<img src="../img/public/api_Arrow.png" />
+			</div>
+		</div>
+	</div>
+</div>	
+<div id="container">
+	<div class="rech_cz_list clearfix">
+		<ul id="dataList_id">
+		</ul>
+	</div>
+</div>
+
+<!-- 无数据时展示的提示内容 -->
+<div id="div_b1"></div>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript" src="rech_list_mall.js"></script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>关于我们</title>
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../../css/myCenter/more/more.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="back();">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div id="s_title" class="_Wedafytop_title font-size6">帮助中心</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<section class="z_main_bor">
+			<div id="help_list" class="z_about_main font-size3">
+				<p id="borrow" title="如何借款" style="display:none">线下提供身份证银行卡及相关资料进行签约并授信，即可在首页点击借款，打开借款申请页，输入需要借款的金额并提交，5-30分钟后打入您之前绑定的银行卡内。</p>
+								
+				<p id="lend"  title="如何理财" style="display:none">实名认证后，并设置好交易密码，保证您的帐户中有充足的金额，如果没有充足的金额，需先进行充值，然后即可对理财产品进行投资。</p>
+				
+				<p id="pwd" title="如何设置密码" style="display:none">点击【安全中心】，可以对登录密码和交易密码进行设置和修改。</p>
+				
+				<p id="rz" title="如何实名认证" style="display:none">点击【安全中心】，然后点击【实名认证】，输入姓名、身份证和银行卡信息，即可进行认证。</p>
+				<p id="rzbe" title="实名认证失败怎么办" style="display:none;text-indent:0px;">
+				实名认证失败怎么办？<Br/><Br/>1.银行开户预留手机号错误<Br/>
+				银行预留手机号是银行卡开户时预留的手机号，快捷支付时需要该手机号接收验证码。若没有预留，或者忘记，或者以前预留的手机号已废弃，请携带本人身份证、银行卡和手机去银行柜台修改预留信息。				
+				</p>
+				<p id="invest" title="查看现有投资情况" style="display:none">点击底部菜单【我的】，打开【我的理财】，即可看到买入中、赎回中和已持有的理财。</p>
+				
+				<p id="ck" title="如何查看借还款情况" style="display:none">点击底部菜单【我的】，打开【我的借款】，即可看到待还款和已还款的借款。</p>
+			</div>
+		</section>
+	</div>
+	<script src="../../js/CDOLib/ClientEngine.js"></script>
+	<script src="../../js/common/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript">
+		//jsHeight.bodyheight();  //加载页面BODY高度
+		function init(){
+			var type = getQueryString("type");
+			var lp;
+		    var help_list = document.getElementById("help_list");
+			lp = help_list.getElementsByTagName("p");
+			for(var i=0;i<lp.length;i++){
+				if(lp[i].id==type){
+					lp[i].style.display = "block";
+					$("#s_title").html(lp[i].title);
+				}else{
+					lp[i].style.display = "none";
+				}		
+			}	
+		}
+		init()   //帮助中心执行方法
+	</script>
+</body>
+</html>

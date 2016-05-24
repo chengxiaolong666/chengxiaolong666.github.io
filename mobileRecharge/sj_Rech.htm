@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="../css/public.css" />
+		<link type="text/css" rel="stylesheet" href="../css/top.css"  />		
+		<link type="text/css" rel="stylesheet" href="../css/app_popup.css"  />
+		<link type="text/css" rel="stylesheet" href="../css/mobileRecharge/mobileRecharge.css"  />
+	</head>
+	<body>
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" onclick="openDelayWindow('index.htm','首页','',1,'',1);">
+						<img src="../img/top/_We_return.png" />返回
+					</div>
+					<div class="_Wedafytop_title font-size6">手机充值</div>
+					<div class="_Wedafytop_righttext" onclick="getMallList()"><a href="javascript:void(0)"><img src="../img/api_records.png"/></a></div>
+				</div>
+			</div>
+		</header>	
+		<div id="container">	
+			<div class="situ_cons">	
+			<div class="_articleInput">
+				<div class="_regDel clearfix">
+					<div class="api_Mail_list" onclick="getMailList()"><a href="javascript:void(0)"><img src="../img/mobileRecharge/cz_listmall.png"  id="txl_click"/></a></div>
+					<div class="api_Mail_close" style="display: none;"><a href="javascript:void(0)"><img src="../img/mobileRecharge/rech_close.png"/></a></div>
+					<b>手机号</b>
+					<input  name="strPhoneNumber" id="strPhoneNumber"  value="" type="text"  placeholder="请输入11位手机号码" />
+				</div>
+			</div>
+			<div class="rech_input_width clearfix">			
+				<!-- 支付密码弹窗start-->
+				<div id="c_id01"></div>
+				
+				<!-- 支付密码弹窗start-->
+				<div id="c_id02"></div>
+				
+				<!-- 验证提示弹窗start-->	
+				<div id="Verif_id"></div>
+				<!-- 验证提示弹窗end-->
+				
+				<!-- 充值金额模板 -->
+				<div id="productModelDiv" style="display: none;">
+					<li onclick="selectRechargeCode(#i#,'#lRechargeValue#','#lRechargeRealValue#')">
+						<div class="api_rech_Selected" style="display: block;" id="rechargeCode_#i#" >
+							<img src="../img/mobileRecharge/api_mone_Selected.png"/>
+						</div>
+						#lRechargeValue#元<Br><p>售价：#lRechargeRealValue#元</p>
+					</li>
+					<li style="width: 3%; border: 0px;box-shadow:0 0 0px;#display#"></li>
+				</div>
+				
+				<!-- 产品详情-->
+				<div class="api_lt_rech" id="product_div">
+					<div class="api_yyt_logo" id="yyt_logo" style="display: none;">
+						<h1><img id="logo_img" src=""/><span class="api_lt_test" id="phoneName">中国联通</span></h1>
+					</div>
+					<ul id="productList">
+
+					</ul>
+					<input type="hidden" id="lAmount" value="#lAmount#" />
+					<input type="hidden" id="lRealAmount" value="#lRealAmount#" />
+					<input type="hidden" id="strPhoneType" value="#strPhoneType#" />
+				</div>
+				<!-- 产品详情-->
+					
+				<div class="api_rech_Details">
+					<h2>温馨提示：</h2>
+					<p><span class="span_api_left">1、本业务暂不提供充值发票，请谅解。<Br></span>
+					2、本渠道充值均不参加您当地移动运营商的促销或赠送话费等优惠活动。</p>
+				</div>
+			</div>
+			<div class="inc_submit" id="pay_btn"><a href="javascript:void(0)" >充值</a></div>
+			</div>				
+		</div>
+			
+	<div id="fade123" class="black_overlayasd"></div>	
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript" src="../js/certificationCommon.js"></script>
+<script type="text/javascript" src="sj_Rech.js"></script>
+<script type="text/javascript">
+	$("#api_id").bind("touchstart",function(){
+	  $(this).css("backgroundColor","#D84E03");	
+	  $(".api_Eject_c").css("display","block");
+	  $("#fade123").css("display","block");
+	});
+</script>
+</html>

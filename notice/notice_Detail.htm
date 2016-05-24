@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+   	<link type="text/css" href="../css/public.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../css/top.css" />
+    <link type="text/css" href="../css/notice/notice.css" rel="stylesheet" />
+    <title>公告</title>
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="back();">
+					<img src="../img/top/_We_return.png" />返回
+				</div> 
+				<div class="_Wedafytop_title font-size6">公告详情</div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>
+	
+	<div id="container">
+		<div class="z_wnotice_con" id="_wnotice_con">
+				
+		</div>
+	</div>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript">
+function Notice_detail(){};
+Notice_detail.prototype.lid = getQueryString("lId");
+Notice_detail.prototype.detail = function(){
+		var cdoRequest = new CDO();
+		cdoRequest.setStringValue("strServiceName","NoticeService");
+		cdoRequest.setStringValue("strTransName","queryNoticeDetail");
+		cdoRequest.setIntegerValue("lId",this.lid);
+		raiseTrans(cdoRequest,"noticeDetail");
+}
+function noticeDetail(cdoRequest,cdoResponse,cdoReturn){
+		if(cdoReturn == null || typeof cdoReturn == "undefined"){
+			_shade_layer.hide();
+			info("请求公告详情失败");
+			return ;
+		}
+		if(cdoReturn.nCode == 0 && cdoResponse.exists("cdoNotice"))
+		{
+			var cdoNotice = cdoResponse.getCDOValue("cdoNotice");
+ 			var content = "";
+ 			var _wnotice_con = document.getElementById("_wnotice_con");
+ 			var strTitle = cdoNotice.getStringValue("strTitle"); 
+ 			var dtCreateTime = cdoNotice.getStringValue("dtCreateTime");
+ 			var strContent = cdoNotice.getStringValue("strContent");	
+		    content += "<h1>"+strTitle+"</h1>";
+   			content += "<time>"+dtCreateTime+"</time>";
+		    content += "<div class=\"content\">"+strContent+"</div>";	
+ 			var div = document.createElement("div");
+ 			div.innerHTML = content;
+ 			_wnotice_con.appendChild(div);
+ 			_shade_layer.hide();
+		} else {
+			info(cdoReturn.strText);
+			_shade_layer.hide();
+		}
+}
+	_shade_layer.show("加载中，请稍后...");
+	jsHeight.bodyheight();  //获取页面高度
+	_notice_detail = new Notice_detail();  //实例化对象
+	window.onload = function(){
+	_notice_detail.detail();   //获取公告详情
+	}
+</script>
+</html>

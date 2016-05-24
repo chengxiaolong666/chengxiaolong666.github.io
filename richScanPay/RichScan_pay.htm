@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title>扫码支付</title>
+        <link href="../css/public.css" rel="stylesheet" type="text/css" />
+        <link href="../css/top.css" rel="stylesheet" type="text/css" />
+	    <link href="../css/richScanPay/richScanPay.css" rel="stylesheet" type="text/css" />
+		<link href="../css/app_popup.css"  rel="stylesheet" type="text/css"  />
+	</head>
+	<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="strback()">
+					<img src="../img/top/_We_return.png" />返回
+				</div> 
+				<div class="_Wedafytop_title font-size6">扫码支付</div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>
+	<div id="obj_pseudo_submit" class="z_obj_pseudo_submit colorbutton" onclick="_richscan.codepayment()">确认</div>			
+	<div id="obj_pseudo_submit01" class="z_obj_pseudo_submit colorbutton" style="background:#ccc;display: none;">支付中...</div>	
+	<div id="container" style="display: none">
+		<div class="z_sta_text_detail clearfix">
+			<span class="z_sta_row_name">账户余额</span><span class="z_sta_row_sum" id="accunt_balance">0元</span><span class="z_pseudo_rech" onclick="openWindow('myCenter/recharge/financial_recharge.htm','充值提现','backType=1',0,'');">充值</span></br>	
+			<span class="z_sta_row_name">积分余额</span><span class="z_sta_row_sum" id="accunt_integral">0分</span></br>	
+		</div>
+		<div class="z_sta_apply_detail clearfix">
+			<span class="z_row_name">商户名称</span><span class="z_row_sum" id="tenant_name"></span></br>	
+			<span class="z_row_name" style="width:24%;">订单金额</span>
+			<span class="z_row_sum clearfix" >
+			<input  name=""  placeholder="请输入金额"   type="number"  oninput="_richscan.nsoninput('lastmoney')" onpropertychange="_richscan.nsoninput('lastmoney')"   value="" type="text"  id="rich_pay_money" class="z_wstpay_money" />元
+			<label class="z_rich_hint" id="rich_hint"></label>
+			</span>
+
+		</div>
+		<div class="z_lsm_conent clearfix" id="lsm_conent">
+	 		<div class="z_pse_list_smpayment z_lsmsmayment clearfix"> 	
+				<div class="z_sm_pay_name">使用积分</div>
+				<div class="z_ss_pws_pos">
+					<div class="z_ss_pws" id="ss_pws">
+						<div class="z_rou_rightrid" id="rou_rightrid"></div>
+					</div>
+				</div>
+			</div>
+			<div class="z_sm_apply_detail z_lsm_applay_detail  clearfix" id="ss_pow_display" style="display: none;">
+				<span class="z_name" style="width:23%;">积分支付</span>
+				<span class="z_sum">
+					<input  name="" value="" id="zf_integral" class="z_wstpay_money" onkeyup="strAstrict(this)" onafterpaste="aftAstrict(this)"  oninput="_richscan.nsoninput('lastmoney')" onpropertychange="_richscan.nsoninput('lastmoney')"   type="number" placeholder=">=0"  />分
+					<label class="z_rich_hint" id="gral_hint"></label>
+				</span></br>	
+				<span class="z_name">支付金额</span><span class="z_sm_row_sum"><input  name="" value="" id="lastmoney" readonly="readonly" type="text"  />元</span></br>	 
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript" src="RichScan_pay.js"></script>
+</html>

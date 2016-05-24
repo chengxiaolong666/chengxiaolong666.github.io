@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link href="../../css/public.css"  rel="stylesheet" type="text/css"  />
+		<link href="../../css/top.css"  rel="stylesheet" type="text/css"  />
+		<link href="../../css/myCenter/myBorrow/myBorrow.css"  rel="stylesheet" type="text/css"  />
+		<link href="../../css/app_popup.css"  rel="stylesheet" type="text/css"  />
+	</head>	
+	<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_title font-size6">还款申请结果</div>
+				<div class="_Wedafytop_righttext font-size3" onclick="openWindow('myCenter/myBorrow/repaymentList.htm','我的借款','',1,'',1);">完成</div>
+			</div>
+		</div>
+	</header>		
+	<div id="container">
+		<div class="_whborrow_i_str">		
+			<div class="_whborrow_jk_state">
+				<div class="_whborrow_jd_blue"></div>
+				<div class="_whborrow_jd_blue" style="background: #BBBBBB; bottom: 0px;"></div>			
+				<div class="_whborrow_jd_succeed_text" id="text1">
+						
+				</div>
+				<div class="_whborrow_jd_succeed_botttext" id="text2">
+					根据银行支付情况估计到帐时间5-30分钟，最迟24小时内！<Br>				
+					<span>到账后我们会及时通知您</span>
+				</div>			 
+			</div>
+		</div>
+	</div>
+	</body>
+	<script src="../../js/includeCommon.js"></script>
+	<script type="text/javascript">ImportJS(2)</script>
+	<script type="text/javascript">
+		jsHeight.bodyheight();  //加载页面BODY高度
+		$(document).ready(function(){
+			setTimeout(function() {
+				var lAmount = getQueryString("lAmount");
+				var text1 = "还款申请已提交<Br><span>申请还款金额" + lAmount + "元</span>";
+				$("#text1").html(text1);
+				setBackURL('myCenter/myBorrow/repaymentList.htm','我的借款','',1);
+			}, 300)
+		});
+	</script>
+</html>

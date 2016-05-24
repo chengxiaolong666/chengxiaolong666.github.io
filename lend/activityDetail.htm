@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>活动产品详情</title>
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/lend/lend.css" rel="stylesheet" type="text/css" />
+<link href="../css/lend/lendPublic.css" rel="stylesheet" type="text/css" />
+<link href="../css/app_popup.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="_obj.back()">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6" id="strLendProductName_id"></div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div id="mui-content_id" style="display:none;">
+			<div class="mui_con">
+				<div class="z_financial_activity_det clearfix">
+					<div class="z_financial_activity_rate clearfix">
+						<div class="z_financial_yq colorF">
+							<b id="nLenderYearRate_id"></b>
+							<p>预期年化收益率</p>
+						</div>
+						<div class="z_financial_date colorF">
+							<b id="deadline_id"></b>
+							<p>封闭期限</p>
+						</div>
+					</div>
+					<div id="transfer_id">
+						<div class="z_financial_cpxq_plan clearfix" id="progress_div_id">
+							<div class="z_invest_plan_t">
+								<div id="invst_plan_bl" class="z_invst_plan_bl" style="width: 0%;"></div>
+							</div>
+							<div id="invst_plan_scale" class="z_invst_plan_scale">0%</div>
+						</div>
+						<div class="z_activity_remaining_can">
+							<ul id="transfer_txt_id">
+								<!-- 
+									<li>转让金额：2000.00万元</li>
+									<li>剩余可投金额：2000.00万元</li>
+									 -->
+								<li>售卖截止时间：2015-09-30</li>
+							</ul>
+						</div>
+					</div>
+					<div class="z_financial_activity_det_text font-size3" id="info_id">本金和收益到期收回</div>
+				</div>
+				<div class="z_financial_activity_state_cz clearfix" id="balance_div_id">
+					<div class="z_financial_activity_cz_available color6 font-size5">
+						可用余额：<span id="balance_money_id">0</span>元
+					</div>
+					<div class="z_financial_activity_credit_cz clearfix">
+						<span class="colorF font-size3" onclick="_obj.goVoucherBefore()">充值</span>
+					</div>
+				</div>
+				<div class="z_activity_product_account" id="edit_money_id">
+					<div class="z_bo_product_reg_apply clearfix">
+						<b>金额：</b> <input id="lMinInvestAmount_id" oninput="_obj.inputMoney(this)" maxlength="10" name="number" type="number" class="font-size2 color_bb" />
+
+					</div>
+				</div>
+				<div class="z_finnacial_mrys_bage_tis">
+					<div class="z_finnacial_bage_text" id="hint_id"></div>
+				</div>
+				<div class="z_financial_cztzr_state_cz clearfix">
+					<div class="z_financial_cztzr_available color6 font-size3">
+						已投资人数：<span id="people_id"></span>人
+					</div>
+				</div>
+				<div id="mrys_bag" class="z_finnacial_activity_mrys_bage clearfix">
+					<div class="z_finnacial_activity_bage_deal clearfix">
+						<div class="z_activity_deal_left font-size3 clearfix">
+							<img src="../img/public/dx_02.png" id="xieyi_id" onclick="_obj.changePic(this)" />我同意
+							<span onclick="openWindow('model/xieyi_dafy_gdqx_dfb.htm','购买协议','',0,'');">《购买协议》</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="z_finnacial_pull_up color_22 font-size3" onclick="_obj.loadInvestList()">
+		<img src="../img/public/api_Arrow.png" /> 查看产品详情
+	</div>
+	<div class="z_financial_order_inc_submit colorbutton" style="display:none;" id="buy_id">
+		<a href="javascript:void(0)" onclick="_obj.buy()">立即投资 </a>
+	</div>
+	<div class="z_financial_order_inc_timesubmit colorc1" id="buy_in_id" style="display:none;">立即投资</div>
+	<div class="z_financial_order_inc_timesubmit colorc1" id="buy_time_id" style="display:none;"></div>
+</body>
+
+<script type="text/javascript" src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript" src="../js/certificationCommon.js"></script>
+<script type="text/javascript" src="activityDetail.js"></script>
+</html>

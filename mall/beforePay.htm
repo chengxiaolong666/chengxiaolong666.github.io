@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<link href="../css/public.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/mall/Mall.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/top.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/body_backcolor.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/app_popup.css"  rel="stylesheet" type="text/css"  />
+	</head>	
+	<body>
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" id="toBeforePage" >
+						<img src="../img/top/_We_return.png" />返回
+					</div> 
+					<div class="_Wedafytop_title font-size6">提交订单</div>
+					<div class="_Wedafytop_righttext font-size3" id="toOrderList">查看订单</div>
+				</div>
+			</div>
+		</header>
+		<div id="container">
+			<div id="containerShow" style="display: none;">
+				<div class="WrecmallOredrList padbottom50 clearfix">
+					<ul>
+						<li>
+							<a href="javascript:void(0);" id = "toSelectGoods">
+								 <div class="WlistRechstrDeta clearfix">
+									<div class="WBusissNessSjsltImg"><img id="strGoodsURL" src=""></div>
+										<div class="WsappCzjlOrdreDetails clearfix">
+											
+											<div class="WsAppOrdreDetailsWid  font-size3">
+												<div class="WappsOrdreDetailsUs">产品名称：</div>
+												<div class="WappOrdrerDetailsoCont" id="strGoodsTitle"></div>
+											</div>
+											<div class="WsAppOrdreDetailsWid  font-size3">
+												<div class="WappsOrdreDetailsUs">数量：</div>
+												<div class="WappOrdrerDetailsoCont" id="strGoodsAmount"></div>
+											</div>
+											<div class="WsAppOrdreDetailsWid  font-size3">
+												<div class="WappsOrdreDetailsUs">价格：</div>
+												<div class="WappOrdrerDetailsoCont span_Orange" id="strAmount"></div>
+											</div>
+											<div class="WsAppOrdreDetailsWid  font-size3">
+												<div class="WappsOrdreDetailsUs">首付：</div>
+												<div class="WappOrdrerDetailsoCont span_Orange" id="strFirstPrice"></div>
+											</div>
+											<div class="WsAppOrdreDetailsWid  font-size3">
+												<div class="WappsOrdreDetailsUs">期数：</div>
+												<div class="WappOrdrerDetailsoCont span_Orange" id="strTermCount"></div>
+											</div>
+											<div class="WsAppOrdreDetailsWid  font-size3">
+												<div class="WappsOrdreDetailsUs">每期：</div>
+												<div class="WappOrdrerDetailsoCont span_Orange" id="strTermPrice"></div>
+											</div>
+										</div>
+								</div>
+							</a>
+						</li>
+						<li id="toAddressListOrAdd" style="display:none">
+						    <div class="WListSubmitstrOrder clearfix">
+								<div class="WlistnssOrderName color9 font-size3">姓名：</div>			
+								<div class="WlistOrderConts color2 font-size3" id="strConsigneeName"></div>				
+							</div>
+							<div class="WlistmuSubmitOrderDel clearfix">
+								<img src="../img/public/api_Arrow.png">
+								<div class="WlistnssOrderName color9 font-size3">手机号码：</div>			
+								<div class="WlistOrderConts color2 font-size3" id="strMobile"></div>				
+							</div>
+							<div class="WListSubmitstrOrder clearfix">
+								<div class="WlistnssOrderName color9 font-size3">详细地址：</div>			
+								<div class="WlistOrderConts color2 font-size3" id="strFullAdress"></div>				
+							</div>
+						</li>
+						<li id="noAddressSelected" style="display:block">
+							<div class="wadd_scontstr">
+								<div class="Wadd_MallAddress font-size3"><div class="Wadd_Malljimg"><img src="../img/mall/addico.png"/></div> 点击添加收货地址</div>
+							</div>
+						</li>
+						<li style="border: 0px;">
+							<div class="WListSubmitstrOrder clearfix">
+								<div class="WlistnssOrderName color9 font-size3">实际付款：</div>			
+								<div class="list_order_cont color_cs font-size3" id="strRealPay"></div>				
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+		<div class="api_commodity_Choice colorbutton font-size5" id="doPay" ><a href="javascript:void(0)">确定付款</a></div>
+	</body>
+	
+	<script type="text/javascript" src="../js/includeCommon.js"></script>
+	<script type="text/javascript">ImportJS(1);</script>
+	<script type="text/javascript" src="../applyCredit/creditManage.js"></script>
+	<script type="text/javascript" src="beforePay.js"></script>
+</html>

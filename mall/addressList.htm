@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<link href="../css/public.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/mall/Mall.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/top.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/body_backcolor.css"  rel="stylesheet" type="text/css"  />
+	</head>
+	<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" id="toBeforePay">
+					<img src="../img/top/_We_return.png" />返回
+				</div> 
+				<div class="_Wedafytop_title font-size6">管理收货信息</div>
+				<div class="_Wedafytop_righttext font-size3" id="toOrderList">查看订单</div>
+		
+			</div>
+		</div>
+	</header>
+		<div id="AddAddressButtonHA" style="display: block;">
+			<div class="WsubIncrease colorbutton">
+				<img src="../img/mall/api_sh_Increase.png">
+				<a href="javascript:void(0)" >添加新收货地址</a>
+			</div>
+		</div>	
+		
+		<div id="container">
+				<div class="WreManagement_list padbottom50 clearfix">
+					<ul id="showArea"></ul>
+				</div>
+				<div id="AddAddressButtonArea" class="WapiDeliveryAddlist clearfix" style="display: none;">
+					<ul>
+						<a href="javascript:void(0);" id="toAddAddress">
+							<li>
+							<div class="wapiAddArress color_bb font-size3">
+				  		    <img src="../img/mall/add_address.png"><br>
+				    		您没有收货地址，请点击添加收货信息
+				    		</div>
+				  			</li>
+						</a>					
+					</ul>
+				</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript" src="../js/includeCommon.js"></script>
+	<script type="text/javascript">ImportJS(1);</script>
+	<script type="text/javascript" src="addressList.js"></script>
+	
+</html>

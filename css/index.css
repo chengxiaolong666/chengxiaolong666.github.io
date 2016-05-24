@@ -1,0 +1,256 @@
+/*index  css  start*/
+
+
+/* 理财借款部分 css start*/
+.z_matters_loan1 {
+	padding-top:2%;
+	height: 140px;	
+}
+.z_matters_loan1 img{
+	max-height: 70px;
+	position: absolute;
+	left:13%;
+}
+.z_matters_loan1 label{
+	position: absolute;
+	left:50%;
+    top:38%;
+} 
+.z_matters_loan1 p{
+	position: absolute;
+	top:75%;
+	width: 100%;
+	text-align: center;
+	
+}
+.z_index_left{
+	display: inline-block;
+	width: 48%;	
+	float: left;
+	height: 120px;
+	position:relative;
+}
+.z_index_right{
+	display: inline-block;	
+	width: 49.5%;	
+	float: left;
+	height: 120px;
+	position:relative;
+}
+.z_wd_yel{
+	color:#fc651c;
+	display: inline-block;
+}
+.z_index_right .z_mar{
+	left:55%
+}
+.z_app_ss_main {
+	margin-top: 12%;
+	margin-left: 2%;
+	height: 35%; 
+	float: left;
+	border-left: 1px dashed #D7D7D7;
+}
+/* 理财借款部分 css  end*/
+
+/* 理财风暴 css*/
+.z_financial_tempest {
+	padding: 0 0 3% 0%;
+	font-size: 1.2em;
+	color: #999999;
+	margin: 0 0 4% 0;
+	position: relative;
+	border-bottom: 1px dashed #D7D7D7;
+}
+.z_financial_tempest span {
+	background: #FFF;
+	padding: 0% 8% 0% 8%;
+	position: absolute;	
+	color: #8db6ff;
+	left: 35%;
+}
+
+/* 达赏与手机充值  start */
+.z_index_sec3{
+	width:100%;
+	overflow: hidden; 
+	text-align: center;
+	border-top:1px solid #eee;
+}
+.z_Sec3Con{	
+	width: 50%;
+	float: left;
+	display: inline-block;
+	height: 60px;
+	line-height: 68px;
+	position: relative;
+}
+.z_Sec3Con img{
+    max-height: 40px;
+    position: absolute;
+    top:22%;
+    left:20%
+}
+.z_Sec3Con label{
+	position: absolute;
+    left:50%
+}
+ /* 达赏与手机充值 end */
+
+/* index list  css*/
+.z_financial_index_list {
+	width: 100%;
+	padding-bottom: 14%;
+	overflow: hidden;
+	
+}
+.z_financial_index_list  li{
+	overflow: hidden;
+	padding-top: 2%;
+	padding-bottom: 3%;
+	border-bottom: 1px solid #f2f2f2;
+	position: relative;
+	background: #FFF;
+}
+.z_financial_index_list  li img {
+	max-height: 50px;
+	position: absolute;
+	right: 15px;
+	top: 28%;
+}
+.z_financial_index_list  li h3 {
+	font-weight: 100;
+	margin-bottom: 3%;
+	font-size: 1.3em;
+}
+
+.z_indexlist_msg {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.z_index_list_left {
+	width: 36%;
+	line-height: 2em; 
+	float: left;
+}
+.z_index_list_left b {
+	font-size: 1.5em;
+	color: #FF6600;
+	text-align: center;
+	display: inline-block;
+
+}
+.z_index_list_left p{
+	color: #666666;
+	font-size:0.9em;
+}
+
+.z_index_list_content {
+	width:23%;
+	line-height: 2em; 
+	margin-right: 5%;
+	float: left;
+}
+.z_index_list_content b {
+	font-size: 1.3em;
+	font-weight: 100;
+	color: #222222;
+}
+.z_index_list_content p{
+	color: #666666;
+	font-size:0.9em;
+}
+.z_index_list_right {
+	width: 30%;
+	line-height: 2em; 
+	float: left;
+}
+.z_index_list_right b{
+	font-size: 1.3em;
+	font-weight: 100;
+	color: #222222;
+}
+
+.z_index_list_right p{
+	color: #666666;
+	font-size:0.9em;
+}
+
+.z_bt_title {
+	width: 100%; padding:0 0 2% 0; 
+}
+.z_index_h3 {
+	display: block; padding-top:0.8%; float: left;
+}
+
+
+.z_indexlist_msg .fina_index_sales {
+	padding:0.5% 1% 0.5% 1%;
+	font-size:0.6em;
+	border-radius:0.5em;
+	margin-left:3%;
+
+}
+.z_indexlist_msg .colorA60 {
+	color:#069fff;
+	
+}
+.z_indexlist_msg .borderA60 {
+		border:1px solid #A60000;
+}
+.z_indexlist_msg .borderFF0 {
+	border:1px solid #FF0000;
+}
+
+.z_indexlist_msg .colorFF0 {
+	color:#FF0000;
+	
+}
+
+/*index  css   end*/
+		
+/*首页公告样式***开始**/
+._windex_announcement {
+	width: 100%;
+	padding:0% 0 0% 4%;
+	background: #fbfeff;
+	height:40px; 
+	line-height: 40px;
+	position:relative;
+	font-size:1em;
+	overflow:hidden;
+	box-shadow: 0px 3px 5px #f2f2f2;
+	margin: 0 auto;
+	color: #222222;
+}
+._windex_announcement a {
+	color: #0066FF;
+}
+._windex_announcement img {
+	 display: inline-block;
+	 vertical-align:middle;
+	 max-height:25px;
+	 margin: 0 2% 0.5% 0;
+ }
+ ._windex_announcement_rollText {
+ 	display: inline-block; line-height: 40px;
+ }
+._windex_announcement_rollText p{
+	color: #222222;
+	font-size: 1.2em;
+}
+
+ /*首页公告样式***结束**/
+/*首页和列表页理财倒计时样式*/
+
+.ilistcount_time {
+   	width: 39%;
+   	text-align: right;
+   }
+.ilistcount_time a {	
+	padding: 2% 2.5% 2% 2.5%;
+	border-radius: 3px;
+	color: #FFF;
+	background: #555555;
+}

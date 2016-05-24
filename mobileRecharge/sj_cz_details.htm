@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="../css/public.css" />
+		<link type="text/css" rel="stylesheet" href="../css/top.css"  />		
+		<link type="text/css" rel="stylesheet" href="../css/app_popup.css"  />
+		<link type="text/css" rel="stylesheet" href="../css/mobileRecharge/mobileRecharge.css"  />
+	</head>
+	<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="openWindow('mobileRecharge/rech_list_mall.htm','手机充值','',1,'',1);">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">充值详情</div>
+			</div>
+		</div>
+	</header>	
+	<section>
+		<article>
+			<!-- 数据模板 -->
+			<div id="detailModelDiv" style="display: none;">
+				<ul>
+					<li>
+						<div class="api_That clearfix">
+							<div class="api_money_Yuan"><b>充值金额（元）</b></div>
+							<div class="api_money_In">
+							#lRechargeRealMoney#
+							<span>#chargeStatus#</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="api_That clearfix">
+							<b>充值号码</b>
+							<p>#strMobilePhone#</p>
+						</div>
+						<div class="api_That clearfix">
+							<b>充值金额（元）</b>
+							<p>#lRechargeMoney#</p>
+						</div>
+						<div class="api_That clearfix">
+							<b>交易类型</b>
+							<p>充值话费</p>
+						</div>
+					</li>
+					<li>
+						<div class="api_That clearfix">
+							<b>交易时间</b>
+							<p>#dtCreateTime#</p>
+						</div>
+						<div class="api_That clearfix">
+							<b>交易号</b>
+							<p>#strOrderSn#</p>
+						</div>
+					</li>
+				</ul>				
+			</div>
+			<div id="container">
+				<div class="api_k">
+					<div class="reg_details_del clearfix" id="record_div">
+
+					</div>
+				</div>	
+			</div>
+		</article>
+</section>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript" src="sj_cz_details.js"></script>
+</html>

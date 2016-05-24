@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>发达赏</title>
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/redPacket/redBag.css" rel="stylesheet" type="text/css" />
+<link href="../css/inputStyle.css" rel="stylesheet" type="text/css" />
+<link href="../css/app_popup.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="openDelayWindow('index.htm','首页','', 1,'','1');">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">我要发达赏</div>
+				<div class="_Wedafytop_righttext font-size3" id="i_red_ag02" onclick="show_a()">查看达赏</div>
+			</div>
+		</div>
+	</header>
+
+	<div id="popup_red_b" class="api_i_Red_bag clearfix" style="display: none;z-index: 2000">
+		<ul>
+			<li id="toReceive"><a href="javascript:void(0);">收到的达赏</a>
+			</li>
+			<li id="toSend" style="border-bottom: 0px;"><a href="javascript:void(0);">发出的达赏</a>
+			</li>
+		</ul>
+	</div>
+	<div id="container">
+		<div class="z_red_input">
+			<div class="z_red_list clearfix">
+				<div class="z_api_ws_Company">个</div>
+				<b>达赏总数：</b> <input name="totalRed" id="totalRed" step="1" max="100" min="1" value="" type="number" placeholder="达赏个数在1-100之间" />
+			</div>
+			<div class="z_red_list clearfix">
+				<div class="z_api_ws_Company">元</div>
+				<b>达赏总金额：</b> <input oninput="setMonyInfo()" name="totalMony" id="totalMony" max="100" min="1" value="" type="number" placeholder="总金额在1-100之间" />
+			</div>
+			<div class="z_red_Package_test">
+				<span>抢到的达赏可用于提现、消费等</span><img src="../img/redPack/api_Hello01.png" id="hello_01">
+				<div class="z_hello_content" id="hello_content" style="display: none;">
+					<div class="z_api_hel">
+						<img src="../img/redPack/api_hel.png" />
+					</div>
+					抢到的达赏金额随机生成，最小金额不低于1元。
+				</div>
+			</div>
+			<div class="z_red_list clearfix">
+				<b>留言：</b> <input name="message" id="message" maxlength="10" value="恭喜发财达赏拿来！" type="text" />
+			</div>
+			<div class="z_amount_paid clearfix">
+				支付金额：
+				<p class="z_mound_money" id="mound_money">0</p>
+				元<br> <span>发达赏免费，仅支持<span style="color: #222; font-size: 1em;">消费账户</span>付款</span>
+			</div>
+			<div class="z_red_submit colorreach" onclick="createRedNPacket()">
+				<a href="javascript:void(0)">塞进达赏</a>
+			</div>
+		</div>
+	</div>
+	<div id="c_id01"></div>
+	<div id="c_id02"></div>
+	<!-- 红包图wht -->
+	<div class="z_reddass" id="reddass" style="display: none;">
+		<div class="z_reddass_relative" id="reddass_close">
+			<div class="z_reddass_close">
+				<img src="../img/redPack/user_close.png" />
+			</div>
+			<img src="../img/redPack/appred_con_r1_c1.png" /> <img src="../img/redPack/appred_con_r2_c1.png" /> <img src="../img/redPack/appred_con_r3_c1.png" />
+			<div class="z_reddass_red_text" id="reddass_red_text">已经将10元装入10个达赏</div>
+			<div class="z_reddass_input" onclick="shareRedPackage()">发放达赏</div>
+		</div>
+	</div>
+	<!-- 红包背景图wht -->
+	<div id="z_bred_overlayasd" id="bred_overlayasd" class="bred_overlayasd" style="display: none;"></div>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script src="../js/certificationCommon.js"></script>
+<script src="elopes_Red.js"></script>
+<script type="text/javascript">
+var shOpacity=1;
+var nAlertheight=50;
+jsHeight.bodyheight();  //加载页面BODY高度
+/**
+* 查看达赏栏目  收放
+*/
+var show_a = function(strText) {
+	if(document.getElementById("popup_red_b").style.display == "block"){
+		//lhh2015-10-14 收起栏目方法
+		document.getElementById("popup_red_b").style.display="none";
+		return;
+	}
+	document.getElementById("popup_red_b").style.backgroundColor="#C84D07";
+	document.getElementById("popup_red_b").style.display="block";
+	shOpacity=0.1;
+	nAlertheight = 10;
+	setOpacityshow(document.getElementById("popup_red_b"),shOpacity,nAlertheight);
+	setTimeout("onAlertTimeoutshow()",100);
+}
+
+/**
+* 查看达赏栏目动画
+*/
+var onAlertTimeoutshow=function() {
+	if(shOpacity<=1 && nAlertheight<=90) {
+		shOpacity+=0.1;
+		nAlertheight+=10;
+	} else {
+		return false;
+	}
+	setOpacityshow(document.getElementById("popup_red_b"),shOpacity,nAlertheight);
+	setTimeout("onAlertTimeoutshow()",10);
+}
+/**
+* 查看达赏栏目动画  设值
+*/
+function setOpacityshow(obj,value,height1) { 
+	obj.style.opacity = value; 
+	obj.style.filter = 'alpha(opacity=' + value + ')'; 
+	obj.style.height = height1 + 'px'; 
+}
+
+/**
+* 全局控制栏目收起
+*/
+document.onclick=function(e){
+	var src = e.srcElement || e.target; // src 就是事件的触发源
+	var flag = demo(src);
+	if(flag == false){
+		document.getElementById('popup_red_b').style.display='none';	
+	}
+}
+/**
+* 判断当前点击的dom是否是栏目
+*/
+function demo(dom){
+	if(!dom || dom.id == 'container') return false;
+	if(dom && (dom.id == 'popup_red_b' || dom.id =='i_red_ag02')){
+		return true;
+	}else{
+		return demo(dom.parentNode);
+	}
+}
+
+//页面问号显示控制
+var hellCount = 0;
+$(document).bind("click",function(event){
+		if($("#hello_content").hasClass("showN")) {
+			if(hellCount == 1){
+				hellCount++;
+			} else {
+				$("#hello_01").attr("src","../img/redPack/api_Hello01.png");
+	    	    $("#hello_content").css("display","none");
+	    	    $("#hello_content").removeClass("showN");
+	    	    hellCount=0;
+			}
+    	}
+ });
+ //页面问号显示
+ $("#hello_01").bind("click",function() {
+		if(document.getElementById("hello_content").style.display == 'none') {
+		 	$("#hello_01").attr("src","../img/redPack/api_Hello02.png");
+		    $("#hello_content").css("display","block");
+		    $("#hello_content").addClass("showN");
+		    hellCount++;
+		} 
+ });
+</script>
+</html>

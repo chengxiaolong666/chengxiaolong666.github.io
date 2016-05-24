@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>理财产品列表页</title>
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/lend/lend.css" rel="stylesheet" type="text/css" />
+<link href="../css/body_backcolor.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="backMethod()">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">产品超市</div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>
+	<div class="z_financ_bag"></div>
+	<div class="z_financial_mark_class font-size3" id="div_ul_id" style="display:none;">
+		<ul id="type_ul_id">
+		<!-- 	<li class="row" id="dflcId" style="border-right-width: 1px; border-right-style: solid; border-right-color: rgb(0, 122, 255); " strcode="1" strname="标准产品" onclick="_obj.chooseProduct(this,'1','标准产品')">标准产品1</li>
+			<li id="dfhdId" strcode="2" strname="活动产品" onclick="_obj.chooseProduct(this,'2','活动产品')">活动产品2</li> -->
+		</ul>
+	</div>
+	<div id="container">
+		<div id="context" style="display:block;">
+			<div class="z_product_list clearfix" id="main_div_id">
+				<div class="z_product_con">
+					<!-- 活动产品 -->
+					<div id="hide_activity_id" style="display:none">
+						<div onclick="_obj.openDetail(this,'#lId#','#type#','#productName#')">
+							<img src="#imgURL#" />
+							<div class="z_pro_msg">
+								<div class="z_pro_title clearfix" id="lc_bt_title">
+									<!-- 
+								<span style="float:right">距离开售 03：15：27</span> 
+								-->
+									<div class="z_title_name">
+										<h3>#strName#</h3>
+									</div>
+									<!--
+								<span class="fina_sales borderFF0 colorFF0" >促销</span> 
+								-->
+								</div>
+								<div class="z_year_rate  font-size1">
+									<b>#nLenderYearRate#</b>
+									<p>预期年化收益率</p>
+								</div>
+								<div class="z_investment_amount font-size1">
+									<b>#lMinInvestAmount#</b>
+									<p>起投金额</p>
+								</div>
+								<div class="z_investment_time font-size1">
+									<b>#deadline#</b>
+									<p>封闭期限</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 普通产品 -->
+					<div id="hide_div_id" style="display:none;">
+						<div onclick="_obj.openDetail(this,'#lId#','-1','#productName#')">
+							<img src="../img/lend/index_cast.jpg" />
+							<div class=z_pro_msg>
+								<h3>#strName#</h3>
+								<div class="z_year_rate  font-size1">
+									<b>#nLenderYearRate#</b>
+									<!-- <p>预期年化收益率</p> -->
+									<p>#strRate#</p>
+								</div>
+								<div class="z_investment_amount font-size1">
+									<b>#lMinInvestAmount#元</b>
+									<p>起投金额</p>
+								</div>
+								<div class="z_investment_time font-size1">
+									<b>#deadline#</b>
+									<p>封闭期限</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 债权转让 -->
+					<div id="hide_debt_div_id" style="display:none;">
+						<div onclick="_obj.openDetail(this,'#lId#','#lLenderId#','')">
+							<div class="circle" use="0">
+								<div class="pie_left">
+									<div class="left"></div>
+								</div>
+								<div class="pie_right">
+									<div class="right"></div>
+								</div>
+								<div class="mask">
+									<span>#percent#</span>%
+								</div>
+								<div class="mask_tou">投</div>
+							</div>
+							<div class="lc_ki">
+								<h3>#strLendProductName#</h3>
+								<div class="lc_list_left  font-size1">
+									<b>#nLenderYearRate#</b>
+									<p>预期年化收益率</p>
+								</div>
+								<div class="lc_list_content font-size1">
+									<b>#lAmount#元</b>
+									<p>转让金额</p>
+								</div>
+								<div class="lc_list_right font-size1">
+									<b>#nSurplusDayCount#天</b>
+									<p>剩余期限</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 动态填充数据到ul里面 -->
+					<ul id="dataList_id">
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript" src="productList.js"></script>
+</html>
+
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link href="../css/public.css" rel="stylesheet" type="text/css" />
+		<link href="../css/top.css" rel="stylesheet" type="text/css" />
+		<link href="../css/find/find.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/body_backcolor.css"  rel="stylesheet" type="text/css"  />
+	
+	</head>
+
+	<body>		
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" onclick="goBack();">
+						<img src="../img/top/_We_return.png" />返回
+					</div> 
+					<div class="_Wedafytop_title font-size6">理财课堂</div>
+					<div class="_Wedafytop_righttext font-size3"></div>
+			   </div>
+		</div>
+   </header>				
+	<div id="container">
+	  	<div class="z_discover_form z_discover_formColor clearfix">
+	  		<div class="z_discover_domclass"  onclick="finddetails(1)">
+		  		<h3>爱妈妈就教她用达飞金融理财吧</h3>
+		  		<p><span class="z_discover_domclass_lp">5月10日，达飞玩吧的工作人员紧张忙碌地准备着母亲节活动——“为母亲献一支花”</span><a>...<span>[详情]</span></a></p>
+	  		</div>
+	  		
+	  		<div class="z_discover_domclass" onclick="finddetails(2)">
+		  		<h3>达飞云贷，你生活的不可或缺</h3>
+		  		<p><span class="discover_domclass_lp">随着人们生活水平的提高，移动互联日渐进入大众的视野，移动支付走进了人们的生活</span></span><a>...<span>[详情]</span></a></p>
+	  		</div>
+	  		
+	  		<div class="z_discover_domclass"  onclick="finddetails(3)">
+		  		<h3>人人有价值事事可分期</h3>
+		  		<p><span class="discover_domclass_lp">“人人有价值，事事可分期”。践行普惠金融理念，让普通人拥有并实际获得金融服务的权利 </span><a>...<span>[详情]</span></a></p>
+	  		</div>
+	  		<div class="z_discover_domclass"  onclick="finddetails(4)">
+		  		<h3>谈理财规划</h3>
+		  		<p><span class="discover_domclass_lp">何为理财，我个人觉得下面这句话就能讲清楚</span><a>...<span>[详情]</span></a></p>
+	  		</div>
+	  		<div class="z_discover_domclass"  onclick="finddetails(5)">
+		  		<h3>想理财，得有道 </h3>
+		  		<p><span class="discover_domclass_lp">错误的理财观念是一种“病”，这种病不仅不能让财富增值，甚至可能会贬值，针对目前个人</span><a>...<span>[详情]</span></a></p>
+	  		</div>
+	  		<div class="z_discover_domclass"  onclick="finddetails(6)">
+		  		<h3>月入5000，如何走上人生巅峰</h3>
+		  		<p><span class="discover_domclass_lp">喜欢名牌包包，却只能望而生畏？想吃哈根达斯，却觉得吃着肉疼？想去旅游胜地，却只能用照片过眼瘾</span><a>...<span>[详情]</span></a></p>
+	  		</div>
+	  		
+	  	</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1);</script>
+<script type="text/javascript">
+	
+	//返回
+	var goBack = function(){
+		back();
+		//openWindow('find/discover_list.htm','发现','',1);
+	}
+	/*点击进入详情页事件*/
+	function finddetails(id){
+		openWindow("find/room.htm","理财课堂详情","lid="+id+"",0,"");	
+	}   
+</script>
+</html>

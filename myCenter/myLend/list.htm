@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>我的理财-列表页</title>
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../../css/myCenter/myLend/myLend.css" rel="stylesheet" type="text/css" />
+<link href="../../css/app_popup.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="openWindow('myCenter/myIndex.htm','我的','',0,'','1');">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">我的理财</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div id="fin_i_table_list" class="_lfinancial_ob_explain clearfix">
+			<div style="padding-left: 10px;">
+				<b>总收益（元）<span id="lTotalInterest_id_2"></span>
+				</b>
+				<p>
+					截止到昨日,持有的全部理财产品累计收益总和。(预估收益不代表实际收益，请您以平台实际到账收益为准) <Br>
+				</p>
+				<b>理财总金额（元）<span id="lTotalInvest_id_2">0.00</span>
+				</b>
+				<p>根据你持有所有理财产品尚未到期的理财总金额</p>
+			</div>
+		</div>
+		<div onclick="stages_close()" class="_lblack_overlayasd" id="black_stages_overlayasd"></div>
+
+		<div class="_lfin_i_accumulated">
+			<h3 id="lTotalInterest_id">0.00</h3>
+			<p>
+				<img onclick="stagespopup()" src="../../img/public/fin_i_wh_02.png" />总收益（元）
+			</p>
+		</div>
+
+		<div class="_lfin_i_redemption_indexamount">
+			<h3 id="lTotalInvest_id">0.00</h3>
+			<p>理财总金额（元）</p>
+			<div class="_lfin_i_xx_hint" style="display:none;">
+				<img src="../../img/financial/LD.png" />提示：您有购买的达梦盈产品快到划款日，请这月5号之前充值到账户。
+			</div>
+		</div>
+
+		<div class="_lfin_i_poss_class clearfix">
+			<a class="row" name="tab" href="javascript:void(0)" id="a_hold_id" onclick="_obj.chooice(this,'2','hide_div_hold_id')">已持有<span id="nBoughtCount_id">0</span>笔</a> <a name="tab" href="javascript:void(0)" id="a_ransom_id" onclick="_obj.chooice(this,'4','hide_div_ransom_id')">赎回<span id="nOverCount_id">0</span>笔</a> <a name="tab" href="javascript:void(0)" id="a_buy_id" onclick="_obj.chooice(this,'1','hide_div_buy_id')">买入中<span id="nBuyingCount_id">0</span>笔</a>
+		</div>
+
+		<!-- 已持有strat -->
+		<div class="_lfin_i_lc_list">
+			<div id="hide_div_hold_id" style="display:none">
+				<!-- <div class="fin_i_ransom circumference" onclick="_obj.openDetail('0','#lId#')">#txt#</div>  -->
+				<div class="_lfin_left_lc_ki  clearfix" onclick="#onclick#">
+					<h3>
+						#strLendProductName#<span>预期年化收益率<a> #nLenderYearRate# #nLendExtRate#</a>
+						</span>#descriptionArea#
+					</h3>
+					<div class="_lfin_i_lc_list_left">
+						<b>#amount#元</b>
+						<p>投资金额</p>
+					</div>
+					<div class="_lfin_i_lc_list_content">
+						<b>#time#</b>
+						<p>购买时间</p>
+					</div>
+					<div class="_lfin_i_lc_list_right">
+						<b>#nTermCount#</b>
+						<p>封闭期限</p>
+					</div>
+				</div>
+				<div id="hide_wklc_div_id" class="_lfin_wklc_hint" style="display:none">#wkContent#</div>
+			</div>
+			<ul id="ul_hold_id" style="display:none">
+			</ul>
+		</div>
+		<!-- 已持有end -->
+
+		<!-- 赎回中strat -->
+		<div class="_lfin_i_lc_list" style="display:none">
+			<div id="hide_div_ransom_id" style="display:none">
+				<div class="_lfin_i_sh_ki" onclick="#onclick#">
+					<h3>
+						#strLendProductName#<span>预期年化收益率<a>#nLenderYearRate# #nLendExtRate#</a>
+						</span>
+					</h3>
+					<div class="_lfin_i_sh_list_left">
+						<b>#amount#元</b>
+						<p>赎回金额</p>
+					</div>
+					<div class="_lfin_i_sh_list_content">
+						<b>#time#</b>
+						<p>赎回时间</p>
+					</div>
+					<div class="_lfin_i_sh_list_right">
+						<b>#nState#</b>
+						<p>赎回状态</p>
+					</div>
+				</div>
+			</div>
+			<ul id="ul_ransom_id" style="display:none">
+			</ul>
+		</div>
+		<!-- 赎回中end -->
+
+
+		<!-- 买入中strat -->
+		<div class="_lfin_i_lc_list" style="display:none">
+			<div id="hide_div_buy_id" style="display:none">
+				<div class="_lfin_i_sh_ki" onclick="#onclick#">
+					<h3>
+						#strLendProductName#<span>预期年化收益率<a>#nLenderYearRate# #nLendExtRate#</a>
+						</span>
+					</h3>
+					<div class="_lfin_i_mr_list_left">
+						<b>#amount#元</b>
+						<p>投资金额</p>
+					</div>
+					<div class="_lfin_i_mr_list_content">
+						<b>#time#</b>
+						<p>购买时间</p>
+					</div>
+				</div>
+			</div>
+			<ul id="ul_buy_id" style="display:none">
+			</ul>
+		</div>
+		<!-- 买入中end -->
+	</div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script type="text/javascript" src="../../js/certificationCommon.js"></script>
+<script type="text/javascript" src="list.js"></script>
+</html>

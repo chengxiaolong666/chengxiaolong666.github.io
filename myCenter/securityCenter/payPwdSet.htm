@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>设置支付密码-第一页（验证码）</title>
+<link type="text/css" href="../../css/public.css" rel="stylesheet" />
+<link type="text/css" href="../../css/top.css" rel="stylesheet" />
+<link type="text/css" href="../../css/inputStyle.css"  rel="stylesheet"/>
+<link type="text/css" href="../../css/body_backcolor.css"  rel="stylesheet"/>
+</head>
+<body>
+	<section>
+		<article>
+			<header class="_Wedafytop">
+				<div class="_Wedafytopback">
+					<div class="_Wedafytop_positon">
+						<div class="_Wedafytop_return font-size5" onclick="delayBack()">
+							<img src="../../img/top/_We_return.png" />返回
+						</div>
+						<div class="_Wedafytop_title font-size6">设置支付密码</div>
+						<div class="_Wedafytop_righttext font-size3"></div>
+					</div>
+				</div>
+			</header>
+			<div id="container">
+				<div id="page1" class="z_regcon_input z_reg_marTop6">
+					<div class="z_reg_list clearfix">
+						<b>手机号：</b> <input id="strMobile" type="text" placeholder="请输入11位注册时的手机号码" readonly="readonly" />
+					</div>
+
+					<div class="_wreg_voice_del reg_del_padding clearfix">
+						<b>验证码：</b> <span class="_wregnew_yzm regnew_yzm" id="btn" onclick="sendSMSCode(1,4)"><u>获取验证码</u> </span>
+						 <input name="strVerifyCode" id="strVerifyCode" maxlength="4" type="number" placeholder="请输入验证码" />
+					</div>
+
+					<div class="_wreg_voice_tishi" id="bdTishi1" style="display: block;">
+						获取不到验证码?<u id="btn1" onclick="sendSMSCode(2,4)">免费语音获取</u>
+					</div>
+					<div class="_wreg_voice_after" id="bdTishi2" style="display: none;">拨打中......请注意接听</div>
+					<div class="z_reg_btn" id="edit_btn1">
+						<a href="javascript:void(0)">下一步</a>
+					</div>
+				</div>
+				
+				
+				<div id="page2" style="display: none;" class="z_regcon_input z_reg_marTop6">
+					<div class="z_reg_list clearfix">
+						<b>新密码：</b> <input name="" id="strPassword1" maxlength="6" value="" type="password" placeholder="请输入6位数字密码" /> <span class="z_user_Arrowimg"><img src="../../img/public/reg_password.png" id="Display_strPassword1" onclick="onclickpwd('strPassword1')" /> </span>
+					</div>
+					<div class="z_reg_list clearfix">
+						<b>确认密码：</b> <input name="" id="strPassword2" maxlength="6" value="" type="password" placeholder="请输入6位数字密码" /> <span class="z_user_Arrowimg"><img src="../../img/public/reg_password.png" id="Display_strPassword2" onclick="onclickpwd('strPassword2')" /> </span>
+					</div>
+					<div id="edit_btn2" class="z_reg_btn">
+						<a href="javascript:void(0)">提交</a>
+					</div>
+				</div>
+			</div>
+			
+		</article>
+	</section>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script src="securityCenter.js"></script>
+<script src="../../js/VerifyCode.js"></script>
+<script src="payPwdSet.js"></script>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link href="../css/public.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/top.css"  rel="stylesheet" type="text/css"  />
+		<link href="../css/mall/Mall.css"  rel="stylesheet" type="text/css"  />
+	</head>
+	<body>
+	
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" id="toGoodsList">
+					<img src="../img/top/_We_return.png" />返回
+				</div> 
+				<div class="_Wedafytop_title font-size6">支付结果</div>
+			</div>
+		</div>
+	</header>
+			<div id="container">
+				<div class="WMallapiPayczResult">
+					<p>支付申请已提交</p>
+					<font id="showTitel"></font>
+					<div class="border-Luminescence"></div>
+				</div>			
+				<div class="article_input">
+					<div class="WMallregPayDel clearfix">
+						
+						<div class="mall_Detailedpay_test">支付金额:</div>
+						<div class="mall_inppay_test font-size3" id="payValue">￥0</div>
+					</div>
+					<div class="WMallregPayDel clearfix">
+						
+						<div class="mall_Detailedpay_test">订单编号:</div>
+						<div class="mall_inppay_test" id="orderSerl"></div>
+					</div>
+					<div class="WMallregPayDel clearfix"> 
+						
+						<div class="mall_Detailedpay_test">交易时间:</div>
+						<div class="mall_inppay_test font-size3" id="payTime"></div>
+					</div>
+				</div>	
+		</div>
+		
+	<div class="WMallapiPaySubmit clearfix">
+				<div class="WMallapiPayReturn"><a href="javascript:void(0);" id="toGoodsListBtn">返回商品列表</a></div>
+				<div class="WMallapiPaySee"><a href="javascript:void(0);" id="toOrderList">查看订单</a></div>
+	</div>
+	
+	<script type="text/javascript" src="../js/common/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="../js/CDOLib/ClientEngine.js"></script>
+	<script type="text/javascript" src="../js/common/js_height.js"></script>
+	<script type="text/javascript" src="afterPayment.js"></script>	
+	</body>
+</html>

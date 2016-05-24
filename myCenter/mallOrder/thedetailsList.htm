@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>账单详情</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../../css/mall/Mall.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onClick="toOrderList();">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">账单详情</div>
+			</div>
+		</div>
+	</header>
+
+	<div id="container">
+		<div class="WweiOrderlist clearfix" id="WweiOrderlist">
+			<ul>
+				<li class="row" id="btNo" onclick="reChoose(0,this);">
+					<a>未还账单</a>
+				</li>
+				<li style="float:right;" id="btAlready" onclick="reChoose(2,this);">
+					<a>已还账单</a>
+				</li>
+			</ul>
+		</div>
+		<div class="WnrechSCzList clearfix">
+			<ul class="info" id="accountInfo">
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script src="thedetailsList.js"></script>
+</html>

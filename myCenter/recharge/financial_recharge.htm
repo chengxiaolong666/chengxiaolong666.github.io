@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>充值提现</title>
+<link type="text/css" href="../../css/public.css" rel="stylesheet" />
+<link type="text/css" href="../../css/top.css" rel="stylesheet" />
+<link type="text/css" href="../../css/myCenter/recharge/financial_recharge.css" rel="stylesheet" />
+<link href="../../css/app_popup.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="../../css/body_backcolor.css" rel="stylesheet" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div id="app_bj_raw" class="_Wedafytop_return font-size5">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">充值</div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>
+	<div id="container" style="max-height:100%;">
+		<div id="content" style="display: none;">
+			<div class="z_financial_tab  clearfix  font-size3">
+				<ul>
+					<li style='border-left:none; border-top:none;' class="row tabShow1">充值</li>
+					<li style='border-top:none;' class="tabShow2">提现</li>
+				</ul>
+			</div>
+			<div class="mui-slider-group">
+				<div id="item1mobile" style="display: block;">
+					<div class="financial_czzrecord_list clearfix">
+						<div id="bank_option" class="z_bankCsslist">
+							<ul>
+								<li onclick="rech_list(this,0)" id="daikou">
+									<div class="zs_cz_regist clearfix" id="cardInfo">
+										<div class="z_correctSvg" typeS="0" id="duihao0">
+											<img src="../../img/myCenter/recharge/app_correct.svg" />
+										</div>
+									</div>
+								</li>
+								<li onclick="rech_list(this,1)" id="kuaijie">
+									<div class="zs_cz_regist clearfix" id="cardInfo1">
+										<div class="z_correctSvg" typeS="1" id="duihao1">
+											<img src="../../img/myCenter/recharge/app_correct.svg" />
+										</div>
+									</div>
+								</li>
+							</ul>
+							<div class="z_bottomCczbalance font-size3 " id="bottom_balance">
+								账户余额：<span>0.00</span>元
+							</div>
+						</div>
+						<div class="z_rechAccount">
+							<div class="z_rechRegDel clearfix">
+								<b>充值金额(元)：</b> <input name="totalMony1" maxlength="10" id="totalMony1" value="" type="number" placeholder="请输入充值金额" />
+							</div>
+						</div>
+					</div>
+					<!-- 提示 -->
+					<div class="_w_sweethint_text clearfix" id="daikouTishi">
+						<div class="_w_sweethint_content clearfix">
+							<h3>温馨提示：</h3>
+							<div class="_w_con">
+								1.支付金额超过代扣单日限额,平台自动拆分,分多日扣款<br /> 2.所有拆分扣款成功后,本次支付完成
+							</div>
+						</div>
+					</div>
+					<div class="z_submitBtn" id="recharg_submit">
+						<a data-transition="slide">立即充值</a>
+					</div>
+				</div>
+
+				<div id="item2mobile" style="display: none;">
+					<div class="financial_czzrecord_list clearfix">
+						<div class="z_bankList">
+							<ul>
+								<li>
+									<div class="z_ob_tx_regist ob_paddingtop6 font-size3">
+										<img id="bank_logo" src="../../img/mycenter/recharge/bank_zs.png" />
+										<div class="z_ob_bank_text">
+											<h3 id="bank_name">
+												<!-- 招商银行 -->
+											</h3>
+											<b id="card_no"> <!--  62250202****2366  --></b><Br>
+											<!-- <span>单笔限额5万、日限额5万</span> -->
+										</div>
+									</div></li>
+								<!--<li>
+					<div class="zs_regist01  font-size3">
+						<img src="img/bank_else.png"/> 
+						使用其他银行卡充值
+					</div>
+				</li>-->
+							</ul>
+							<div class="z_bottomRollBalance font-size3 color6">
+								<div class="z_totalRoll" id="total_roll">全部转出</div>
+								<div>
+									可快速转出余额：<span id="all_money">0</span>元
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="z_rechAccount">
+						<div class="z_rechRegDel clearfix">
+							<b>金额(元)：</b> <input name="" id="totalMony2" value="" type="number" placeholder="请输入提现金额" />
+						</div>
+					</div>
+					<div class="z_submitBtn" id="inc_submit">
+						<a data-transition="slide">确认</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="c_id02"></div>
+	<div id="app_screen01"></div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script src="../../js/bankLimit.js"></script>
+<script src="../../js/common/fastclick.js"></script>
+<script type="text/javascript" src="financial_recharge.js"></script>
+<script type="text/javascript">
+	$(".tabShow1").click(function() {
+		$("#item1mobile").show();
+		$("#item2mobile").hide();
+		$(".tabShow2").removeClass("row")
+		$(".tabShow1").addClass("row")
+		$(".app_title").html("充值");
+	})
+	$(".tabShow2").click(function() {
+		$("#item1mobile").hide();
+		$("#item2mobile").show();
+		$(".tabShow1").removeClass("row")
+		$(".tabShow2").addClass("row")
+		$(".app_title").html("提现");
+	})
+</script>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+	<meta name="format-detection" content="telephone=no">
+	<title>导航页</title>
+	<link type="text/css" href="css/public.css"  rel="stylesheet"/>
+	<link type="text/css" href="css/top.css" rel="stylesheet" />
+	<link type="text/css" href="css/app_popup.css"  rel="stylesheet"/>
+</head>
+<style>
+* {
+	padding: 0px;
+	margin: 0px;
+  }
+</style>
+<body>
+	<!-- 导航界面 -->
+	<div id="loading">
+		<img src="" style="width:100%; height: 100%;" id="showPageId"/>
+	</div>
+</body>
+
+
+<script type="text/javascript" src="js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS()</script>
+<script type="text/javascript" src="login.js"></script>
+<script type="text/javascript">
+
+	//海涛删除触控事件2015-12-20
+	document.ontouchmove = function(e) {
+		e.preventDefault();
+	}
+
+	/**
+	* 设置导航图片的高度
+	*/	
+	function loadAddButton() {
+		if (window.innerHeight)
+			winHeight = window.innerHeight;
+		else if ((document.body) && (document.body.clientHeight))
+			winHeight = document.body.clientHeight;
+		var d1 = document.getElementById("loading");
+		d1.style.height = winHeight + "px";
+	}
+	loadAddButton();
+	window.onresize = loadAddButton;
+
+	/**
+	 *	预登录准备
+	 *	@date 2015-12-29
+	 */
+	$(document).ready(function(){
+		document.getElementById("showPageId").src = "img/showPage/sgp.jpg";
+		setTimeout(function() {//延迟3秒，展示导航图片
+			//获取用户id
+			var lUserId = getStringValue("lUserId");
+			//用户不存在、取消遮罩、跳转login
+			if (lUserId == null || lUserId == "null") 
+			{
+				openWindow("login.htm", "登录", "", 2 , "");
+				return;
+			}
+			lUserId = new Number(lUserId);
+			//获取手势密码组
+			var arrayGesturePassword = getArrayValue("gesturePasswordArray" + lUserId);
+			if (isVarComplete(arrayGesturePassword) || arrayGesturePassword.length != 2 || isVarComplete(arrayGesturePassword[0]))
+			{
+				//手势密码不存在或不完善、取消遮罩、跳转login
+				openWindow("login.htm", "登录", "", 2 , "");
+				return;
+			}
+			//获取手势密码值
+			var strGesturePassword = arrayGesturePassword[0];
+			
+			//获取手势密码开关值
+			var nIsOpenGesturePassword = arrayGesturePassword[1];
+			if (nIsOpenGesturePassword == 1 && strGesturePassword != null && strGesturePassword != "" && strGesturePassword.length > 0)
+			{
+				//开启手势密码
+				verifyGesturePassword(strGesturePassword);
+				return;
+			}else 
+			{
+				//关闭手势密码或其他情况，重新登录
+				openWindow("login.htm", "登录", "", 2 , "");
+			}
+		}, 3000);
+	});
+	
+	
+	
+function getNowDate() 
+{
+    var date = new Date();
+    var seperator1 = "/";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) 
+    {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) 
+    {
+        strDate = "0" + strDate;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + date.getHours() + seperator2 + date.getMinutes()
+            + seperator2 + date.getSeconds();
+    return currentdate;
+} 
+</script>
+</html>

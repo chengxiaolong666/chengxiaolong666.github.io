@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title>登录页面</title>
+		<link type="text/css" href="css/public.css"  rel="stylesheet"/>
+		<link type="text/css" href="css/top.css"  rel="stylesheet"/>
+	    <link type="text/css" href="css/loginReg.css"  rel="stylesheet"/>
+	    <link type="text/css" href="css/app_popup.css"  rel="stylesheet"/>
+	</head>
+<body>
+<section>
+	<!-- 登录界面 -->
+	<article id="div_login">
+		<div id="container">
+			<!-- 登录头像 strart -->
+				<header class="z_login_header">	
+					<div class="z_userphoto_section clearfix">
+						<h1 id="h1_img"><img id='userPhoto' src='img/login/userPhoto.png' /></h1>			
+					</div>
+				</header>
+			<!-- 登录头像 end -->
+			
+			
+			<!-- 登录用户名-->
+				<div  class="z_login_username clearfix font-size3">
+					<span class="z_userleft_img"><img src="img/login/login_username.png"/></span>
+					<span id="onclick_down" style="display: none;" class="z_user_Arrowimg"><img src="img/login/login_Arrow.png"  id="img_a" onfocus=this.blur() /></span>
+					<input  name="strUserName" id="strUserName" maxlength="11" placeholder="请输入手机号" type="number" />	
+				</div>	
+			<!-- 登录用户名-->
+				<!--登录时出现下拉提示曾输入的用户名-->
+				<div id="oclik_login" class="z_Loggedin clearfix" style="display: none;">
+					<!-- 切换登录名div  -->
+				</div>
+			<!-- 登录密码-->
+				<div class="z_login_pwd clearfix  font-size3">
+					<span class="z_userleft_img">
+						<img src="img/login/login_pwd.png"/>
+					</span>
+					<span id="pass"> 
+						<input  name="strPassword" id="pwd" placeholder="请输入登录密码" type="password" maxlength="30"/>
+					</span>
+					<span class="z_user_Arrowimg">
+						<img src="img/lo_password.png" id="Display_pwd" onclick="onclick_pwd('pwd')"/>
+					</span>
+				</div>
+			<!-- 登录密码-->
+			<!-- 登录提交按钮-->
+				<div class="z_login_subbtn" onclick="ssoLogin()"><a href="javascript:void(0)" >登录</a></div>
+			<!-- 登录提交按钮-->
+				<input type="hidden" id="islogintype" value="0"/>
+				<div class="z_login_bottom  clearfix">
+					<div class="z_login_toRegist" onclick="toRegister()"><a href="javascript:void(0)">新用户</a></div>			
+					<div class="z_loginForgetpwd" onclick="toRetrievePassword()"><a href="javascript:void(0)">忘记密码?</a></div>
+				</div>
+			<!-- 版权版本号-->
+				<footer class="z_login_foot clearfix" id="dafy_foot">
+					
+				</footer>
+			<!-- 版权版本号-->
+		</div>	
+	</article>
+</section>
+</body>
+<script type="text/javascript" src="js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS()</script>
+<script type="text/javascript" src="login.js"></script>
+<script type="text/javascript" src="reEquNo.js"></script>
+<script type="text/javascript">
+$(function() {
+	// 历史记录图标显示控制
+	var clickRecord = true;
+	// 历史记录
+	var arrayRecord = EngineClass.getArrayValue("arrayPhone");// 获取持久化数组键、值到硬盘
+	var version = EngineClass.getVersionName();// 获取版本号
+
+	$("#dafy_foot").html("当前版本：" + version + "<Br>本软件由中华联合财产保险股份有限公司承保");
+	if (arrayRecord != null) {
+		var nChannelType = EngineClass.getChannelType();// 获取手机版本 1安卓 2苹果
+		var strLen = arrayRecord.length;
+		if (arrayRecord.length > 4) {
+			strLen = 4;
+		}
+		var recordHTML = loadUserPhoto(arrayRecord, strLen);
+		$("#oclik_login").html(recordHTML);
+	}
+	if (clickRecord) {
+		$("#onclick_down").hide();
+	}
+});
+
+// 加载用户头像2015-12-03 lhh
+function loadUserPhoto(arrayRecord, strLen) {
+	var recordHTML = "<ul>";
+	for ( var index = 0; index < strLen; index++) {
+		var strUserName = arrayRecord[index];
+		if (strUserName != null && strUserName != undefined
+				&& strUserName != "undefined") {
+			clickRecord = false;
+			if (index == 0) {
+				$("#strUserName").val(arrayRecord[index]);
+				var userPhotoUri_index = EngineClass
+						.getStringValue(arrayRecord[index]);
+				if (nChannelType == 2) {
+					// 苹果特殊处理
+					userPhotoUri_index = EngineClass
+							.getAvatarPath(arrayRecord[index]);
+				}
+				if (userPhotoUri_index == null || userPhotoUri_index == "") {
+					$("#h1_img")
+							.html(
+									"<img id='userPhoto' src='img/login/userPhoto.png' />");
+				} else {
+					$("#h1_img").html(
+							"<img id='userPhoto' src='" + userPhotoUri_index
+									+ "' />");
+				}
+			}
+			recordHTML += "<li>";
+			recordHTML += "<span class='user_close' style='display: none;'><img src='img/user_close.png'/></span>";
+			var userPhotoUri = getStringValue(arrayRecord[index]);
+			if (nChannelType == 2) {
+				// 苹果特殊处理
+				userPhotoUri = getAvatarPath(arrayRecord[index]);
+			}
+			if (userPhotoUri == null || userPhotoUri == "") {
+				recordHTML += "<img id='photo"
+						+ arrayRecord[index]
+						+ "' src='img/login/userPhoto.png' onclick=\"selectLoginRecord('"
+						+ arrayRecord[index]
+						+ "','img/login/userPhoto.png')\"/>";
+			} else {
+				recordHTML += "<img id='photo" + arrayRecord[index] + "' src='"
+						+ userPhotoUri + "' onclick=\"selectLoginRecord('"
+						+ arrayRecord[index] + "','" + userPhotoUri + "')\"/>";
+			}
+			recordHTML += "</br>";
+			recordHTML += arrayRecord[index];
+			recordHTML += "</li>";
+		}
+	}
+	recordHTML += "</ul>";
+	return recordHTML;
+}
+</script>
+</html>

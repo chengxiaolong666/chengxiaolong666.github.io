@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title></title>
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/lend/lend.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="container">
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" onclick="closeResult();">
+						<img src="../img/top/_We_return.png" />返回
+					</div>
+					<div class="_Wedafytop_title font-size6" id="title_id">购买结果</div>
+					<div class="_Wedafytop_righttext font-size3"></div>
+				</div>
+			</div>
+		</header>
+		<div class="z_paysuccess_con">
+			<img src="../img/public/app_succeed.png" />
+			<div class="z_succeed_notice color2 font-size3">
+				您的理财申请已成功提交<br>
+				<p>请您耐心等待银行处理，大约1~3小时给您反馈。</p>
+			</div>
+		</div>
+		<div class="z_succeed_submit">
+			<div class="z_succeed_submit_cent border-radius font-size3" onclick="toDealRecord()">交易记录</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/CDOLib/ClientEngine.js"></script>
+<script type="text/javascript">
+
+/**
+ * 返回
+ * @author chenhongan
+ * @date 2015-12-14
+ */
+function closeResult() {
+	openWindow("lend/productList.htm", "产品超市", "", 1);
+}
+/**
+ * 跳转资金明细
+ * @author chenhongan
+ * @date 2015-12-14
+ */
+function toDealRecord() {
+	var dPage = getQueryString("dPage");
+	if (dPage != null || dPage != undefined || dPage != "") {
+		openWindow("myCenter/fundDetail/fundList.htm", "交易记录", "", 1, "lend/"+dPage);
+	} else {
+		openWindow("myCenter/fundDetail/fundList.htm", "交易记录", "", 1, "");
+	}
+}
+/**
+ * 设置物理返回
+ * @author chenhongan
+ * @date 2015-12-14
+ */
+window.onload = function() {
+	setBackURL('lend/productList.htm', '我的', '', 1, '');
+}
+jsHeight.bodyheight();
+</script>
+</html>

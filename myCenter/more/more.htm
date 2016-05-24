@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>更多</title>
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../../css/myCenter/more/more.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="container">
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" onclick="openWindow('myCenter/myIndex.htm','首页','',1,'','1');">
+						<img src="../../img/top/_We_return.png" />返回
+					</div>
+					<div class="_Wedafytop_title font-size6">更多</div>
+					<div class="_Wedafytop_righttext font-size3"></div>
+				</div>
+			</div>
+		</header>
+
+		<section class="z_more_main">
+			<div class="z_main_list_sec z_main_list_position" onclick="openWindow('myCenter/more/aboutUs.htm','更多','',0,'');">
+				<div class="z_more_left">关于我们</div>
+				<div class="z_more_img_con">
+					<img src="../../img/public/api_Arrow.png" />
+				</div>
+			</div>
+
+			<div class="z_main_list_sec z_main_list_position" onclick="openWindow('myCenter/more/help.htm','帮助中心','',0,'');">
+				<div class="z_more_left">帮助中心</div>
+				<div class="z_more_img_con">
+					<img src="../../img/public/api_Arrow.png" />
+				</div>
+			</div>
+
+			<div class="z_main_list_sec z_main_list_position" onclick="openWindow('myCenter/more/feedback.htm','意见反馈','',0,'');">
+				<div class="z_more_left">意见反馈</div>
+				<div class="z_more_img_con">
+					<img src="../../img/public/api_Arrow.png" />
+				</div>
+			</div>
+
+			<div class="z_main_list_sec z_main_list_position" onclick="openWindow('myCenter/more/security.htm','安全保障','',0,'');">
+				<div class="z_more_left">安全保障</div>
+				<div class="z_more_img_con">
+					<img src="../../img/public/api_Arrow.png" />
+				</div>
+			</div>
+
+			<div class="z_main_list_sec z_main_list_position">
+				<div class="z_more_left">版本信息</div>
+				<div class="z_more_right_phone" id="version"></div>
+			</div>
+
+			<div class="z_main_list_sec z_main_list_position">
+				<div class="z_more_left">客服电话</div>
+				<div class="z_more_right_phone">400-625-9898</div>
+			</div>
+
+			<div class="z_main_list_sec z_main_list_position" onclick="NotesContact()">
+				<div class="z_more_left">在线客服</div>
+				<div class="z_more_img_con">
+					<img src="../../img/public/api_Arrow.png" />
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2);</script>
+<script type="text/javascript">
+	jsHeight.bodyheight();  //加载页面BODY高度
+	$(document).ready(function() {
+		setBackURL("myCenter/myIndex.htm", "我的", "", 1, "");
+		var version = EngineClass.getVersionName();
+		$("#version").html("当前版本" + version);
+	});
+
+	//在线客服，测试环境已调通，暂时不用，预留方法   2015-08-26 lhh
+	//2015-10-10lhh update 改用在线客服真实环境
+	function NotesContact() {
+		var strLoginId = getStringValue("strLoginId");//获取登录名
+		var timestamp = Date.parse(new Date());//时间戳
+		var KEY = "dafei01";//加密key
+		var sdl = hex_md5(strLoginId + KEY + timestamp, "utf-8");//生成规则
+		var ss = sdl.substring(sdl.length - 10, sdl.length); //截取长度
+		var src = "http://218.17.249.180:8095/emweb?cf=1&subtype=S1&cid=4401&uan="
+				+ strLoginId + "&t=" + timestamp + "&k=" + ss;
+		//var src = "http://echarts.baidu.com/doc/example/pie1.html";
+		EngineClass.onlineService(src)
+	}
+</script>
+</html>

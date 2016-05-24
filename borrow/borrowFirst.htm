@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>我要借款</title>
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/app_popup.css" rel="stylesheet" type="text/css" />
+<link href="../css/borrow/borrow.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="back();">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">我要借款</div>
+				<div class="_Wedafytop_righttext font-size3" id="btToBorrowList">借款记录</div>
+			</div>
+		</div>
+	</header>
+
+	<div id="container" style="display: none;">
+		<div id="fin_i_table_list" class="_Whborrows_state">
+			<div class="_Whborrows_pading">
+				<div class="imga">
+					<img onclick="stages_close()" src="../img/borrow/borrom_close.png">
+				</div>
+				<h3>
+					信用额度：<span id="lCreditBalance0"></span>
+				</h3>
+				<h3>
+					虚拟额度：<span id="lCreditBalance1"></span>
+				</h3>
+				<p>
+					<b>信用额度：</b>是指达飞云贷根据客户提供的资信情况，授予客户一定金额的信用限度，在规定的一段时间内，客户可以循环使用此金额。
+				</p>
+				<p>
+					<b>虚拟额度：</b>是根据每笔成功理财金额的80%赋予客户虚拟额度，如：成功理财1000元，此时虚拟额度应为800元。
+				</p>
+				<p>理财到期赎回，如使用虚拟额度，则应从相应理财收益中扣除已使用的虚拟额度。</p>
+			</div>
+		</div>
+		<div onclick="stages_close()" class="black_overlayasd" id="black_stages_overlayasd"></div>
+
+		<div class="_WhlBor_bagrF">
+			<div class="_WhlBorrow_i_hui">
+				可借款额度<span id="remainLimit"></span>
+			</div>
+			<div class="_Whlborrow_extension clearfix">
+				<div class="_Whlextension_n">
+					<div class="_Whlextension_i_ed">授信额度：</div>
+					<div class="_Whlextension_i_money" id="creditLimit"></div>
+					<div class="_Whz_question_mark" onclick="stagespopup()">
+						<img src="../img/public/fin_i_wh_02.png">
+					</div>
+				</div>
+				<div class="_Whlextension_s z_f_right">
+					<div class="_Whlextension_i_ed _lend_align">账单还款日：</div>
+					<div class="_Whlextension_i_money" id="nAppointRepayDate"></div>
+				</div>
+			</div>
+			<div class="_Whlborrow_extension clearfix">
+				<div class="_Whlextension_n clearfix">
+					<div class="_Whlextension_i_ed">授信时间：</div>
+					<div class="_Whlend_position " id="dtGrantTime"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="_WhlBorrow_payment_mian">
+			<div class="_WhlBorrow_payment_div" id="toHED" style="display: none;">
+				<div class="_WhlBorrow_payment_mianRight">
+					<img src="../img/borrow/borrow_01_open.png">
+					<p>日综合费率：1.167‰</p>
+					<p>期限：90天</p>
+					<p id="HEDtitle">还款方式：按月付服务费，到期还本付息</p>
+					<p>
+						<span class="_WhlBorrow_color02">开始借款吧！</span>
+					</p>
+				</div>
+			</div>
+			<div class="_WhlBorrow_payment_div" id="toXJD">
+				<div class="_WhlBorrow_payment_mianRight">
+					<img src="../img/borrow/borrow_02_open.png">
+					<p>日综合费率：1.167‰</p>
+					<p>期限：90天</p>
+					<p id="XJDtitle">还款方式：按月付息到期还本</p>
+					<p>
+						<span class="_WhlBorrow_color02">开始借款吧！</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="_Whlborrow_Ts">
+			<h3>温馨提示：</h3>
+			<span class="ltext_span_pading"> 1、网络正常情况下，到帐时间约30分钟以内，最迟24小时内。<br> 2、日综合费率：1.167‰。 </span>
+		</div>
+	</div>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script src="borrowFirst.js"></script>
+<script type="text/javascript">
+	function stagespopup() {
+		document.ontouchmove = function(e) {
+			e.preventDefault();
+		}
+		document.getElementById("fin_i_table_list").style.display = "block";
+		document.getElementById("black_stages_overlayasd").style.display = "block";
+	}
+
+	function stages_close() {
+		document.ontouchmove = function(e) {
+		}
+		document.getElementById("fin_i_table_list").style.display = "none";
+		document.getElementById("black_stages_overlayasd").style.display = "none";
+	}
+</script>
+</html>

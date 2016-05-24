@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+    <title>商城列表</title>
+    <link href="../css/plugin/mui.min.css" rel="stylesheet" type="text/css"  />
+  	<link rel="stylesheet" href="../css/public.css" />
+  	<link rel="stylesheet" href="../css/top.css" />
+  	<link rel="stylesheet" href="../css/mall/Mall.css" />
+  	<script src="../js/common/NoClickDelay.js" type="text/javascript"></script> 
+	<script type="text/javascript" src="../js/laimgload.js"></script>
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_title font-size6" id="title_id">商城</div>
+				<div class="_Wedafytop_righttext font-size3" onclick="toOrderList();">查看订单</div>			
+			</div>
+		</div>
+	</header>
+	
+	  <nav class="mui-bar mui-bar-tab z_wdcorl">
+			<a class="mui-tab-item" href="javascript:void(0)" id="goToIndex">
+				<span class="iconrep" ><img src="../img/footer/zy_01.png"></span>
+				<span class="iconwd" >首页</span>
+			</a>
+			<a class="mui-tab-item" href="javascript:void(0)" id="goToFind">
+				<span class="iconrep"><img src="../img/footer/fx_01.png"></span>
+				<span class="iconwd" >发现</span>
+			</a>
+			<a class="mui-tab-item mui-active" href="javascript:void(0)" >
+				<span class="iconrep"><img src="../img/footer/sc_02.png"></span>
+				<span class="iconwd">商城</span>
+			</a>
+			<a class="mui-tab-item" href="javascript:void(0)" id="goToMyCenter"> 
+				<span class="iconrep"><img src="../img/footer/wo_01.png"></span>
+				<span class="iconwd">我的</span>
+			</a>
+	  </nav>
+	<div id="div_type_id" style="display:none">
+		<!--描述：分类弹层start-->
+		<div id="app_Round_onclick"   class="app_Round_onclick" onclick="_obj.openZZ()"><img src="../img/mall/rou_Fl.png"/></div>
+		<div id="app_Round_onclick01" style="display: none;"   class="app_Round_onclick01" onclick="_obj.openZZ2()"><img src="../img/mall/rou_Fl.png"/></div>
+		<div id="c_ification" style="display: none; " class="c_ification"></div>
+		<div id="cl_ttext" class="cl_ttext" style="display: none; ">
+			<ul id="ul_type_id">
+				<!-- 
+				<li><span></span>全部分类</li>
+				<li>手机通讯</li>
+				<li>家用电器</li>
+				<li>家居用品</li> 
+				<li>美容美发</li>
+				 -->
+			</ul>
+		</div>
+	</div>	
+	<div id="container">
+		<div class="WMall_list clearfix" id="content_id">
+				  <div id="main_content_id">
+					  <div id="hide_div_id" style="display:none;">
+							<a href="javascript:void(0)">
+								 <div class="WMall_list_details">
+									<div class="WMall_list_nav"><img src="#strLoading#" data-original="#strLogoURL#" /></div>
+										<div class="WMall_listdetails clearfix">
+											<p>#strDetail#<Br>
+												<span class="span_mall_money color_cs font-size3">￥#nPrice#</span><Br>
+												<span class="span_mall_red color_bb">#strNotice#</span>
+											</p>
+										</div>
+								</div>
+							</a>
+						</div>
+						<ul id="dataList_id">
+							
+						</ul>
+					</div>
+		</div>
+	</div>
+	<div id="app_screen01" onclick="_obj.openZZ2()"></div>
+</body>
+<script type="text/javascript" src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1);</script>
+<script type="text/javascript" src="goodslist.js"></script>
+<script type="text/javascript" src="../js/app_animation.js"></script>
+</html>

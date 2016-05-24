@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>理财赎回详情</title>
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../../css/myCenter/myLend/myLend.css" rel="stylesheet" type="text/css" />
+<link href="../../css/app_popup.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="backList()">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">赎回详情</div>
+			</div>
+		</div>
+	</header>
+	<div id="container" >
+		<div class="public_con" id="lmui_con"  style="display: none;">
+			<div class="_lfin_i_details_title clearfix">
+				<h1 id="strLendProductName"></h1>
+			</div>
+			<div class="_lfin_i_redemption_amount">
+				<h3 id="valueArea"></h3>
+				<p id="titleArea"></p>
+			</div>
+			<div class="_lfin_topwklc_details_list">
+				<ul>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">赎回申请时间</div>
+						<div class="_lfin_i_dxb_tz_amount" id="strCreateTime"></div>
+					</li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name" id="strExpireTimeTitle"></div>
+						<div class="_lfin_i_dxb_tz_amount" id="strExpireTime"></div>
+					</li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">投资金额（元）</div>
+						<div class="_lfin_i_dxb_tz_amount" id="lAmount"></div>
+					</li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">预期年化收益率（%）</div>
+						<div class="_lfin_i_dxb_tz_amount" id="nLenderYearRate"></div>
+					</li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">赎回类型</div>
+						<div class="_lfin_i_dxb_tz_amount" id="nAdvance"></div>
+					</li>
+
+					<li>
+						<div class="_lfin_i_dxb_tz_name">赎回状态</div>
+						<div class="_lfin_i_dxb_tz_amount" id="nState"></div>
+					</li>
+					<li id="nPenaltyRateArea" id="nPenaltyRateArea">
+						<div class="_lfin_i_dxb_tz_name">服务费率</div>
+						<div class="_lfin_i_dxb_tz_amount" id="nPenaltyRate"></div>
+					</li>
+					<!-- <li>
+    				<div class="fin_i_dxb_tz_name" >预期赎回金额</div> 				
+    				<div class="fin_i_dxb_tz_amount" id="lExpectRdptAmount"></div>
+    			</li> -->
+				</ul>
+			</div>
+
+			<div class="_lfin_wklc_dxb_details_list">
+				<ul>
+					<li id="xy_id"><img src="../../img/public/api_Arrow.png" />
+						<div class="_lfin_wklc_dxb_tz_name">《理财协议》</div>
+					</li>
+				</ul>
+			</div>
+			<!-- <div class="financial_i_gm_submit circumference"  style="display:none;" id="btExpediteRedeem" onclick="beforeRedeem();">加快赎回速度</div>	 -->
+		</div>
+	</div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script type="text/javascript">
+var _obj = {};
+_obj.lId = 0;
+_obj.lUserId = 0;
+_obj.strAgreementNo = ""; //理财协议
+_obj.strCurrentDate = ""; //服务器时间
+
+
+window.onload = function() {
+    setTimeout(function() {
+        // _loading.show(); //显示加载图标
+         _shade_layer.show("加载中,请稍候......");
+        var re = _obj.initParameter();
+        if (!re) { //用户验证有误!
+            return false;
+        }
+        _obj.loadDetail();
+    },
+    200);
+}
+
+
+_obj.initParameter = function() {
+    setStringValue("nState", "4");
+    setBackURL("myCenter/myLend/list.htm", "理财列表", "", 1, "");
+    _obj.lId = getStringValue("lRansomId");
+    var strUserId = getStringValue("lUserId");
+    if (isNaN(strUserId)) {
+        info("非法登录，用户信息有误！");
+        return false;
+    }
+    _obj.lUserId = strUserId;
+    return true;
+}
+_obj.loadDetail = function() {
+    var cdoRequest = new CDO();
+    cdoRequest.setStringValue("strServiceName", "LendIntentService");
+    cdoRequest.setStringValue("strTransName", "redemptionDetailForMobile");
+    cdoRequest.setLongValue("lLenderId", Number(_obj.lUserId));
+    cdoRequest.setLongValue("lId", Number(_obj.lId));
+    raiseTrans(cdoRequest, "callBackRedemptionDetailForMobile");
+};
+
+function callBackRedemptionDetailForMobile(strRequest, cdoResponse, cdoReturn) {
+    if (cdoReturn == undefined || cdoReturn == null) {
+       // _loading.hide(); //隐藏加载图标
+         _shade_layer.hide(); //隐藏加载图标
+        info("请求服务失败！");
+        return false;
+    }
+    try {
+        if (cdoReturn.nCode == 0 && cdoResponse.exists("cdoRecord")) {
+            var cdoRecord = cdoResponse.getCDOValue("cdoRecord");
+
+            var nExpediteCount = Number(cdoRecord.getStringValue("nExpediteCount")); //赎回已加速次数
+            _obj.get("strLendProductName").innerHTML = cdoRecord.getStringValue("strLendProductName"); //理财产品名称
+            _obj.get("strCreateTime").innerHTML = cdoRecord.getStringValue("strCreateTime"); //赎回申请日期
+            _obj.get("lAmount").innerHTML = (checkNumberVariable(cdoRecord.getStringValue("lAmount")) / 100) + "元"; //申请赎回金额
+            var nAdvance = cdoRecord.getStringValue("nAdvance"); //赎回类型 0-正常赎回1-提前赎回
+            _obj.strAgreementNo = cdoRecord.getStringValue("strAgreementNo"); //理财协议编号
+            _obj.strCurrentDate = cdoRecord.exists("strCurrentDate") ? cdoRecord.getStringValue("strCurrentDate") : ""; //当前服务器时间
+            if (nAdvance == "0") {
+                _obj.get("nAdvance").innerHTML = "正常赎回";
+            } else {
+                _obj.get("nAdvance").innerHTML = "提前赎回";
+            }
+            var nState = cdoRecord.getStringValue("nState"); //赎回状态 1-赎回中 2-赎回成功 3-赎回失败
+            var strValue = "0";
+            if (nState == "2") { //已完成的展示赎回金额
+                jQuery("#strExpireTimeTitle").html("赎回成功时间");
+                _obj.get("strExpireTime").innerHTML = cdoRecord.getStringValue("strActualRdptDate"); //赎回成功日期
+                jQuery("#titleArea").html("赎回金额（元）");
+                if (cdoRecord.exists("lActualRdptAmount")) {
+                    strValue = checkNumberVariable(cdoRecord.getStringValue("lActualRdptAmount")) / 100; //赎回金额
+                }
+                jQuery("#lActualRdptAmount").css("lActualRdptAmount", "block");
+                jQuery("#lActualRdptAmount").val(cdoRecord.getStringValue("lActualRdptAmount"));
+            } else { //未完成的为预期金额
+                jQuery("#strExpireTimeTitle").html("预期赎回时间");
+                var strExpireTimeS = cdoRecord.getStringValue("strExpireTime");
+                _obj.get("strExpireTime").innerHTML = strExpireTimeS; //预期赎回日期
+                //如果预期赎回时间   晚于  今天  则能加速赎回
+                //赎回中的并且没有加速的过可以加速
+                //_obj.strCurrentDate 当前服务器时间
+                //如果这个时间是空的话 就获取当前手机时间
+                if (_obj.strCurrentDate == "") {
+                    _obj.strCurrentDate = new Date().Format("yyyy-MM-dd");
+                }
+                if ((DateDiff2(strExpireTimeS, _obj.strCurrentDate) > 1) && nState == "1" && nExpediteCount == 0) {
+                    //jQuery("#btExpediteRedeem").css("display","block");
+                }
+                jQuery("#titleArea").html("预期赎回金额（元）");
+                if (cdoRecord.exists("lActualRdptAmount")) {
+                    strValue = checkNumberVariable(cdoRecord.getStringValue("lExpectRdptAmount")) / 100; //预期赎回金额
+                }
+            }
+            jQuery("#valueArea").html(strValue); //设置赎回金额或者逾期赎回金额
+            if (nState == "1") {
+                _obj.get("nState").innerHTML = "赎回中";
+            } else if (nState == "2") {
+                _obj.get("nState").innerHTML = "赎回成功";
+            } else {
+                _obj.get("nState").innerHTML = "赎回失败";
+            }
+            if (!cdoRecord.exists("nPenaltyRate")) {
+                jQuery("#nPenaltyRateArea").css("display", "none");
+            } else {
+                var nPenaltyRate = cdoRecord.getStringValue("nPenaltyRate"); //提前支取违约赔偿金比率
+                _obj.get("nPenaltyRate").innerHTML = (Number(nPenaltyRate) / 100) + "%";
+            }
+            var nLenderYearRate = cdoRecord.exists("lActualRdptAmount") ? (checkNumberVariable(cdoRecord.getStringValue("nLenderYearRate")) / 100) + "": "0";
+            var nLendExtRate = cdoRecord.exists("nLendExtRate") ? " + " + (checkNumberVariable(cdoRecord.getStringValue("nLendExtRate")) / 100) : "";
+            var nLendExtRate = ""; //额外利率
+            if (cdoRecord.exists("nLendExtRate")) { //额外利率
+                if (checkNumberVariable(cdoRecord.getStringValue("nLendExtRate")) != 0) {
+                    nLendExtRate = " + " + (checkNumberVariable(cdoRecord.getStringValue("nLendExtRate")) / 100);
+                }
+            }
+            _obj.get("nLenderYearRate").innerHTML = nLenderYearRate + nLendExtRate + " %"; //投资人预计年化收益率
+        }
+          _shade_layer.hide(); //隐藏加载图标
+        $("#lmui_con").show();
+    } catch(e) {
+        info(e);
+        _shade_layer.hide(); //隐藏加载图标
+    }
+}
+
+_obj.ret = function(cdoReturn, info) {
+    if (cdoReturn == undefined || cdoReturn == null) {
+        info(info);
+        return false;
+    }
+
+    if (cdoReturn.nCode != 0) {
+        info("错误:" + cdoReturn.strText);
+        return false;
+    }
+}
+
+_obj.get = function(id) {
+    return document.getElementById(id);
+}
+
+_obj.show = function(dom, flag) {
+    if ((typeof dom === 'string') && dom.constructor == String) {
+        dom = document.getElementById(dom)
+    }
+    if (dom) {
+        var _style = flag == true ? "block": "none";
+        dom.style.display = _style;
+    }
+}
+
+
+var strActionState = 0; //点击按钮的状态0：未开始，1：处理中
+//加速赎回确认
+function beforeRedeem() {
+    if (strActionState == 1) { //点击按钮的状态为：1：处理中，则不受理业务
+        info("目前正在处理加速处理业务，请稍候！");
+        return false;
+    }
+     _shade_layer.show("加载中,请稍候......");
+    strActionState = 1; //点击按钮的状态置为：1：处理中
+    var cdoRequest = new CDO();
+    cdoRequest.setStringValue("strServiceName", "LendIntentService");
+    cdoRequest.setStringValue("strTransName", "getRedeemExpediteDataForMobile");
+    cdoRequest.setLongValue("lLenderId", Number(_obj.lUserId));
+    cdoRequest.setLongValue("lId", Number(_obj.lId));
+    raiseTrans(cdoRequest, "callBackGetRedeemExpediteDataForMobile");
+}
+
+//加速赎回确认回调
+function callBackGetRedeemExpediteDataForMobile(strRequest, cdoResponse, cdoReturn) {
+    _shade_layer.hide(); //隐藏加载图标
+    if (cdoReturn == undefined || cdoReturn == null) {
+        strActionState = 0 //点击按钮的状态为：1：处理中，则不受理业务
+        info("请求服务失败！");
+        return false;
+    }
+    if (cdoReturn.nCode == 0 && cdoResponse.exists("cdoRecord")) {
+        var cdoRecord = cdoResponse.getCDOValue("cdoRecord");
+        var lId = cdoRecord.getStringValue("lId"); //记录ID
+        var strExpireTime = cdoRecord.getStringValue("strExpireTime"); //加速后预期赎回到期时间
+        var nRate = Number(cdoRecord.getStringValue("nRate")) / 100; //加速赎回加收服务比率
+        //var nTotalRate = cdoRecord.getStringValue("nTotalRate");////加收服务费比率后，赎回需支出的总服务费率
+        _TTPopups.open2({
+            content: "您确定使用加速包，预计提前赎回时间到 " + strExpireTime + "，服务费率为" + nRate + "%。",
+            cancelBtn: "否",
+            submitBtn: "是",
+            closeCallBack: "doRedeem"
+        });
+    }
+}
+
+//执行加速
+function doRedeem(mark) {
+    if (mark == '0') {
+        strActionState = 0; //点击按钮的状态置为：0未开始：
+        return false;
+    }
+     _shade_layer.show("加载中,请稍候......");
+    var cdoRequest = new CDO();
+    cdoRequest.setStringValue("strServiceName", "LendIntentService");
+    cdoRequest.setStringValue("strTransName", "expediteRedemption");
+    cdoRequest.setLongValue("lLenderId", Number(_obj.lUserId));
+    cdoRequest.setLongValue("lId", Number(_obj.lId));
+    raiseTrans(cdoRequest, "callBackExpediteRedemption");
+}
+//加速回调
+function callBackExpediteRedemption(strRequest, cdoResponse, cdoReturn) {
+      _shade_layer.hide(); //隐藏加载图标
+    strActionState = 0; //点击按钮的状态置为：0未开始：
+    if (cdoReturn == undefined || cdoReturn == null) {
+        info("请求失败");
+        return false;
+    }
+    if (cdoReturn.nCode != 0) {
+        info("加快赎回速度失败：" + cdoReturn.strText);
+        return false;
+    }
+    setStringValue("lRansomId", Number(_obj.lId));
+    openWindow("myCenter/myLend/ransomDetail.htm", "理财赎回详情", "", 1);
+}
+
+//返回按钮
+function backList() {
+    openWindow('myCenter/myLend/list.htm', '理财列表', '', '1', '', '1');
+}
+//电子协议入口
+//查看理财协议
+document.getElementById("xy_id").addEventListener('click',
+function() {
+    if (_obj.strAgreementNo == "" || _obj.strAgreementNo == "null") {
+        info("理财协议生成中,请稍候...");
+    } else {
+        seeToAgreementAfterSignature(_obj.strAgreementNo);
+    }
+});
+jsHeight.bodyheight();  //加载页面BODY高度
+</script>
+</html>

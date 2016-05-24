@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>悟空理财-取现</title>
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../../css/myCenter/myLend/myLend.css" rel="stylesheet" type="text/css" />
+<link href="../../css/app_popup.css" rel="stylesheet" type="text/css" />
+<link href="../../css/body_backcolor.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="backList();">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">取现</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div class="_lwklc_fin_content">
+			<div class="_lfinancial_wklc_det clearfix">
+				<div class="_lfinancial_wklc_rate">
+					<h1>
+						<span id="pName"></span>可取现金额（元）
+					</h1>
+					<div class="_lfinc_wklc_money" id="all_money"></div>
+				</div>
+				<div class="_lremaining_wklc_can">
+					<ul>
+						<li>可取现本金：<span id="qxbj"></span>元</li>
+						<li style="text-align: right;">可取现收益：<span id="qxsy"></span>元</li>
+					</ul>
+				</div>
+			</div>
+			<div class="_lwklc_enchashment_money clearfix">
+				<div class="_lwklc_roll wklc_roll_circle fin_ran_bagcolor" id="all_wk_qx">全部转出</div>
+				<label>取现金额：</label> <input type="number" oninput="_obj.inputMoney(this);" placeholder="请输入取现金额" id="all_money2" />
+			</div>
+			<div class="_lwklc_tstext">
+				本月份有<span id="qx_count">0</span>次取现机会
+			</div>
+			<div class="_lwklc_wenxits clearfix">
+				<h3>温馨提示:</h3>
+				<p>自有本金买入满30天后该本金及收益可取</p>
+				<p>
+					当前不触及任何本金的可取现收益:<span id="tssy"></span>元
+				</p>
+				<p>部分取现后,剩余本金继续出借,收益率不受影响</p>
+				<h3>特别提醒:</h3>
+				<p>取现后再买入,新买入的资金收益率将从6%重新起步</p>
+			</div>
+			<div class="_lrech_inc_submit" id="wk_qx">
+				<a href="javascript:void(0)">确定</a>
+			</div>
+		</div>
+	</div>
+	<div id="c_id02"></div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script type="text/javascript" src="wklc_enchashment.js"></script>
+</html>

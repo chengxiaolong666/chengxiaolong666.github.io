@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link href="../../css/public.css"  rel="stylesheet" type="text/css"  />
+	    <link href="../../css/top.css"  rel="stylesheet" type="text/css"  />
+	    <link href="../../css/myCenter/myBorrow/myBorrow.css"  rel="stylesheet" type="text/css"  />
+	    <link href="../../css/app_popup.css"  rel="stylesheet" type="text/css"  />
+	    <link href="../../css/body_backcolor.css"  rel="stylesheet" type="text/css"  />   
+	</head>
+	<body>
+			<header class="_Wedafytop">
+				<div class="_Wedafytopback">
+					<div class="_Wedafytop_positon">
+						<div class="_Wedafytop_return font-size5" onclick="back();">
+							<img src="../../img/top/_We_return.png" />返回
+						</div>
+						<div class="_Wedafytop_title font-size6">立即还款</div>
+					</div>
+				</div>
+			</header>				
+			<div id="container">
+				<div class="WarticleAccount">
+				    <div class="WregDel clearfix">
+						<b>借款金额：</b>
+						<input    value="" type="text"  id="jk_money" readonly="readonly"/>
+						<span class="z_user_Arrowimg1">元</span>
+					</div>
+					
+					<div class="WregDel clearfix">
+						<b>待还金额：</b>
+						<input    value="" type="text" id="dh_money" readonly="readonly"/>
+						<span class="z_user_Arrowimg1">元</span>
+					</div>
+					
+					<div class="WregDel clearfix">
+						<b>还款金额：</b>
+						<input   value="" type="number" placeholder="请输入金额" id="hk_money" />
+						<span class="z_user_Arrowimg1">元</span>
+					</div>
+					<div class="WrechIncSubmit"  onclick="repay()"><a href="javascript:void(0)">提交</a></div>
+				</div>
+			</div>
+	<div id="payInfo" style="display: none;"></div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script type="text/javascript" src="repayment_pay.js"></script>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>产品详情&投资记录</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/lend/lend.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="back();">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6" id="title_id"></div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div id="main_id" style="display:none">
+			<div class="z_invest_tab_bak"></div>
+			<div class="z_invest_details_list">
+				<ul>
+					<li class="row" onclick="_obj.chooice(this,'record_id','scroll_2','scroll_1')" id="detail_id">产品详情</li>
+					<li id="record_id" onclick="_obj.chooice(this,'detail_id','scroll_1','scroll_2')">投资记录</li>
+				</ul>
+			</div>
+			<div id="scroll_1" class="scroll_liss1"></div>
+			<div id="scroll_2" class="scroll_liss1" style="display:none;">
+				<div class="z_financial_autxq_list">
+					<div class="z_financial_auto_list font-size1 color6">
+						<ul>
+							<li>
+								<div class="z_financial_tz_date">投资时间</div>
+								<div class="z_financial_tz_person">投资人</div>
+								<div class="z_financial_tz_money">投资金额（元）</div></li>
+						</ul>
+					</div>
+				</div>
+				<!--  投资记录 -->
+				<div class="mui-scroll">
+					<div class="z_financial_aa_list font-size1 color6">
+						<ul id="invest_record_id">
+							<!-- 
+	                    <li>
+	                        <div class="financial_tz_date"> 2015-04-27 10:40</div>
+	                        <div class="financial_tz_person"> 133***e</div>
+	                        <div class="financial_tz_money">100,000.00</div>
+	                    </li>
+	                     -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div style="display:none" id="div_detail_id">
+		<div class="z_invest_product_details clearfix">
+			<h3>
+				<img src="../img/lend/syfs_earnings.png" />收益方式
+			</h3>
+			<div class="z_invest_product_content">
+				本金和收益一次性返还<Br /> 提至达飞专用账户<Br /> 满标计息
+			</div>
+		</div>
+		<div class="z_invest_product_details clearfix">
+			<h3>
+				<img src="../img/lend/zffs_payment.png" />支付方式
+			</h3>
+			<div class="z_invest_product_content">一次性支付</div>
+		</div>
+		<div class="z_invest_product_details clearfix">
+			<h3>
+				<img src="../img/lend/rate_sm.png" />费率说明
+			</h3>
+			<div class="z_invest_product_content">不能提前退出费率</div>
+		</div>
+		<div class="z_invest_product_details clearfix">
+			<h3>
+				<img src="../img/lend/product_explain.png" />产品介绍
+			</h3>
+			<div class="z_invest_product_content">债权转让是达飞云贷为理财人（出借人）提供的针对资金流动性需求的理财模式。有转让需求的客户（出让人）可通过此方式将债权转让给其他有出借需求的客户（受让人）。转让成功后，债权的所有人发生改变，其他属性保持不变（利率、还款计划、保障方式等）。 客户在购买转让债权的过程中，既可以全部购买，也可以部分购买,即购买一定份额的债权。</div>
+		</div>
+	</div>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script src="investList.js"></script>
+</html>

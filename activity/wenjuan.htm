@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>问卷调查</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/activity/activity.css"  rel="stylesheet" type="text/css"  />
+</head>
+
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5"  onclick="back()" id="tb_back">
+					<img src="../img/top/_We_return.png" />返回
+				</div> 
+				<div class="_Wedafytop_title font-size6">问卷调查</div>
+				<div class="_Wedafytop_righttext font-size3" id="tb_close" style="display: none;">关闭</div>
+			</div>
+		</div>
+	</header>
+	<div class="_linput-content" id="div_wenjuan">
+		<!-- 问卷内容 三部分组成 -->
+		<!-- 1.问卷汇总 -->
+		<!-- 2.问卷题(N道) -->		
+		<!-- 3.问卷结果页 -->
+	</div>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript">
+	//初始化问卷集合对象
+	var _wenjianList = {};
+	//问卷总数：默认0
+	_wenjianList.count = 0;
+	//问卷当前页面：默认0
+	_wenjianList.page = 0;
+	//连点状态：0可以点击、1不可以点击	
+	_wenjianList.status = 0;
+	//第几套题
+	_wenjianList.strQNRId = "";	
+	//返回是否有提示 1有、2无
+	var backFlag = 1;
+	/**
+	 *	获取问卷列表
+	 */
+	$(document).ready(function() {
+		setTimeout(function() {
+			_shade_layer.show("加载中......");
+			var cdoRequest = new CDO();
+			cdoRequest.setStringValue("strServiceName","ActivityService");
+			cdoRequest.setStringValue("strTransName","getQuestionnaireInfoById");
+			cdoRequest.setStringValue("strId","Questionnaire-1");
+			//cdoRequest.setLongValue("lUserId",1117211);	
+			cdoRequest.setLongValue("lUserId",Number(getStringValue("lUserId")));
+			raiseTrans(cdoRequest, "callBackGetQuestionList");
+		}, 150);
+	});
+			
+	/**
+	 * 提交问卷
+	 */
+	 function saveProblem(val){
+	 	//初始化问卷
+		var strName = $("#info_name").val();
+		var strMobile = $("#info_mobile").val();
+		var strAddress = $("#info_address").val();
+		var strProvince = $("#info_province").val();
+		var strCity = $("#info_city").val();
+		strName = strName.replace(/-/g, "");
+		strMobile = strMobile.replace(/-/g, "");
+		strAddress = strAddress.replace(/-/g, "");
+		strProvince = strProvince.replace(/-/g, "");
+		strCity = strCity.replace(/-/g, "");
+		
+		if(!checkStr(trim(strName))){
+			info("请输入您的姓名");
+			return;
+		}
+		if(!checkStr(trim(strMobile))){
+			info("请输入您的手机号");
+			return;
+		}
+		if(!checkStr(trim(strAddress))){
+			info("请输入您的居住地址");
+			return;
+		}
+		if(!checkStr(trim(strProvince))){
+			info("请输入您所在的省");
+			return;
+		}
+		if(!checkStr(trim(strCity))){
+			info("请输入您所在的市");
+			return;
+		}
+		_shade_layer.show("提交中......");
+		var cdoRequest = new CDO();
+		cdoRequest.setStringValue("strServiceName","ActivityService");
+		cdoRequest.setStringValue("strTransName","insertAnswer");
+		cdoRequest.setStringValue("strQNRId",_wenjianList.strQNRId);
+		//cdoRequest.setLongValue("lUserId",111212113);
+		cdoRequest.setLongValue("lUserId",Number(getStringValue("lUserId")));
+		cdoRequest.setStringValue("strName",trim(strName));
+		cdoRequest.setStringValue("strMobile",trim(strMobile));
+		cdoRequest.setStringValue("strAddress",trim(strAddress));
+		cdoRequest.setStringValue("strProvince",trim(strProvince));
+		cdoRequest.setStringValue("strCity",trim(strCity));
+		//答案（答案以-分割，多选以_分割，单选多选中的笔答以选项号+"#"+值组装）
+		var result = ""
+		//类型（类型以-分割）
+		var types = "";
+		for(var i = 0;i < _wenjianList.count;i++){
+			var type = _wenjianList[i].type;
+			if(type == 1){
+				//单选
+				result += _wenjianList[i].result1;
+			}else if(type == 2){
+				//多选
+				result += _wenjianList[i].result2;
+			}else if(type == 3){
+				//笔答
+				result += _wenjianList[i].result3;
+			}else{
+				//其他异常
+			}
+			types += type + "-";
+			result += "-";
+		}
+		cdoRequest.setStringValue("strAnswer",result);
+		cdoRequest.setStringValue("strType",types);
+		raiseTrans(cdoRequest, "callBackInsertAnswer");
+	 }
+	 
+	 /**
+	  *	问卷提交结果
+	  */
+	 function callBackInsertAnswer(cdoRequest, cdoResponse, ret) {
+		if (ret == undefined || ret == null) {
+			info("请求服务器失败");
+			_shade_layer.hide();
+			return false;
+		}
+		if (ret.nCode == 0) {
+			//打开物理键
+			//setControlAndroidBack(1);
+			_shade_layer.hide();
+			$("#div_" + (_wenjianList.page + 1)).hide();
+			$("#result_div").show();	
+			$("#tb_back").show();
+			$("#tb_close").hide();
+		}else{
+			_shade_layer.hide();
+			info("请求失败："+ret.strText);
+		}
+	}
+	/**
+	 *	上一步
+	 *	val:序列<1开始>
+	 */	
+	function lastProblem(val){
+		_wenjianList.page--;
+		//div显示+隐藏
+		for(var i = 1;i <= _wenjianList.count + 1;i++){
+		    if(i == val - 1){
+				$("#div_" + i).show();
+			}else{
+				$("#div_" + i).hide();
+			}
+		}
+	}
+	
+	/**
+	 *	下一步
+	 *	val:序列<1开始>
+	 */	
+	function nextProblem(val){
+		if(_wenjianList.status != 0){
+			//防止重复点击
+			return;
+		}
+		_wenjianList.status = 1;
+		//初始化问卷
+		var _wenjian = {};
+		_wenjian.type = -1;
+		_wenjian.result1 = -1;
+		_wenjian.result2 = -1;
+		_wenjian.result3 = "";
+		//获取当前文件类型
+		_wenjian.type = $("#div_" + val + "_0").val();
+		//赋值
+		setAnswerResult(val);
+		//获取当前文件单选值
+		_wenjian.result1 = $("#div_" + val + "_1").val();
+		//获取当前文件多选值
+		_wenjian.result2 = $("#div_" + val + "_2").val();
+		//获取当前文件笔答值
+		_wenjian.result3 = $("#div_" + val + "_3").val();
+		//检测文件答案
+		if(!checkAnswerResult(_wenjian)){
+			_wenjianList.status = 0;
+			return;
+		}
+		_wenjianList[_wenjianList.page] = _wenjian;
+		_wenjianList.page++;
+		_wenjianList.status = 0;
+		//div显示+隐藏
+		for(var i = 1;i <= _wenjianList.count + 1;i++){
+		    if(i == val + 1){
+				$("#div_" + i).show();
+				$("#div_" + i).focus();
+			}else{
+				$("#div_" + i).hide();
+			}
+		}
+		
+	}
+	
+	/**
+	 *	赋值问卷答案
+	 *	div_id：序号
+	 */
+	function setAnswerResult(div_id){
+		//获取第N题的类型
+		var type = $("#div_" + div_id + "_0").val();
+		//非法类型 type = -1
+		if(type == -1){
+			info("数据异常，请联系客服!");
+		}else if(type == 1){
+			/**
+			 *  单选
+			 *	1.获取答案数量
+			 *  2.循环问题选项
+			 *  3.如果是目标选项则记录到value_1[单选值]中，例如1 单选值1
+			 */
+			var nember = $("#div_" + div_id + "_99").val();
+			for(var i = 1;i <= nember;i++){
+				var img_url = $("#img_url_" + div_id + "_" + i).attr("src");
+				if(img_url == "../img/radioHover.png"){
+					var itme_type = $("#item_type_" + div_id + "_" + i).val();
+					if(itme_type == 3){
+						var result = $("#qt_text_" + div_id + "_" + i).val();
+						result = result.replace(/_/g, "");
+						result = result.replace(/-/g, "");
+						result = result.replace(/#/g, "");
+						if(result != null && result != undefined && result != ""){
+							$("#div_" + div_id + "_" + 1).val(i + "#" + result);
+						}
+					}else{
+						var result = $("#item_" + div_id + "_" + i).val();
+						$("#div_" + div_id + "_" + 1).val(result);
+					}
+				}
+			}
+		}else if(type == 2){
+			/**
+			 *  多选
+			 *	1.获取答案数量
+			 *  2.循环问题选项
+			 *  3.如果是目标选项，那么统计后记录到value_2[多选值]中，例如1_3_6_7 多选值1/3/6/7
+			 */
+			 var results = "";
+			 var nember = $("#div_" + div_id + "_99").val();
+			 for(var i = 1;i <= nember;i++){
+			 	var img_url = $("#img_url_" + div_id + "_" + i).attr("src");
+		 		if(img_url == "../img/checkedHover.png"){
+		 			var itme_type = $("#item_type_" + div_id + "_" + i).val();
+					if(itme_type == 3){
+						var result = $("#qt_text_" + div_id + "_" + i).val();
+						result = result.replace(/_/g, "");
+						result = result.replace(/-/g, "");
+						result = result.replace(/#/g, "");
+						if(result != null && result != undefined && result != ""){
+							results += i + "#" + result + "_";
+						}
+					}else{
+						var result = $("#item_" + div_id + "_" + i).val();
+		 				results += result + "_";
+					}
+		 		}
+			 }
+			 $("#div_" + div_id + "_" + 2).val(results);
+		}else if(type == 3){
+			//笔答 跳过
+			var result = $("#text_" + div_id).val();
+			result = result.replace(/_/g, "");
+			result = result.replace(/-/g, "");
+			result = result.replace(/#/g, "");
+			$("#div_" + div_id + "_" + 3).val(result);
+		}
+	}
+	
+	
+	/**
+	 *	检测问卷答案
+	 *  没问题返回true，有问题提示后返回false
+	 */
+	function checkAnswerResult(_val){
+		if(_val.type == -1){
+			info("数据异常，请联系客服!");
+			return false;
+		}else if(_val.type == 1){
+			if(_val.result1 == -1 || _val.result1 == ""){
+				info("请选择一个问卷答案，答案不能为空！");
+				return false;
+			}
+		}else if(_val.type == 2){
+			if(_val.result2 == -1 || _val.result2 == ""){
+				info("请选择最少一个问卷答案，答案不能为空！");
+				return false;
+			}
+		}else if(_val.type == 3){
+			if(trim(_val.result3) == ""){
+				info("请填写问卷答案，答案不能为空！");
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 *	赋值问卷样式---class
+	 *	div_id：序号
+	 *	item_id：选项序号
+	 
+	function setAnswerClass(div_id,item_id){
+		//获取第N题的类型
+		var type = $("#div_" + div_id + "_0").val();
+		//非法类型 type = -1
+		if(type == -1){
+			info("数据异常，请联系客服!");
+		}else if(type == 1){
+			
+			 *  单选
+			 *	1.获取答案数量
+			 *  2.循环问题选项
+			 *  3.如果是目标选项则添加row，否则全部用默认样式
+			 
+			var nember = $("#div_" + div_id + "_99").val();
+			for(var i = 1;i <= nember;i++){
+				if(i == item_id){
+					$("#spanclass_" + div_id + "_" + i).removeClass().addClass("radio_x mui-yx_50 row"); 	
+				}else{
+					$("#spanclass_" + div_id + "_" + i).removeClass().addClass("radio_x mui-yx_50"); 
+				}
+			}
+		}else if(type == 2){
+			
+			 *  多选
+			 *	1.获取答案数量
+			 *  2.循环问题选项
+			 *  3.如果是目标选项，那么选项样式是否==row，如果等于则取消，否则添加row
+			 
+			 var nember = $("#div_" + div_id + "_99").val();
+			 for(var i = 1;i <= nember;i++){
+			 	if(i == item_id){
+			 		var spanclass = $("#spanclass_" + div_id + "_" + i).attr("class");
+			 		if(spanclass == "radio_x row"){
+			 			$("#spanclass_" + div_id + "_" + i).removeClass().addClass("radio_x"); 
+			 		}else{
+			 			$("#spanclass_" + div_id + "_" + i).removeClass().addClass("radio_x  row"); 
+			 		}
+			 	}
+			 }
+		}else if(type == 3){
+			//笔答 跳过
+		}
+	}
+	*/
+	/**
+	 *	赋值问卷样式---img_url
+	 *	div_id：序号
+	 *	item_id：选项序号
+	 */
+	function setAnswerImgUrl(div_id,item_id){
+		//获取第N题的类型
+		var type = $("#div_" + div_id + "_0").val();
+		//非法类型 type = -1
+		if(type == -1){
+			info("数据异常，请联系客服!");
+		}else if(type == 1){
+			/**
+			 *  单选
+			 *	1.获取答案数量
+			 *  2.循环问题选项
+			 *  3.如果是目标选项则添加row，否则全部用默认样式
+			 */
+			var nember = $("#div_" + div_id + "_99").val();
+			for(var i = 1;i <= nember;i++){
+				if(i == item_id){
+					$("#img_url_" + div_id + "_" + i).attr("src","../img/radioHover.png"); 	
+				}else{
+					$("#img_url_" + div_id + "_" + i).attr("src","../img/radio.png"); 	
+				}
+			}
+		}else if(type == 2){
+			/**
+			 *  多选
+			 *	1.获取答案数量
+			 *  2.循环问题选项
+			 *  3.如果是目标选项，那么选项样式是否==row，如果等于则取消，否则添加row
+			 */
+			 var nember = $("#div_" + div_id + "_99").val();
+			 for(var i = 1;i <= nember;i++){
+			 	if(i == item_id){
+			 		var img_url = $("#img_url_" + div_id + "_" + i).attr("src");
+			 		if(img_url == "../img/checked.png"){
+			 			$("#img_url_" + div_id + "_" + i).attr("src","../img/checkedHover.png"); 
+			 		}else{
+			 			$("#img_url_" + div_id + "_" + i).attr("src","../img/checked.png"); 	
+			 		}
+			 	}
+			 }
+		}else if(type == 3){
+			//笔答 跳过
+		}
+	}
+
+	/**
+	 *	获取问卷列表
+	 */
+	function callBackGetQuestionList(cdoRequest, cdoResponse, ret) {
+		if (ret == undefined || ret == null) {
+			info("请求服务器失败");
+			_shade_layer.hide();
+			return false;
+		}
+		if (ret.nCode == 0) {
+			if (cdoResponse.exists("cdoQuestionnaire") && cdoResponse.exists("cdoQuestions")) {
+				//问卷信息
+				var cdoQuestionnaire = cdoResponse.getCDOArrayValue("cdoQuestionnaire");
+				//问卷列表
+				var cdoQuestions = cdoResponse.getCDOArrayValue("cdoQuestions");
+				
+				var html = "";
+				
+				_wenjianList.count = cdoQuestions.length;
+				
+				html += "<div id=\"div_0\" class=\"_linput-group\">";
+				html += "<div class=\"_lfill-input-row _lfill-input-text\">";
+				html += "<p>达飞云贷问卷调查</p>";
+				html += "<p>共计" + _wenjianList.count + "题，包括单选、多选、问答。</p>";
+				html += "<p>开始答题后不可返回操作，答题完成后请按提交按钮。</p>";
+				html += "</div>";
+				html += "<div class=\"_lfill-button-row\">";
+				html += "<button type=\"button\"  id=\"_lNext\" onclick=\"startProblem()\">开始答题</button>";
+				html += "</div>";
+				html += "</div>";
+				for(var i = 0; i < cdoQuestions.length; i++) {
+					//选项数量
+					var strXxNum = 0;
+				    //问卷编号
+					var strQNRId = cdoQuestions[i].getStringValue("strQNRId");	
+					//问题编号
+					var strQuestionId = cdoQuestions[i].getStringValue("strQuestionId");
+					//问题的标题
+					var strTitle = cdoQuestions[i].getStringValue("strTitle");
+					//标题是否在前台显示，默认显示，0-不显示，1-显示
+					//var bTitleVisable = cdoQuestions[i].getInteger("bTitleVisable");
+					//问题的题干的描述
+					var strDesc = cdoQuestions[i].getStringValue("strDesc");
+					//问题的排序位置,用于翻页使用,默认+1是下一题',
+					var nSeqIndex = cdoQuestions[i].getIntegerValue("nSeqIndex");
+					//类型0-填空题,1-单选radio,2-多选(至少两个),3-不定项(选1个也可以)【目前2/3都当多选】<后台旧类型>
+					//类型1:单选类型、2：多选类型、3：笔答类型<后台新类型>
+					var nType = cdoQuestions[i].getIntegerValue("nType");
+					
+					_wenjianList.strQNRId = strQNRId;	
+					//选项集合---非笔答的选项
+					if(nType == 3){
+						//笔答
+						html += "<div class=\"_linput-group\" id=\"div_" + strQuestionId + "\" style=\"display: none;\">";
+						html += "<div class=\"_lfill-input-row\">";
+						html += "<label><span>" + strQuestionId + ".(问答)</span>" + strDesc + "</label>";
+						html += "</div>";
+						html += "<div class=\"_lfill-input-row\" style=\"position: relative;\"><div class=\"_l-tabCont _l-tabCont-textarea\"><textarea value=\"\" placeholder=\"答案不能为空\" id=\"text_" + strQuestionId + "\"></textarea><div onclick=\"revoke('text_" + strQuestionId + "')\" class=\"_lRevoke\"><img src=\"../img/app_close.png\" />撤销</div></div>";
+						html += "</div>";
+						
+					}else if(nType == 1){
+						//单选
+						var cdoQuestionItems = cdoQuestions[i].getCDOArrayValue("cdoQuestionItems");
+						html += "<div class=\"_linput-group\" id=\"div_" + strQuestionId + "\" style=\"display: none;\">";
+						html += "<div class=\"_lfill-input-row\">";
+						html += "<label style=\"width: 100%;\"><span>" + strQuestionId + ".(单选)</span>"+ strDesc + "</label>";
+						html += "</div>";
+						html += "<div class=\"_lfill-input-row\">";
+						html += "<div class=\"_l-tabCont\">";
+						strXxNum = cdoQuestionItems.length;
+						for(var j = 0; j < cdoQuestionItems.length; j++) {
+							//题干编号
+							var strQESId_item = cdoQuestionItems[j].getStringValue("strQESId");
+							//题支的顺序
+							var nSeqIndex_item = cdoQuestionItems[j].getIntegerValue("nSeqIndex");
+							//题支描述
+							var strDesc_item = cdoQuestionItems[j].getStringValue("strDesc");
+							//类型0-填空题，1-单选radio，2-checkbox，3-Tree<后台旧类型>
+							//类型1:单选类型、2：多选类型、3：笔答类型<后台新类型>
+							var nType_item = cdoQuestionItems[j].getIntegerValue("nType");
+							//题支的值
+							var strValue_item = cdoQuestionItems[j].getStringValue("strValue");
+							//是否有额外补充答案0-没有，1-有
+							var bExtra_item = cdoQuestionItems[j].getBooleanValue("bExtra");
+							//补充答案的详细说明
+							//var strExtraDesc_item = cdoQuestionItems[j].getStringValue("strExtraDesc");
+							//完成此题支时跳转到哪个ITEM编号，只能向后跳不能循环跳，默认为空
+							//var strJumpTo_item = cdoQuestionItems[j].getStringValue("strJumpTo");
+							if(bExtra_item == "true"){
+								html += "<div class=\"_l-list\">";
+								//setAnswerResult参数 【第N题,第N题选项】
+								html += "<div onclick=\"setAnswerImgUrl(" + strQuestionId + "," + nSeqIndex_item + ")\">";
+								//img_url_1_1 【第N题_第N个选项】
+								html += "<img id=\"img_url_" + strQuestionId + "_" + nSeqIndex_item + "\" src=\"../img/radio.png\" />";
+								html += "</div>";
+								html += "<div class=\"_l-list-input\">" + strDesc_item + "<input id=\"qt_text_" + strQuestionId + "_" + nSeqIndex_item + "\" type=\"text\" value=\"\" placeholder=\"请输入\" /></div>";
+								//选项值[第N题，第N个选项]
+								html += "<input id=\"item_" + strQuestionId + "_" + nSeqIndex_item + "\" type=\"hidden\" value=\"\"/>";
+								html += "<input id=\"item_type_" + strQuestionId + "_" + nSeqIndex_item + "\" type=\"hidden\" value=\"3\"/>";
+								html += "</div>";
+							}else{
+								html += "<div class=\"_l-list\">";
+								//setAnswerResult参数 【第N题,第N题选项】
+								html += "<div onclick=\"setAnswerImgUrl(" + strQuestionId + "," + nSeqIndex_item + ")\">";
+								//img_url_1_1 【第N题_第N个选项】	img/radioHover.png
+								html += "<img id=\"img_url_" + strQuestionId + "_" + nSeqIndex_item + "\" src=\"../img/radio.png\" />";
+								html += "</div>";
+								html += "<div>" + strDesc_item + "</div>";
+								//选项值[第N题，第N个选项]
+								html += "<input id=\"item_" + strQuestionId + "_" + nSeqIndex_item + "\" type=\"hidden\" value=\"" + strValue_item + "\"/>";
+								html += "<input id=\"item_type_" + strQuestionId + "_" + nSeqIndex_item + "\" type=\"hidden\" value=\"1\"/>";
+								html += "</div>";
+							}
+						}
+						html += "</div>";
+						html += "</div>";
+					}else if(nType == 2){
+						//多选
+						var cdoQuestionItems = cdoQuestions[i].getCDOArrayValue("cdoQuestionItems");
+						html += "<div class=\"_linput-group\"  id=\"div_" + strQuestionId + "\" style=\"display: none;\">";
+						html += "<div class=\"_lfill-input-row\">";
+						html += "<label style=\"width: 100%;\"><span>" + strQuestionId + ".(多选)</span>"+ strDesc + "</label>";
+						html += "</div>";
+						html += "<div class=\"_lfill-input-row\">";
+						html += "<div class=\"_l-tabCont\">";
+						strXxNum = cdoQuestionItems.length;
+						for(var j = 0; j < cdoQuestionItems.length; j++) {
+							//题干编号
+							var strQESId_item = cdoQuestionItems[j].getStringValue("strQESId");
+							//题支的顺序
+							var nSeqIndex_item = cdoQuestionItems[j].getIntegerValue("nSeqIndex");
+							//题支描述
+							var strDesc_item = cdoQuestionItems[j].getStringValue("strDesc");
+							//类型0-填空题，1-单选radio，2-checkbox，3-Tree<后台旧类型>
+							//类型1:单选类型、2：多选类型、3：笔答类型<后台新类型>
+							var nType_item = cdoQuestionItems[j].getIntegerValue("nType");
+							//题支的值
+							var strValue_item = cdoQuestionItems[j].getStringValue("strValue");
+							//是否有额外补充答案0-没有，1-有
+							var bExtra_item = cdoQuestionItems[j].getBooleanValue("bExtra");
+							//补充答案的详细说明
+							//var strExtraDesc_item = cdoQuestionItems[j].getStringValue("strExtraDesc");
+							//完成此题支时跳转到哪个ITEM编号，只能向后跳不能循环跳，默认为空
+							//var strJumpTo_item = cdoQuestionItems[j].getStringValue("strJumpTo");
+							if(bExtra_item == "true"){
+								html += "<div class=\"_l-list\">";
+								//setAnswerResult参数 【第N题,第N题选项】
+								html += "<div onclick=\"setAnswerImgUrl(" + strQuestionId + "," + nSeqIndex_item + ")\">";
+								//img_url_1_1 【第N题_第N个选项】
+								html += "<img id=\"img_url_" + strQuestionId + "_" + nSeqIndex_item + "\" src=\"../img/checked.png\" />";
+								html += "</div>";
+								html += "<div class=\"_l-list-input\">" + strDesc_item + "<input id=\"qt_text_" + strQuestionId + "_" + nSeqIndex_item + "\" type=\"text\" value=\"\" placeholder=\"请输入\"/></div>";
+								//选项值[第N题，第N个选项]
+								html += "<input id=\"item_" + strQuestionId + "_" + nSeqIndex_item + "\" type=\"hidden\" value=\"\"/>";
+								html += "<input id=\"item_type_" + strQuestionId + "_" + nSeqIndex_item + "\" type=\"hidden\" value=\"3\"/>";
+								html += "</div>";
+							}else{
+								html += "<div class=\"_l-list\">";
+								//setAnswerResult参数 【第N题,第N题选项】
+								html += "<div onclick=\"setAnswerImgUrl(" + strQuestionId + "," + nSeqIndex_item + ")\">";
+								//img_url_1_1 【第N题_第N个选项】
+								html += "<img id=\"img_url_" + strQuestionId + "_" + nSeqIndex_item + "\" src=\"../img/checked.png\" />";
+								html += "</div>";
+								html += "<div>" + strDesc_item +"</div>";
+								//选项值[第N题，第N个选项]
+								html += "<input id=\"item_" + strQuestionId + "_" + nSeqIndex_item + "\" type=\"hidden\" value=\"" + strValue_item + "\"/>";
+								html += "<input id=\"item_type_" + strQuestionId + "_" + nSeqIndex_item + "\" type=\"hidden\" value=\"2\"/>";
+								html += "</div>";
+							}
+						}
+						html += "</div>";
+						html += "</div>";
+					}
+					if(i == 0){
+						html += "<div class=\"_lfill-button-row\">";
+						html += "<button type=\"button\" onclick=\"nextProblem(" + strQuestionId + ")\">";
+						html += "下一题</button>";
+						html += "</div>";
+					}else{
+						html += "<div class=\"_lfill-button-row _lfill-button-width\">";
+						html += "<button type=\"button\" onclick=\"lastProblem(" + strQuestionId + ")\">";
+						html += "上一题</button>";
+						html += "&nbsp&nbsp";
+						html += "<button type=\"button\" onclick=\"nextProblem(" + strQuestionId + ")\">";
+						html += "下一题</button>";
+						html += "</div>";
+					}
+					// type[1:单选类型、2：多选类型、3：笔答类型] 
+					html += "<input id=\"div_" + strQuestionId + "_0\" type=\"hidden\" value=\"" + nType + "\"/>";
+					// value_1[单选值]
+					html += "<input id=\"div_" + strQuestionId + "_1\" type=\"hidden\" value=\"-1\"/>";
+					// value_2[多选值]
+					html += "<input id=\"div_" + strQuestionId + "_2\" type=\"hidden\" value=\"-1\"/>";
+					// value_3[笔答值]
+					html += "<input id=\"div_" + strQuestionId + "_3\" type=\"hidden\" value=\"\"/>";
+					// value_4[选项数量值]
+					html += "<input id=\"div_" + strQuestionId + "_99\" type=\"hidden\" value=\"" + strXxNum + "\"/>";
+					html += "</div>";
+					html += "</div>";
+				}
+				html += "<div class=\"_linput-group\" id=\"div_" + (_wenjianList.count + 1) + "\" style=\"display: none;\">";
+				html += "<div class=\"_lfill-input-row\">";
+				html += "<div class=\"_lfill-row\">";
+				html += "<label><span class=\"lred\">*</span>姓名：</label><input type=\"text\" placeholder=\"请输入您的姓名\" id=\"info_name\"/>";
+				html += "</div>";
+				html += "<div class=\"_lfill-row\">";
+				html += "<label><span class=\"lred\">*</span>联系电话：</label><input type=\"text\" placeholder=\"请输入您的手机号\" id=\"info_mobile\"/>";
+				html += "</div>";
+				html += "<div class=\"_lfill-row\">";
+				html += "<label><span class=\"lred\">*</span>居住地址：</label><input type=\"text\" placeholder=\"请输入您的居住地址\" id=\"info_address\"/>";
+				html += "</div>";
+				html += "<div class=\"_lfill-row\">";
+				html += "<label><span class=\"lred\">*</span>省：</label><input type=\"text\" placeholder=\"请输入您所在的省\" id=\"info_province\"/>";
+				html += "</div>";
+				html += "<div class=\"_lfill-row\">";
+				html += "<label><span class=\"lred\">*</span>市：</label><input type=\"text\" placeholder=\"请输入您所在的市\" id=\"info_city\"/>";
+				html += "</div>";
+				html += "</div>";
+				html += "<div class=\"_lfill-button-row _lfill-button-width\">";
+				html += "<button type=\"button\"  onclick=\"lastProblem(" + (_wenjianList.count + 1) + ")\">上一题</button>";
+				html += "<button type=\"button\"  class=\"_l-btn\" onclick=\"saveProblem(" + (_wenjianList.count + 1) + ")\">提交</button>";
+				html += "</div>";
+				html += "</div>";
+				html += "<div class=\"_linput-group\" id=\"result_div\" style=\"display: none;\">";
+				html += "<div class=\"_lfill-input-row\">";
+				html += "<div class=\"_lfill-input-img\">";
+				html += "<img src=\"../img/l-end.png\"  />";
+				html += "<p>感谢您对<span>达飞云贷</span>的支持！</p>";
+				html += "</div>";
+				html += "</div>";
+				html += "<div class=\"_lfill-button-row\">";
+				html += "<button type=\"button\" onclick=\"goToBack(1)\" >完成</button>";
+				html += "</div>";
+				html += "</div>";
+			
+			}
+			
+			$("#div_wenjuan").html(html);
+			_shade_layer.hide();
+			//禁物理键
+			//setControlAndroidBack(2);
+		}else{
+			//code == 1000 说明用户答过题
+			_shade_layer.hide();
+			info("请求失败："+ret.strText);
+			setTimeout(function() {
+				//openWindow("index.htm","登录页面","" ,2,"",1);
+				back();
+			}, 300);
+		}
+		
+	}
+	
+	/**
+	 *	是否退出问卷调查提示
+	 */
+	function confirmGoToBack(){
+		if(backFlag == 1){
+			setTimeout(function() {
+				_TTPopups.open2({
+					content:"确认要退出问卷调查吗？",
+					cancelBtn:"否",
+					submitBtn:"是",
+					closeCallBack:"goToBack"
+				});
+			}, 500);
+		}else{
+			goToBack(1);
+		}
+	}
+	
+	/**
+	 *	退出问卷调查
+	 */
+	function goToBack(val){
+		//退出问卷调查
+		if(val == 1){
+			//打开物理键
+			//setControlAndroidBack(1);
+			setTimeout(function() {
+				//openWindow("index.htm","登录页面","" ,2,"",1);
+				back();
+			}, 300);
+		}
+	}
+	
+	/**
+	 *	开始答题
+	 */
+	function startProblem(){
+		$("#div_0").hide();
+		$("#tb_back").hide();
+		$("#div_1").show();
+		$("#tb_close").show();
+	}
+	
+	/**
+	 *	 撤销
+	 */
+	function revoke(text_id){
+		$("#" + text_id).val("");
+	}
+</script>
+</html>

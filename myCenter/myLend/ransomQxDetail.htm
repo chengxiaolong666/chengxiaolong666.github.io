@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>悟空理财取现详情</title>
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../../css/myCenter/myLend/myLend.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="backList()">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">赎回详情</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div class="Wpublic_con">
+			<div class="_lfin_i_details_title clearfix">
+				<h1 id="strLendProductName"></h1>
+			</div>
+			<div class="z_fin_i_redemption_amount">
+				<h3 id="all_amount"></h3>
+				<p id="all_amount_title"></p>
+			</div>
+			<div class="z_fin_topwklc_details_list">
+				<ul>
+					<li>
+						<div class="_lfin_i_dxb_tz_name" id="strCreateTimeTitle"></div>
+						<div class="_lfin_i_dxb_tz_amount" id="strCreateTime"></div></li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">投资金额（元）</div>
+						<div class="_lfin_i_dxb_tz_amount" id="lAmount"></div></li>
+					<li>
+						<div class="_lfin_i_dxb_tz_name">赎回状态</div>
+						<div class="_lfin_i_dxb_tz_amount" id="nState"></div></li>
+				</ul>
+			</div>
+			<div class="_lfin_wklc_dxb_details_list">
+				<ul>
+					<li id="qx_id"><img src="../../img/public/api_Arrow.png" />
+						<div class="fin_wklc_dxb_tz_name">取现详情</div></li>
+					<li id="xy_id" style="display: none;">
+					<img src="../../img/public/api_Arrow.png" />
+						<div class="fin_wklc_dxb_tz_name">理财协议</div></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script type="text/javascript">
+	var _obj = {};
+	_obj.lId = 0;
+	_obj.lUserId = 0;
+	_obj.lLendIntentId = "";//理财意向id
+	_obj.strAgreementNo = "";//理财协议
+	_obj.strCurrentDate = "";//服务器时间
+
+	window.onload = function() {
+		setTimeout(function() {
+			_shade_layer.show("加载中,请稍候......");//显示加载图标
+			_obj.lLendIntentId = getStringValue("lLendIntentId");
+			_obj.loadDetail();
+			setBackURL("myCenter/myLend/list.htm", "理财列表", "", 1, "");
+		}, 200);
+	}
+
+	_obj.initParameter = function() {
+		var strUserId = getStringValue("lUserId");
+		if (isNaN(strUserId)) {
+			info("非法登录，用户信息有误！");
+			return false;
+		}
+		_obj.lUserId = strUserId;
+		return true;
+	}
+
+	//加载详情
+	_obj.loadDetail = function() {
+		var cdoRequest = new CDO();
+		cdoRequest.setStringValue("strServiceName", "LendIntentService");
+		cdoRequest.setStringValue("strTransName","getRateAccumulateRedemptionInfo");
+		cdoRequest.setLongValue("lLendIntentId", Number(_obj.lLendIntentId));
+		raiseTrans(cdoRequest, "callBackRedemptionDetailForMobile");
+	};
+
+	function callBackRedemptionDetailForMobile(strRequest, cdoResponse,
+			cdoReturn) {
+		if (cdoReturn == undefined || cdoReturn == null) {
+			_shade_layer.hide();//隐藏加载图标
+			info("请求服务失败！");
+			return false;
+		}
+		try {
+			if (cdoReturn.nCode == 0) {
+				var strLendProductName = cdoResponse.getStringValue("strLendProductName");//理财产品名称
+				var strExpireTime = cdoResponse.getStringValue("strExpireTime");//申请赎回时间
+				var strActualRdptDate = cdoResponse.getStringValue("strActualRdptDate");//赎回时间
+				var lIncome = cdoResponse.getLongValue("lIncome");//赎回金额
+				var lAmount = cdoResponse.getLongValue("lAmount");//投资金额
+				var nState = cdoResponse.getIntegerValue("nState");//赎回状态
+				var strState = "";
+				if (nState == "1" || nState == 1) {
+					strState = "赎回中";
+					_obj.html("all_amount_title", "预期赎回金额（元）");
+					_obj.html("strCreateTimeTitle", "预期赎回成功时间");
+					_obj.html("strCreateTime", strExpireTime);
+				} else if (nState == "2" || nState == 2) {
+					strState = "赎回成功";
+					_obj.html("all_amount_title", "赎回金额（元）");
+					_obj.html("strCreateTimeTitle", "赎回成功时间");
+					_obj.html("strCreateTime", strActualRdptDate);
+				}
+
+				_obj.html("strLendProductName", strLendProductName);
+				_obj.html("all_amount", (Number(lIncome) / 100).toFixed(2));
+				_obj.html("lAmount", (Number(lAmount) / 100).toFixed(2) + "元");
+				_obj.html("nState", strState);
+			}
+			_shade_layer.hide();//隐藏加载图标
+		} catch (e) {
+			info(e);
+			_shade_layer.hide();//隐藏加载图标
+		}
+	}
+
+	function backList() {
+		openWindow('myCenter/myLend/list.htm', '理财列表', '', '1', '', '1');
+	}
+
+	//取现详情
+	document.getElementById("qx_id").addEventListener('click',function() {
+		setStringValue("lLendIntentId", _obj.lLendIntentId);
+		openWindow("myCenter/myLend/wklc_qx_detail.htm", "悟空取现详情","backTag=2", 0);
+	});
+
+	//理财协议
+	document.getElementById("xy_id").addEventListener('click', function() {
+		if (_obj.strAgreementNo == "" || _obj.strAgreementNo == "null") {
+			info("理财协议生成中,请稍候...");
+		} else {
+			seeToAgreementAfterSignature(_obj.strAgreementNo);
+		}
+	});
+
+	//添加页面信息
+	_obj.html = function(dom, data) {
+		if ((typeof dom === 'string') && dom.constructor == String) {
+			dom = document.getElementById(dom)
+		}
+		if (dom) {
+			dom.innerHTML = '';
+			dom.innerHTML = data;
+		}
+	}
+	jsHeight.bodyheight();//加载页面高度
+</script>
+</html>

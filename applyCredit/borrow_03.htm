@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="../css/top.css"  />
+		<link type="text/css" rel="stylesheet" href="../css/public.css"  />
+		<link type="text/css" rel="stylesheet" href="../css/applyCredit/applyCredit.css" />
+	</head>
+	<body>
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_title font-size6">申请授信</div>
+					<div class="_Wedafytop_righttext font-size3" onclick="backIndex();">关闭</div>
+				</div>
+			</div>
+		</header>
+				
+		<div id="container">
+			<div class="applycredit_succeed_con">		
+				<div class="applycredit_succeed_text color2 font-sizesit">
+					第二步：添加紧急联系人<br/>
+					<span class="_span_session" id="result_content" style="display:none;">添加成功！</span><br/>
+					<div id="result_success" style="display:none;">
+						添加联系人信息：
+						<span id="strName">张三</span>
+						<span id="strPhone">13912121212</span>
+					</div>
+					<div id="result_fail" style="display: none;">
+						失败原因：<br/>	
+						<span id="fail_content">添加联系人失败了,不知道是什么原因!</span><br/>
+					</div>
+				</div>	
+			</div>
+			<div class="_bottom_block_con font-size2">		
+				<bottom class="_bottom_onc" style="display: block; width:35%;" id="atAdd">立即添加</bottom>	
+			</div>
+			<div class="_bottom_block_con font-size2">		
+				<bottom class="_bottom_onc _lbuttom_background" style="display:none; width:35%;" id="reAdd">重新添加联系人</bottom>	
+			</div>
+			<Br>
+			<div class="_bottom_block_con font-size2">		
+				<bottom class="_bottom_onc" style="display: none; width:35%;" id="addNext">完成</bottom>	
+			</div>
+		</div>
+	</body>
+	<script src="../js/includeCommon.js"></script>
+	<script type="text/javascript">ImportJS(1)</script>
+	<script type="text/javascript" src="creditManage.js"></script>
+	<script type="text/javascript" src="borrow_03.js"></script>
+</html>

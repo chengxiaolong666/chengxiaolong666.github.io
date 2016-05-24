@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+	<link type="text/css" href="../css/public.css" rel="stylesheet" />
+	<link type="text/css" href="../css/top.css" rel="stylesheet" />
+	<link type="text/css" href="../css/notice/notice.css" rel="stylesheet" />
+    <title>公告</title>
+    <style>
+     
+    </style>
+</head>
+<body>
+	   <header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5"  onclick="back();">
+						<img src="../img/top/_We_return.png" />返回
+					</div> 
+					<div class="_Wedafytop_title font-size6">公告</div>
+					<div class="_Wedafytop_righttext font-size3"></div>
+				</div>
+			</div>
+	    </header>	
+	
+		<div id="container">
+			<div class="z_wnotice_list">
+				<ul id="not_list">		
+					<ul id="not_list">	
+
+				     </ul>
+				</ul>		
+			</div>
+		</div>
+</body>
+<script src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript">	
+//加载公告列表
+function Notice(){};
+Notice.prototype.pageIndex = 0;   //起始条数
+Notice.prototype.pageSize = 10;	//每页条数
+Notice.prototype.asynFlag = true;  
+Notice.prototype.Loadflag = true;
+
+Notice.prototype.list = function(){
+		var cdoRequest = new CDO();
+		var nStrIndex = this.pageIndex*this.pageSize; //计算分页数
+		cdoRequest.setStringValue("strServiceName","NoticeService");
+		cdoRequest.setStringValue("strTransName","getNoticeList");
+		cdoRequest.setIntegerValue("nPageCount",nStrIndex);
+		cdoRequest.setIntegerValue("nPageSize",this.pageSize);
+		cdoRequest.setIntegerValue("nType",2); //类别：0-PC,1-口袋助手,2-达飞云贷
+		raiseTrans(cdoRequest,"noticeList");
+		this.asynFlag = false;
+}
+
+
+function noticeList(cdoRequest,cdoResponse,cdoReturn){  //公告列表回调
+		if(cdoReturn == null || typeof cdoReturn == "undefined"){
+			_shade_layer.hide();
+			info("请求公告失败");
+			return ;
+		}
+		if(cdoReturn.nCode == 0 )
+		{
+			var cdosNotice = cdoResponse.getCDOArrayValue("cdosNotice"); //列表数组
+			var nRecordCount = cdoResponse.getIntegerValue("nRecordCount");  //列表条数
+			if(nRecordCount == 0) {
+				_Not.show("not_list","暂无公告");
+				_shade_layer.hide();
+				return false;
+			}
+			var str = "";
+			var not_list = document.getElementById("not_list");
+			for(var i=0;i<cdosNotice.length;i++){
+				cdoObj = cdosNotice[i];
+				var strTitle = cdoObj.getStringValue("strTitle");
+				var strDigest = cdoObj.getStringValue("strDigest");		
+				var dtCreateTime = cdoObj.getStringValue("dtCreateTime");
+				if(strTitle.length>"20"){   //大于20个字自动隐藏
+					var strTitle = strTitle.substring(0,20);
+					strTitle = strTitle+"...";
+				}	
+				var lId = cdoObj.getLongValue("lId");				
+				str += "<li onclick=\"_notice.notice_detail("+lId+")\">";
+				str += "<img src=\"../img/public/api_Arrow.png\"/>";
+				str += "<h3>"+strTitle+"</h3>";
+				str += "<p>"+strDigest+"</p>";
+				str += "<time>"+dtCreateTime+"</time>";
+				str += "</li>";	
+			}
+			var div = document.createElement("div");
+			div.innerHTML = str;
+			not_list.appendChild(div);
+			_notice.asynFlag = true;
+			_notice.pageIndex = _notice.pageIndex + 1;
+			
+			if(_notice.pageIndex * _notice.pageSize >= nRecordCount){
+				_notice.Loadflag = false;
+			}
+			_shade_layer.hide();
+		}else{
+			info(cdoReturn.strText);
+			_shade_layer.hide();
+		}
+}
+
+
+
+Notice.prototype.notice_detail = function(id){  //点击事件进入公告详情页
+	openWindow("notice/notice_Detail.htm","公告详情","lId="+id+"",0,"");
+}
+
+
+$(document).scroll(function(){   //滑动加载分页
+　　var scrollTop = $(this).scrollTop();
+　　var scrollHeight = $(document).height();
+　　var windowHeight = $(this).height();
+　　if(scrollTop + windowHeight >= scrollHeight){
+		if(_notice.asynFlag == true && _notice.Loadflag == true){	
+			_notice.list();
+		}
+　　}
+});
+
+_shade_layer.show("加载中，请稍后...");
+jsHeight.bodyheight();  //获取页面高度
+_notice = new Notice();  //实例化对象
+window.onload = function(){
+	_notice.list();   //获取公告列表
+}
+</script>
+</html>

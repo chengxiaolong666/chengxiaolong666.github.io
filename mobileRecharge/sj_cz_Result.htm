@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="../css/public.css" />
+		<link type="text/css" rel="stylesheet" href="../css/top.css"  />		
+		<link type="text/css" rel="stylesheet" href="../css/app_popup.css"  />
+		<link type="text/css" rel="stylesheet" href="../css/body_backcolor.css" />
+		<link type="text/css" rel="stylesheet" href="../css/mobileRecharge/mobileRecharge.css"  />
+	</head>
+	<body>
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" onclick="openWindow('recharge/sj_Rech.htm','手机充值','',1,'',1);">
+						<img src="../img/top/_We_return.png" />返回
+					</div>
+					<div class="_Wedafytop_title font-size6">充值结果</div>
+					<!-- 
+					<div class="_Wedafytop_righttext" onclick="getMallList()"><a href="javascript:void(0)"><img src="../img/api_records.png"/></a></div>
+					 -->
+				</div>
+			</div>
+		</header>	
+		<section>
+			<article>
+				<div id="container">
+					<div class="api_czResult">
+						<p>充值申请已提交</p>
+						依据各地运营商服务情况，请您等待10-20分钟查看冲值结果。
+					</div>
+					<div class="_articleInput">
+						<div class="_regDel clearfix">
+							<b>手机号</b>
+							<input id="strMobilePhone" name=""   value="" type="text" readonly="readonly" />
+						</div>
+						<div class="_regDel clearfix">
+							<b>交易金额</b>
+							<input id="lRechargeRealMoney" name=""   value="" type="text" readonly="readonly" />
+						</div>
+						<div class="_regDel clearfix">
+							<b>充值金额</b>
+							<input id="lRechargeMoney" name=""   value="" type="text" readonly="readonly" />
+						</div>
+					</div>
+		
+					<div class="rech_inc_submit" onclick="getMallList()" ><a href="javascript:void(0)" id="api_id">充值记录</a></div>
+				</div>
+			</article>
+		</section>
+	</body>
+	<script src="../js/includeCommon.js"></script>
+	<script type="text/javascript">ImportJS(1)</script>
+	<script type="text/javascript">
+		jsHeight.bodyheight();//加载页面高度
+		$(document).ready(function(){
+			setTimeout(function() {
+				var lRechargeMoney = getQueryString("lRechargeMoney");
+				var lRechargeRealMoney = getQueryString("lRechargeRealMoney");
+				var strMobilePhone = getQueryString("strMobilePhone");
+				$("#lRechargeMoney").val(lRechargeMoney/100);
+				$("#lRechargeRealMoney").val(lRechargeRealMoney/100);
+				$("#strMobilePhone").val(strMobilePhone);
+			}, 300)
+		});
+		
+		/**
+		 * 跳转充值记录页面
+		 */
+		function getMallList() {
+			openWindow("mobileRecharge/rech_list_mall.htm", "充值记录", "", 1,"");
+		}
+	</script>
+</html>

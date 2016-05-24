@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="../css/top.css"  />
+		<link type="text/css" rel="stylesheet" href="../css/public.css"  />
+		<link type="text/css" rel="stylesheet" href="../css/applyCredit/applyCredit.css" />
+	</head>
+	<body>
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" onclick="back();">
+						<img src="../img/top/_We_return.png" />返回
+					</div> 
+					<div class="_Wedafytop_title font-size6">申请授信</div>
+					<div class="_Wedafytop_righttext font-size3"></div>
+				</div>
+			</div>
+		</header>
+		<!-- 授信 -->
+		<div id="container1">
+			<div class="applycredit_succeed_con">		
+				<div class="applycredit_succeed_text color2 font-sizesit">
+				    <div><img src="../img/applyCredit/api_mark.png"></div>
+					很抱歉通知您，您暂时还未开通授信！<br>
+					<p>请致电：400-625-9898</p>
+				</div>	
+			</div>
+			<div class="_bottom_con font-size2 clearfix">		
+				<bottom class="_bottom_onc _lbttomBtn" id="applyCredit">申请只须2步，申请授信</bottom>
+			</div>
+				<div class="applycredit_condition">
+					<h3>申请条件：</h3>
+					<p>1. 年龄为：18-55周岁；</p>				
+					<p>2. 中国大陆居民且在现单位工作满半年；</p>				
+					<p>3. 有持续稳定的工作收入及良好的信用记录。</p>			
+				</div>
+		</div>
+	</body>
+	<script src="../js/includeCommon.js"></script>
+	<script type="text/javascript">ImportJS(1)</script>
+	<script type="text/javascript" src="creditManage.js"></script> 
+	<script type="text/javascript">
+		//去授信
+		document.getElementById("applyCredit").addEventListener('click',function(){
+			openWindow("applyCredit/borrow_02.htm","授信1","",0,"");
+		});
+		//返回首页 
+		function backIndex(){
+			openWindow("index.htm","首页",'',1,'',1);
+		}
+	</script>
+</html>

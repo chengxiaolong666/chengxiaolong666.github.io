@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>历史财富</title>
+<link href="../../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../../css/myCenter/myLend/myLend.css" rel="stylesheet" type="text/css" />
+<link href="../../css/app_popup.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="openWindow('myCenter/myIndex.htm','我的','',0,'','1');">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">历史财富</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div id="fin_i_table_list" class="_lfinancial_ob_explain circumference clearfix">
+			<div style="padding-left: 10px;">
+				<b>总收益（元）<span id="lTotalInterest_id_2"></span>
+				</b>
+				<p>
+					截止到昨日,持有的全部理财产品累计收益总和。(预估收益不代表实际收益，请您以平台实际到账收益为准) <Br>
+				</p>
+				<b>理财总金额（元）<span id="lTotalInvest_id_2">0.00</span>
+				</b>
+				<p>根据你持有所有理财产品尚未到期的理财总金额</p>
+			</div>
+		</div>
+		<div onclick="stages_close()" class="_lblack_overlayasd" id="black_stages_overlayasd"></div>
+
+		<div class="_lfin_i_accumulated">
+			<h3 id="strAllAmount">0.00</h3>
+			<p>
+				<!-- img onclick="stagespopup()" src="../img/public/fin_i_wh_02.png"/> -->
+				累计收益（元）
+			</p>
+		</div>
+
+		<div class="_lfin_i_redemption_indexamount">
+			<div class="clearfix">
+				<div>
+					<h3 id="strAllIncome">0.00</h3>
+					<p>投资总额（元）</p>
+				</div>
+				<div>
+					<h3 id="strTotalAssets">0.00</h3>
+					<p>总资产（元）</p>
+				</div>
+			</div>
+			<div class="_lfin_i_xx_hint font-size3" style="display:none;">
+				<img src="../../img/myCenter/myLend/LD.png" />提示：您有购买的达梦盈产品快到划款日，请这月5号之前充值到账户。
+			</div>
+		</div>
+		<div class="_lfin_i_poss_class clearfix">
+			<a class="row" name="tab" href="javascript:void(0)" id="a_hold_id" onclick="getLendOneList(1)">持有中</a>
+			 <a name="tab" href="javascript:void(0)" id="a_ransom_id" onclick="getLendOneList(2)">赎回中</a> 
+			 <a name="tab" href="javascript:void(0)" id="a_buy_id" onclick="getLendOneList(3)">已赎回</a>
+		</div>
+		<!-- 持有中strat -->
+		<div class="_lfin_i_lc_list">
+			<div id="hide_div_info1">
+				<!-- <div class="fin_i_ransom circumference" onclick="_obj.openDetail('0','#lId#')">#txt#</div>  -->
+				<!-- <div class="fin_left_lc_ki  _lfin_left_lc_kiWdith"  onclick="#onclick#">
+					<h3>达飞宝-30天<span>赎回</span></h3>
+					<div class="_lFin_lc clearfix">
+						<div>
+							<b>100元</b>
+							<p>投资金额</p>
+						</div>
+						<div>
+							<b>2015-05-01  18：10</b>
+							<p>购买时间</p>
+						</div>
+					</div>
+					<div class="_lFin_lc clearfix">
+						<div>
+							<b>6%</b>
+							<p>封闭期年化收益</p>
+						</div>
+						<div>
+							<b>2015-05-01  18：10</b>
+							<p>封闭期截止日</p>
+						</div>
+					</div>
+			    </div> -->
+			</div>
+			<ul id="ul_hold_id" style="display:none">
+			</ul>
+		</div>
+		<!-- 持有中end -->
+
+		<!-- 赎回中strat -->
+		<div class="_lfin_i_lc_list" style="display:none;">
+			<div id="hide_div_info2" style="display:none">
+				<div class="_lfin_i_sh_ki" onclick="#onclick#">
+					<h3>达飞宝-30天</h3>
+					<div class="_lFin_lc clearfix">
+						<div>
+							<b>100元</b>
+							<p>投资金额</p>
+						</div>
+						<div>
+							<b>2015-05-01 18：10</b>
+							<p>购买时间</p>
+						</div>
+					</div>
+					<div class="_lFin_lc clearfix">
+						<div>
+							<b>6%</b>
+							<p>封闭期年化收益</p>
+						</div>
+						<div>
+							<b>2015-05-01 18：10</b>
+							<p>封闭期截止日</p>
+						</div>
+					</div>
+					<div class="_lFin_lc clearfix">
+						<b>2015-05-01 18：10</b>
+						<p>赎回申请时间</p>
+					</div>
+				</div>
+			</div>
+			<ul id="ul_ransom_id" style="display:none">
+			</ul>
+		</div>
+		<!-- 赎回中end -->
+
+
+		<!-- 已赎回strat -->
+		<div class="_lfin_i_lc_list" style="display:none;">
+			<div id="hide_div_buy_id" style="display:none">
+				<div class="_lfin_i_sh_ki" onclick="#onclick#">
+					<h3>达飞宝-30天</h3>
+					<div class="_lFin_lc clearfix">
+						<div>
+							<b>100元</b>
+							<p>投资金额</p>
+						</div>
+						<div>
+							<b>2015-05-01 18：10</b>
+							<p>购买时间</p>
+						</div>
+					</div>
+					<div class="_lFin_lc clearfix">
+						<div>
+							<b>6%</b>
+							<p>封闭期年化收益</p>
+						</div>
+						<div>
+							<b>2015-05-01 18：10</b>
+							<p>封闭期截止日</p>
+						</div>
+					</div>
+					<div class="_lFin_lc clearfix">
+						<b>2015-05-01 18：10</b>
+						<p>赎回成功时间</p>
+					</div>
+				</div>
+			</div>
+			<ul id="ul_buy_id" style="display:none">
+			</ul>
+		</div>
+		<!-- 已赎回end -->
+	</div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script type="text/javascript">
+	var lUserId = 291728;
+	var strLoginId = "13269930000";//13269930000
+	var strPlatform = "ANDROID";
+	var nSta = 1;//全局状态
+	$(function(){
+		lUserId = Number(getStringValue("lOldCustomerId"));
+		strLoginId = Number(getStringValue("strLoginId"));
+		strPlatform = getChannelType(); 
+		var cdoRequest = new CDO();
+		cdoRequest.setStringValue("strServiceName","OnePayService");
+		cdoRequest.setStringValue("strTransName","getLendOneAsset");
+		cdoRequest.setLongValue("lUserId",lUserId);
+		cdoRequest.setStringValue("strLoginId",strLoginId);
+		cdoRequest.setStringValue("strPlatform",strPlatform);
+		raiseTrans(cdoRequest,"callBackLendOneAsset");
+		getLendOneList(1);
+	})
+	
+	
+	
+	//赎回发起
+	function redemptionReq(id,pwd){
+		var cdoRequest = new CDO();
+		cdoRequest.setStringValue("strServiceName","OnePayService");
+		cdoRequest.setStringValue("strTransName","redemptionReq");
+		cdoRequest.setLongValue("lUserId",lUserId);
+		cdoRequest.setStringValue("strLoginId",strLoginId);
+		cdoRequest.setStringValue("strPlatform",strPlatform);
+		cdoRequest.setIntegerValue("nStatus",1);// 1-持有中   2-赎回中   3-已赎回
+		cdoRequest.setLongValue("applyId",id);//赎回id
+		cdoRequest.setStringValue("payPassword",pwd+"");//支付密码
+		raiseTrans(cdoRequest,"callBackRedemptionReq");
+	}
+	
+	var flag = true;//全局点击    关闭  开启标记
+	//获取1.0理财列表
+	function getLendOneList(nstatus){
+		if(flag == false) {
+			return flag;
+		}
+		flag = false;
+		//_shade_layer.show("加载中,请稍候......");
+		var cdoRequest = new CDO();
+		cdoRequest.setStringValue("strServiceName","OnePayService");
+		cdoRequest.setStringValue("strTransName","getLendOneList");
+		cdoRequest.setLongValue("lUserId",lUserId);
+		cdoRequest.setStringValue("strLoginId",strLoginId);
+		cdoRequest.setStringValue("strPlatform",strPlatform);
+		cdoRequest.setIntegerValue("nStatus",nstatus);// 1-持有中   2-赎回中   3-已赎回
+		raiseTrans(cdoRequest,"callBackLendOneList");
+		ChangeRow(nstatus);
+		nSta = nstatus;
+	}
+	
+	
+	//赎回发起回调
+	function callBackRedemptionReq(req,cdoResponse,cdoReturn) {
+		if(cdoReturn.nCode == 0){
+			getLendOneList(2);
+		} else {
+			info(cdoReturn.strText);
+		}
+	}
+	
+	function callBackLendOneAsset(req,cdoResponse,cdoReturn) {
+		if(cdoReturn.nCode == 0){
+			if(cdoResponse.exists("cdoTotal")){
+				var cdoTotal = cdoResponse.getCDOValue("cdoTotal");
+				var strAllAmount = cdoTotal.getStringValue("allIncome");//累计收益
+				var strAllIncome = cdoTotal.getStringValue("allAmount");//投资总额
+				var strTotalAssets = cdoTotal.getStringValue("totalAssets");//总资产
+				$("#strAllAmount").text(strAllAmount)
+				$("#strAllIncome").text(strAllIncome)
+				$("#strTotalAssets").text(strTotalAssets)
+			}
+		} else {
+			info(cdoReturn.strText);
+		}
+	}
+	
+	function callBackLendOneList(req,cdoResponse,cdoReturn) {
+		if(cdoReturn.nCode == 0 && cdoResponse.exists("cdosInfo")){
+			var cdosInfo = cdoResponse.getCDOArrayValue("cdosInfo");
+			if(cdosInfo.length == 0){
+				_Not.show("hide_div_info1","暂无数据","../../");
+				flag = true;
+				//_shade_layer.hide();
+				return false;
+			}
+			for(var i = 0 ; i < cdosInfo.length ; i++) {
+				var str = getTemplate(cdosInfo[i],nSta);
+				$("#hide_div_info1").append(str);
+			}
+		} else {
+			info(cdoReturn.strText);
+		}
+		//_shade_layer.hide();
+		flag = true;
+	}
+	
+	
+	//tab样式改变
+	function ChangeRow(nstatus) {
+		$("#a_ransom_id").removeClass("row")
+		$("#a_hold_id").removeClass("row")
+		$("#a_buy_id").removeClass("row")
+		if(nstatus == 2){
+			$("#a_ransom_id").addClass("row")
+		} else if (nstatus == 1) {
+			$("#a_hold_id").addClass("row")
+		} else if (nstatus == 3) {
+			$("#a_buy_id").addClass("row")
+		}
+		$("#hide_div_info1").html("");
+	}
+	
+	//获取模版显示
+	function getTemplate(cdosInfo,nstatus) {
+		var amount = cdosInfo.getStringValue("amount");
+		var apply_tx_time = cdosInfo.getStringValue("apply_tx_time");
+		var id = cdosInfo.getStringValue("id");
+		var interest_end_date = cdosInfo.getStringValue("interest_end_date");
+		var is_able = cdosInfo.getStringValue("is_able");
+		var is_delay = cdosInfo.getStringValue("is_delay");
+		var lender_apply_status = cdosInfo.getStringValue("lender_apply_status");
+		var product_name = cdosInfo.getStringValue("product_name");
+		var success_time = cdosInfo.getStringValue("success_time");
+		var success_time_tx = cdosInfo.getStringValue("success_time_tx");
+		var year_return_rate = cdosInfo.getStringValue("year_return_rate");
+		var strYearRate = cdosInfo.getStringValue("strYearRate");
+		var apply_tx_time = cdosInfo.getStringValue("apply_tx_time");
+				
+		var str = "";
+		if(nstatus == 1){
+			//<span>赎回</span> is_able，是否可以赎回0不可以，1可以*/
+			str = 	"<div class=\"_lfin_left_lc_ki  _Walfin_left_lc_kiWdith\" ><h3>"+product_name;
+ 			if(is_able == 1){
+				str += "<span id=\"shuhui\" strId="+id+" onclick=\"shuhui("+id+")\">赎回</span>"
+			} else {
+			    str += "<span style=\"display:none;\">赎回</span>"
+			}
+			    str += "</h3><div class=\"_lFin_lc clearfix\"><div><b>"+amount+"元</b><p>投资金额</p></div><div><b>"+success_time+"</b><p>购买时间</p>"
+				 +"	</div></div><div class=\"_lFin_lc clearfix\"><div><b>"+strYearRate+"%</b><p>封闭期年化收益</p></div><div><b>"+interest_end_date+"</b>"
+				 +"	<p>封闭期截止日</p></div></div></div>";
+		} else if(nstatus == 2){
+			str = 	"<div class=\"_lfin_left_lc_ki  _Walfin_left_lc_kiWdith\"  ><h3>"+product_name+"<span style=\"display:none;\">赎回</span></h3>"
+				     +"	<div class=\"_lFin_lc clearfix\"><div><b>"+amount+"元</b><p>投资金额</p></div><div><b>"+success_time+"</b><p>购买时间</p>"
+					 +"	</div></div><div class=\"_lFin_lc clearfix\"><div><b>"+strYearRate+"%</b><p>封闭期年化收益</p></div><div><b>"+interest_end_date+"</b>"
+					 +"	<p>封闭期截止日</p></div></div> "
+					 +"	<div class=\"_lFin_lc clearfix\">"
+					 +"	<div><b>"+apply_tx_time+"</b><p>赎回申请时间</p></div></div></div>"
+		} else if(nstatus == 3){
+			str = 	"<div class=\"_lfin_left_lc_ki  _Walfin_left_lc_kiWdith\"  ><h3>"+product_name+"<span style=\"display:none;\">赎回</span></h3>"
+				     +"	<div class=\"_lFin_lc clearfix\"><div><b>"+amount+"元</b><p>投资金额</p></div><div><b>"+success_time+"</b><p>购买时间</p>"
+					 +"	</div></div><div class=\"_lFin_lc clearfix\"><div><b>"+strYearRate+"%</b><p>封闭期年化收益</p></div><div><b>"+interest_end_date+"</b>"
+					 +"	<p>封闭期截止日</p></div></div> "
+					 +"	<div class=\"_lFin_lc clearfix\">"
+					 +"	<div><b>"+success_time_tx+"</b><p>赎回成功时间</p></div></div></div>"
+		}
+		return str;
+	}
+
+
+	//赎回点击
+	var GlobalId;//全局点击主键id
+	function shuhui(val){
+		GlobalId = val;
+		openNewPayWindow("请输入支付密码",false ,"callbackPayPassword")
+	}
+	
+	function callbackPayPassword(val ,okOrCanel){
+		if(okOrCanel == 0){
+			return false;
+		}
+		if(val.length == 6){
+			redemptionReq(GlobalId,val);
+		}
+	}
+</script>
+</html>
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>支付</title>
+<link href="../css/public.css" rel="stylesheet" type="text/css" />
+<link href="../css/top.css" rel="stylesheet" type="text/css" />
+<link href="../css/lend/lend.css" rel="stylesheet" type="text/css" />
+<link href="../css/app_popup.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="back();">
+					<img src="../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6" id="title_id">收银台</div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>
+	<!-- 提交按钮 -->
+	<div class="z_submit_btn colorbutton">
+		<a href="javascript:void(0)" id="pay_id" onclick="_obj.pay()">支付</a>
+	</div>
+	<!-- 提交按钮end -->
+	<div id="container">
+		<div id="content_id" style="display:none">
+			<div class="z_pay_money">
+				<div class="z_payment font-size3">请支付金额：</div>
+				<div class="z_payment_rmb">
+					<span id="money_id"></span>元
+				</div>
+			</div>
+			<div class="z_pay_account">
+				<div class="z_pay_form clearfix" name="z_div" choice="0" id="div_balance_id" typeVal="0">
+					<!-- <div class="correct_svg"><img src="../img/app_correct.svg"/></div> -->
+					<div class="z_payment_name font-size3" id="text_balance_id">个人账户</div>
+					<div class="z_payment_text font-size3" id="draw_balance_id"></div>
+					<!-- 选中样式   payment_row -->
+				</div>
+				<div class="z_pay_form clearfix" style="display:none; " name="z_div" id="div_bank_id" choice="0" typeVal="1">
+					<div class="z_payment_name font-size3">代扣支付</div>
+					<div class="z_payment_text font-size3" id="draw_bank_id"></div>
+					<div class="z_app_pay_text" id="draw_bank_id_money">
+						单笔限额<span></span>,单日限额<span id="draw_bank_id_money1"></span>
+					</div>
+				</div>
+				<div class="z_pay_form clearfix" style="display:none;border-bottom: 1px solid #EAEAEB;" name="z_div" choice="0" id="div_other_id" typeVal="2">
+					<div class="z_payment_name font-size3">快捷支付</div>
+					<div class="z_payment_text font-size3" id="draw_other_id"></div>
+					<div class="z_app_pay_text" id="draw_other_id_money">
+						该卡本次最多可支付<span id="draw_other_id_money"></span>元
+					</div>
+				</div>
+			</div>
+			<div class="z_pay_notice clearfix" id="dk_ts">
+				<div class="z_pay_noticontent  clearfix">
+					<h3>温馨提示：</h3>
+					<div class="z_pay_mar">
+						1.支付金额超过代扣单日限额,平台自动拆分,分多日扣款<br /> 2.所有拆分扣款成功后,本次支付完成
+					</div>
+				</div>
+			</div>
+			<div class="z_paynotice_note font-size3">
+				<p>客服电话：400-6259-898</p>
+				<p>工作日：8：30-20：00</p>
+				<p>周六日：9：00-18：00</p>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/bankLimit.js"></script>
+<script type="text/javascript" src="../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(1)</script>
+<script type="text/javascript" src="pay.js"></script>
+<script type="text/javascript">
+	jsHeight.bodyheight();  //获取页面高度
+</script>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"  content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title>首页</title>
+		<link type="text/css" rel="stylesheet" href="css/plugin/mui.min.css">
+		<link type="text/css" rel="stylesheet" href="css/public.css" />
+		<link type="text/css" rel="stylesheet" href="css/top.css"  />		
+		<link type="text/css" rel="stylesheet" href="css/app_popup.css"  />		
+		<link type="text/css" rel="stylesheet" href="css/index.css"  />
+		<link type="text/css" rel="stylesheet" href="css/plugin/swiper.min.css">
+		<script src="js/common/swiper.min.js"></script>
+	</head>
+	<body>
+	  <nav class="mui-bar mui-bar-tab z_wdcorl">
+		<a class="mui-tab-item mui-active" href="javascript:void(0)">
+			<span class="iconrep" ><img src="img/footer/zy_02.png"></span>
+			<span class="iconwd">首页</span>
+		</a>
+		<a class="mui-tab-item" href="javascript:void(0)" id="goToFind">
+			<span class="iconrep"><img src="img/footer/fx_01.png"></span>
+			<span class="iconwd">发现</span>
+		</a>
+		<a class="mui-tab-item" href="javascript:void(0)" id="goToMall">
+			<span class="iconrep"><img src="img/footer/sc_01.png"></span>
+			<span class="iconwd">商城</span>
+		</a>
+		<a class="mui-tab-item" href="javascript:void(0)" id="goToMyCenter"> 
+			<span class="iconrep"><img src="img/footer/wo_01.png"></span>
+			<span class="iconwd">我的</span>
+		</a>
+	 </nav>
+
+	<header>
+	    <div class="swiper-container">
+	        <div class="swiper-wrapper" id="AD_div">
+	        	<!-- 默认图片  加载完干掉 -->
+	            <div class="swiper-slide" id="default_img">
+				 	 <img id="default_img1" src="img/index/default_index.png">
+				</div>
+	        </div>
+	        <div class="swiper-pagination" style="display: none;" id="pagination"></div>
+	    </div>
+	</header>
+<div id="container">
+	<!-- 老用户代扣协议弹出层 start-->
+	<div id="dk_content" style="display: none">
+		<div id="TTPopups_z_div_id" class="api_Eject_k" style="top:35%;">
+		<div id="" class="api_Payment_pwd">
+			<div id="" class="app_poptitle font-size5 color2">
+				<div style="text-align: left;width:90%; margin:0 auto;">
+				<p style="text-indent: 5%;">
+				为了提高业务办理质量，达飞云贷接入了多个支付三方，需重新签订代扣协议
+				</p>
+				<p style="text-align: center;">	
+				同意签订
+				<span style="color: #069FFF;" onclick="_wdkxieyi()">
+				《代扣协议》
+				</span>
+				</p>
+				</div>
+				</div>
+				<div id="" class="api_rech_submit">
+				<div id="" class="api_rech_Button api_rech_Payment" style="width:90%; margin-left:5%;" index="1">同意</div>
+				</div>
+			</div>
+		</div>	
+		<div class="black_adoverlayasd" style="display: block; width: 100%; height: 100%"></div>
+	</div>
+	<!-- 老用户代扣协议弹出层 end-->
+	<div id="content">
+		<!-- 公告 -->
+		<div class="_windex_announcement clearfix" id="index_notice" style="display: none;">
+			<img src="img/index/dafy_voice.gif" />
+			<div id="rollText" class="_windex_announcement_rollText">
+			</div>
+		</div>
+	
+		<!-- 理财借款部分 start  -->
+	    <div class="z_matters_loan1 clearfix">
+			<div class="z_index_left" onclick="goToLC()">
+				<img src="img/index/index_pig.png" />
+				<label class="font-size4">理财</label>
+				<p>本息保障 收益<span class="z_wd_yel">6%-13.2%</span></p>
+			</div>
+			<div class="z_app_ss_main"></div>
+			<div class="z_index_right" onclick="goToBorrow(0);">
+				<img src="img/index/index_loan.png" />	
+				<label class="font-size4 z_mar">借款</label>
+				<p>按天计息 随借随还</p>
+		    </div> 
+		</div>
+		<!-- 理财借款部分 end  -->
+		
+	    <!-- 达赏与手机充值  start
+		<div class="z_index_sec3">
+			<div class="z_Sec3Con"  onclick="goToRedPackage()">
+				<img src="img/index/ds.png"/>
+				<label class="font-size2">达赏</label>
+			</div>
+			<div class="z_Sec3Con" onclick="goToReCharge()">
+				<img src="img/index/sjcz.png"/>
+				<label class="font-size2">手机充值</label>
+			</div>
+			<div class="z_Sec3Con"  onclick="goToRichScan()">
+				<img src="img/index/app_RichScan.png"/>
+				<label class="font-size2">扫一扫</label>
+			</div>
+			<div class="z_Sec3Con" onclick="goToCooperationMerchant()">
+				<img src="img/index/app_cooperator.png"/>
+				<label class="font-size2">合作商户</label>
+			</div>
+		</div>-->	
+		<!-- 达赏与手机充值  end-->
+	    <div class="z_financial_tempest"><span>理财风暴</span></div>
+		<div class="z_financial_index_list">
+			<!--  普通产品 -->
+			<div id="hide_div_id" style="display:none">
+				<div onclick="_IndexObj.openProductDetail(this,'#lId#','0','#productName#')">
+					<img src="img/index/fin_cast.jpg"/>
+					<div class="z_indexlist_msg">
+						<h3>#strName#</h3>
+						<div class="z_index_list_left  font-size1">
+							<b>#nLenderYearRate#</b>
+							<!-- <p>预期年化收益率</p> -->
+							<p>#strRate#</p>
+						</div>
+						<div class="z_index_list_content font-size1">
+							<b>#lMinInvestAmount#元</b>
+							<p>起投金额</p>
+						</div>
+						<div class="z_index_list_right font-size1">
+							<b>#deadline#</b>
+							<p>封闭期限</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 活动产品 -->
+			<div id="hide_activity_id" style="display:none">
+				<div onclick="_IndexObj.openProductDetail(this,'#lId#','1','#productName#')">
+					<img src="#imgURL#"/>
+					<div class="z_indexlist_msg">
+						<div class="z_bt_title clearfix" id="lc_bt_title">
+							<div class=z_index_h3><h3>#strName#</h3></div>
+						</div>
+						
+						<div class="z_index_list_left  font-size1">
+							<b>#nLenderYearRate#</b>
+							<p>预期年化收益率</p>
+						</div>
+						<div class="z_index_list_content  font-size1">
+							<b>#lMinInvestAmount#</b>
+							<p>起投金额</p>
+						</div>
+						<div class="z_index_list_right  font-size1">
+							<b>#deadline#</b>
+							<p>封闭期限</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul id="product_data_id">
+			</ul>
+		</div>
+	</div>
+</div>
+
+</body>
+<script src="js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS()</script>
+<script type="text/javascript" src="js/certificationCommon.js"></script>
+<script type="text/javascript" src="applyCredit/creditManage.js"></script>
+<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript">
+	jsHeight.bodyheight();  //获取页面高度
+</script>
+</html>

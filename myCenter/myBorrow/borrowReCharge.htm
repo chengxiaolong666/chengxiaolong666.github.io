@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link href="../../css/public.css"  rel="stylesheet" type="text/css"  />
+		<link href="../../css/top.css"  rel="stylesheet" type="text/css"  />
+		<link href="../../css/app_popup.css"  rel="stylesheet" type="text/css"  />
+		<link href="../../css/myCenter/myBorrow/myBorrow.css"  rel="stylesheet" type="text/css"  />
+		  <link href="../../css/body_backcolor.css"  rel="stylesheet" type="text/css"  />
+	</head>
+	<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="openWin();">
+					<img src="../../img/top/_We_return.png" />返回
+				</div>
+				<div class="_Wedafytop_title font-size6">还款详情</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div id="hidDiv" style="display: none;">
+			<div class="_whborrowhr_account" id="borrowhr_account">		
+				<div class="_whborrow_reg_del clearfix">
+					<div class="borrmoney font-size3">元</div>
+					<b>应还本金:</b>
+					<input id="user_principal" name=""  value="" type="number"  placeholder="输入将要还款本金"/>
+				</div>
+			</div>		
+			<div class="_whborrow_Recharge_detail" id="showinfo3" style="display: none;">
+				<span class="row_name">应还金额：</span><span class="row_sum" ><B id="user_je"></B>元</span></br>
+			</div>	
+			<div class="_whborrow_Recharge_detail" id="showinfo1" >
+				<span class="row_name">应还利息：</span><span class="row_sum" id="user_lx"></span></br>
+				<span class="row_name">逾期罚金：</span><span class="row_sum" id="user_fj"></span></br>
+				<span class="row_name" id="daihuanjine">待还款：</span><span class="row_sum" id="user_totalAmount"></span>
+				<span class="row_name" id="daihuanbenjin" style="display: none">应还本金：</span><span id="daihuanbenjin1" class="row_sum"></span>
+			</div>
+			<div class="_whborrow_Recharge_detail" id="showinfo2" style="display: none;">
+				<span class="row_name">应还服务费：</span><span class="row_sum" id="yhfwf"></span></br>
+				<span class="row_name">应还利息：</span><span class="row_sum" id="yhlx"></span></br>
+				<span class="row_name">服务费违约金：</span><span class="row_sum" id="fwfwyj"></span></br>
+				<span class="row_name">本金逾期罚息：</span><span class="row_sum" id="bjyqfx"></span></br>
+				<span class="row_name">逾期管理费：</span><span class="row_sum" id="yqglf"></span></br>
+				<span class="row_name">还款总金额：</span><span class="row_sum" id="hkzje"></span>
+			</div>
+			
+			<div class="rech_manual_account">				
+				<div class="app_manual_form clearfix changeDiv" id="yueDiv" style="display: none;">
+					<div class="correctmanual_svg" id="show1" style="display: none;" dataValue="1" >
+					<img src="../../img/app_correct.svg"/></div> 
+					<div class="app_manual_payment_name font-size3" id="text_balance_id">个人账户</div>
+					<div class="app_manual_payment_text font-size3" id="draw_balance_id">余额000</div>
+					<!-- 选中样式   payment_row -->
+				</div>
+				
+				<div class="app_manual_form clearfix changeDiv" id="dkDiv" style="display: none;">
+					<div class="correctmanual_svg" id="show2" style="display: none;" dataValue="0" >
+					<img src="../../img/app_correct.svg"/></div> 
+					<div class="app_manual_payment_name font-size3">代扣支付</div>
+					<div class="app_manual_payment_text font-size3" id="draw_bank_id"></div>
+				</div>
+				<div class="app_manual_form clearfix changeDiv" id="kjDiv" style="display: none;">
+					<div class="correctmanual_svg" id="show3" style="display: none;" dataValue="2" >
+					<img src="../../img/app_correct.svg"/></div> 
+					<div class="app_manual_payment_name font-size3">快捷支付</div>
+					<div class="app_manual_payment_text font-size3" id="draw_other_id"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="_whborrow_recharg_submit colorbutton"><a href="javascript:void(0);" onclick="repay()">确认还款</a></div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script src="../../js/certificationCommon.js"></script>
+<script src="../../js/bankLimit.js"></script>
+<script src="borrowReCharge.js"></script>
+<script type="text/javascript">
+	jsHeight.bodyheight();  //获取页面高度
+</script>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+    <title>管理收货信息</title>
+    <!--标准mui.css-->
+	<link rel="stylesheet" href="../css/plugin/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/plugin/app.css"/>
+	<link rel="stylesheet" href="../css/plugin/mui.listpicker.css" />
+  	<link rel="stylesheet" href="../css/public.css" />
+  	<link rel="stylesheet" href="../css/top.css" />
+  	<!-- 添加地址和修改地址是一个样式表 -->
+  	<link rel="stylesheet" href="../css/mall/Mall.css" />
+  	<link rel="stylesheet" href="../css/body_backcolor.css" /> 
+	<style>
+		
+		h5.mui-content-padded {
+			margin-left: 3px;
+			margin-top: 20px !important;
+		}
+		h5.mui-content-padded:first-child {
+			margin-top: 12px !important;
+		}
+		.ui-alert {
+			text-align: center;
+			padding: 20px 10px;
+			font-size: 16px;
+		}
+		.mui-btn {
+			font-size: 16px;
+			padding: 8px;
+			margin: 3px;
+		}
+		/*用户列表示例*/
+		
+		.user-panel {
+		}
+		
+		.mui-picker-panel{
+			position: fixed;
+			left: 0px;
+			width: 100%;
+			z-index: 999999;
+			background-color: #eee;
+			border-top: solid 1px #ccc;
+			box-shadow: 0px -5px 7px 0px rgba(0, 0, 0, 0.1);
+			-webkit-transition: .3s;
+			bottom: 0px;
+			-webkit-transform: translateY(280px);
+		}
+		
+		.mui-picker-panel .mui-panel-header {
+			padding: 6px;
+			font-size: 14px;
+			color: #888;
+		}
+		.mui-picker-panel .mui-panel-body {
+			position: relative;
+			width: 100%;
+			height: 200px;
+			border-top: solid 1px #ddd;
+		}
+		.user-panel .mui-listpicker {
+			width: 100%;
+			height: 100%;
+			margin: 0px;
+			border: none;
+		}
+		.mui-panel-header button {
+			font-size: 12px;
+			padding: 5px 10px;
+		}
+		.mui-panel-header button:last-child {
+			float: right;
+		}
+		/**级联示例样式**/
+		
+		.city-panel {
+		}
+		.city-panel .mui-listpicker {
+			width: 33.3%; 
+			height: 100%;
+			margin: 0px;
+			float: left;
+			border: none;
+		}
+	</style>
+</head>
+<body>
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" id="toBeforePay">
+					<img src="../img/top/_We_return.png" />返回
+				</div> 
+				<div class="_Wedafytop_title font-size6">管理收货信息</div>
+				<div class="_Wedafytop_righttext font-size3" id="toOrderList">查看订单</div>
+			</div>
+		</div>
+	</header>
+	<div id="container">
+		<div class="WaddressCon">
+			<div class="WaddRessinptCent font-size2 clearfix">
+				<b>姓名：</b>
+				<input id="strConsigneeName" type="text" maxlength="10" placeholder="请输入姓名">
+			</div>
+			<div class="WaddRessinptCent font-size2 clearfix">
+				<b>手机号码：</b>
+				<input id="strMobile" type="text" maxlength="11" placeholder="请输入11位手机号码">
+			</div>
+			<div class="WaddressAsrea font-size2 clearfix" id="showCityPicker">
+				<div class="WaddresssDetailedTest font-size2  color9">区域</div>
+					<img class="a_jt_img" src="../img/public/api_Arrow.png">
+					<div class="area_show"></div>
+					<div class="mall_inp_test1 font-size2" id="strFullDistrictName"></div>
+			</div> 
+			<div class="WaddRessinptCent font-size2 clearfix">
+				<div class="WaddnressDetails1Text color9">详细地址：</div>
+				<input id="strAdress" type="text" maxlength="100" placeholder="请输入详细地址">
+			</div>
+			<div class="WaddRessinptCent font-size2 clearfix">
+				<div class="WaddressaDefaultsTest color9">设置为默认地址：</div>
+				<div class="WaddressStrCheckboxkTest"><img src="../img/public/dx_01.png" id="strIsDefault"></div>
+			</div>
+		</div>
+	</div>
+	<div class="WaddressAstrsubmit colorbutton font-size5" id="addAddress">保存并使用</div>
+	<div  id="amui-content">
+	<div class="mui-content"  id="mui-content">
+		<div class="mui-content-padded">
+			<div id='cityPickerResult' class="ui-alert"></div>
+			<div class="city-panel mui-picker-panel">
+				<div class="mui-panel-header">
+					<button id='cityPickerCancel' class="mui-btn">取消</button>
+					<button id='cityPickerOK' class="mui-btn mui-btn-blue">确定</button>
+				</div>
+				<div class="mui-panel-body">
+					<div id='provincePicker' class="mui-listpicker">
+						<div class="mui-listpicker-inner">
+							<ul>
+							</ul>
+						</div>
+					</div>
+					<div id='cityPicker' class="mui-listpicker">
+						<div class="mui-listpicker-inner">
+							<ul>
+							</ul>
+						</div>
+					</div> 
+					<div id='areaPicker' class="mui-listpicker">
+						<div class="mui-listpicker-inner">
+							<ul>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<div class="ui-mask"></div>-->
+		</div>
+	</div>
+</div>
+	
+</body>
+	<script type="text/javascript" src="../js/includeCommon.js"></script>
+	<script type="text/javascript">ImportJS(1);</script>
+	<script src="../js/MUILib/mui.min.js"></script>
+	<script src="../js/MUILib/mui.listpicker.js"></script>	
+	<script src="../js/common/area.js"></script>
+	<script type="text/javascript" src="addressAdd.js"></script>
+	<script type="text/javascript" src="loadAddressSelect.js"></script>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<title>实名认证</title>
+<link type="text/css" href="../../css/public.css" rel="stylesheet" />
+<link type="text/css" href="../../css/top.css" rel="stylesheet" />
+<link type="text/css" href="../../css/inputStyle.css"  rel="stylesheet"/>
+<link type="text/css" href="../../css/myCenter/securityCenter/accountCenter.css" rel="stylesheet" />
+
+</head>
+<body>
+	<div id="mainBody">
+        <header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5"  onclick="isRefBack(1)">
+						<img src="../../img/top/_We_return.png" />返回
+					</div> 
+					<div class="_Wedafytop_title font-size6">实名认证</div>
+					<div class="_Wedafytop_righttext font-size3"></div>
+				</div>
+			</div>
+	    </header>
+		<div id="container">
+			<section class="z_mainBor z_regcon_input ">
+				<div class="CardTitcon clearfix" id="shiming_div_tishi" style="display: none;">
+					<div class="CardNameTit font-size4" id="div_tishi1"></div>
+					<div class="CardMark" onclick="openWindow('myCenter/more/help_detail.htm','实名认证失败怎么办？','type=rzbe',0,'');"><img src="../../img/myCenter/securityCenter/api_Hello02.png"/></div>
+				</div>
+				
+				<div class="z_nameFutit font-size3" id="div_tishi2" style="display: none;"></div>
+				<div class="z_nei_list">
+					<div class="z_name_left font-size3">真实姓名:</div>
+					<div class="z_name_input font-size3">
+						<input id="strName" maxlength="10" value="" type="text" placeholder="请输入真实姓名" />
+					</div>
+				</div>
+				<div class="z_nei_list">
+					<div class="z_name_left font-size3">身份证号:</div>
+					<div class="z_name_input font-size3">
+						<input id="strIdentity" maxlength="18" value="" type="text" placeholder="请输入真实身份证号码" />
+					</div>
+				</div>
+				<div class="z_nei_list clearfix">
+					<!-- 扫描银行卡小图标 -->
+					<div class="photo_ico" id="photo_ico">
+						<img src="../../img/myCenter/securityCenter/photo_ico.png" />
+					</div>
+					<div class="z_name_left font-size3">银行卡号:</div>
+					<div class="z_name_input font-size3">
+						<input id="strBankcardNo" oninput="inputBankCard(this);" onpropertychange="inputBankCard(this);" value="" max="20" type="number" placeholder="请输入银行卡号" />
+					</div>
+				</div>
+				<div class="z_nei_list" id="div_bl">
+					<div class="z_name_left font-size3">开户银行:</div>
+					<div class="z_name_input font-size3">
+						<input id="strBankName" value="" type="text" readonly="readonly" placeholder="请选择开户银行" /> 
+						<input id="strBankCode" value="" type="hidden" />
+					</div>
+					<div class="z_name_houjia" id="bank_arrow">
+						<img src="../../img/public/api_Arrow.png" />
+					</div>
+				</div>				
+				<div class="z_nei_list">
+					<!-- 叹号小图标 -->
+					<div class="photo_ico" onclick="stagespopup();"><img src="../../img/myCenter/securityCenter/excla_ico.png" /></div>				
+					<div class="z_name_left font-size3">银行预留手机号:</div>
+					<div class="z_name_input font-size3">
+						<input id="strReserveMobile" value="" type="tel" maxlength="11" placeholder="请输入11位手机号码" /> <input id="strMobile" value="" type="text" style="display: none;" />
+					</div>
+				</div>
+				<div class="z_nei_list z_name_mar" id="ylMsg">
+					<span style="color: #777;" id="showinfo">此验证码发往原预留手机号！</span>
+				</div>
+
+				<div class="z_nei_list" id="nbTime">
+					<div class="z_name_left font-size3">认证时间</div>
+					<div class="z_name_input font-size3">
+						<input id="dtIdVerifyEndTime" value="" type="text" readonly="readonly" />
+					</div>
+				</div>
+
+				<div class="_wreg_voice_del clearfix" id="checkCard">
+					<b>验证码：</b> <span class="_wregnew_yzm" id="btn" onclick="checkSendVerifyCode(9,1)">获取验证码</span> <input name="strVerifyCode" id="strVerifyCode" value="" type="number" maxlength="4" max="9999" min="1000" placeholder="请输入验证码" />
+				</div>
+				<div class="z_nei_list" style="border-bottom:0px;display: none;" id="tishi">
+					<span style="color: red">此验证码发往原预留手机号！</span>
+				</div>
+				<!--验证码语音提示信息  点击前-->
+				<div class="_wreg_voice_tishi" id="bdTishi1">
+					获取不到验证码？<a id="btn1" onclick="checkSendVerifyCode(9,2)">免费语音获取</a>
+				</div>
+				<!--验证码语音提示信息  点击后-->
+				<div class="_wreg_voice_after" id="bdTishi2" style="display: none;">拨打中...请注意接听</div>
+
+				<div class="z_stagingCheckbox color9  clearfix" id="div_dkxy_1">
+					<a href="javascript:void(0)" onclick="selectDKXY()"> 
+					<img id="img_dkxy" src="../../img/public/dx_02.png" /> </a> 
+					<span onclick="getProtocolT()"> <u>代扣协议</u> </span>
+				</div>
+				<!-- name_anzi 无背景按钮   name_annu灰色按钮  -->
+				<div class="name_annu02 font-size6" id="btnT">银行卡变更</div>
+			</section>
+		</div>
+	</div>
+	<!-- 选择银行 -->
+	<div id="container_bankList" style="display: none;">
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5"  onclick="selectBank('','')">
+						<img src="../../img/top/_We_return.png" />返回
+					</div> 
+					<div class="_Wedafytop_title font-size6">开户银行</div>
+					<div class="_Wedafytop_righttext font-size3"></div>
+				</div>
+			</div>
+	    </header>
+		<section class="z_mainBor" id="bankListDiv"></section>
+	</div>
+	
+	<!-- 目前支持的银行  银行卡扫描专用 -->
+	<div id="support_bankList" style="display: none;">
+		<header class="_Wedafytop">
+			<div class="_Wedafytopback">
+				<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" onclick="selectBank('','')">
+						<img src="../../img/top/_We_return.png" />返回
+					</div>
+					<div class="_Wedafytop_title font-size6"></div>
+				</div>				
+			</div>
+		</header>
+		<div class="z_mainh1 font-size3">支持下列银行的储蓄卡</div>
+        <section class="z_mainBor"  style="max-height: 100px;overflow: auto;" id="support_bankListDiv">
+        </section>
+        
+        <div class="_wreg_card_submit" onclick="openCamera();"><a href="javascript:void(0)">下一步</a></div>
+	</div>
+	
+	<!-- 银行预留手机号提示 -->
+	<div id="fin_i_table_list" class="_borrows_state" style="display: none;">
+		<div class="_borrows_pading">
+			<div class="imga"><img onclick="stages_close()" src="../../img/myCenter/securityCenter/borrom_close.png" /></div>
+			<p>银行预留手机号是银行卡开户时预留的手机号，快捷支付时需要该手机号接收验证码。</p>
+			<p>若没有预留，或者忘记，或者以前预留的手机号已废弃，请携带本人身份证、银行卡和手机去银行柜台修改预留信息。</p>
+		</div>
+	</div>
+	
+	<div onclick="stages_close()" class="z_black_ground" id="black_stages_overlayasd"></div>		
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script src="../../js/VerifyCode.js"></script>
+<script type="text/javascript" src="bankMapping.js"></script>
+<script type="text/javascript" src="accountIdCard.js"></script>
+</html>

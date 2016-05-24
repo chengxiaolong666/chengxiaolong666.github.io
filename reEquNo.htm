@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title>更换设备</title>
+		<link href="css/public.css"  type="text/css" rel="stylesheet"/>
+		<link href="css/top.css"  rel="stylesheet" type="text/css"  />		
+		<link href="css/inputStyle.css"  rel="stylesheet" type="text/css"  />
+        <link href="css/body_backcolor.css"  rel="stylesheet" type="text/css"/>
+	</head>
+	<body>
+<section>
+	<!-- 更换设备界面 -->
+
+	<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+				<div class="_Wedafytop_return font-size5" onclick="openDelayWindow('login.htm','登录','',2,'',1);">
+					<img src="img/top/_We_return.png" />返回
+				</div> 
+				<div class="_Wedafytop_title font-size6">更换设备</div>
+				<div class="_Wedafytop_righttext font-size3"></div>
+			</div>
+		</div>
+	</header>
+		<div id="container">
+			<div class="z_regcon_input z_reg_marTop6">
+				<div class="z_reg_list clearfix">
+					<b>手机号：</b>
+					<input  name="strMobile" id="strMobile" maxlength="11"  style="color: #999"   value="" type="text"  placeholder="请输入11位手机号码" readonly="readonly"/>
+				</div>
+				<div class="_wreg_voice_del reg_yzm clearfix">
+					<b>验证码：</b>
+					<span class="_wregnew_yzm" id="btn"  onclick="sendVerifyCode(7)"><u>获取验证码</u></span>
+					<input  name="strVerifyCode" id="strVerifyCode" value="" type="number" maxlength="4" placeholder="请输入验证码" />
+				</div>
+				<div class="z_reg_btn z_reg_marTop10" id="reEq_1" onclick="reEquipment()"><a href="javascript:void(0)">确认</a></div>
+				<div class="z_reg_btn z_reg_marTop10" id="reEq_2" style="display: none;"><a href="javascript:void(0)">更换设备中... ...</a></div>
+			</div>
+		</div>
+	</article>
+</section>
+</body>
+<script type="text/javascript" src="js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS()</script>
+<script type="text/javascript" src="reEquNo.js"></script>
+<script type="text/javascript" src="js/VerifyCode.js"></script><!-- 验证码发送js -->
+<script type="text/javascript">
+	$(document).ready(function(){
+			var strMobile = getQueryString("strMobile");
+			$("#strMobile").val(strMobile);
+			//解决ios头部下沉问题
+			ios_ction();
+			setBackURL("login.htm","登录页","",2,"");
+	});
+</script>
+</html>

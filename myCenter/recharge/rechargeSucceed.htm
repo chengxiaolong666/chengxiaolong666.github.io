@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<title></title>
+		<link type="text/css" href="../../css/public.css" rel="stylesheet" />
+		<link type="text/css" href="../../css/top.css" rel="stylesheet" />
+		<link type="text/css" href="../../css/myCenter/recharge/financial_recharge.css" rel="stylesheet" />
+	</head>
+	<body>
+	<div id="container">
+		<header class="_Wedafytop">
+		<div class="_Wedafytopback">
+			<div class="_Wedafytop_positon">
+					<div class="_Wedafytop_return font-size5" id="app_bj_raw">
+						<img src="../../img/top/_We_return.png" />关闭
+					</div> 
+					<div class="_Wedafytop_title font-size6">交易反馈</div>
+					<div class="_Wedafytop_righttext font-size3"></div>
+			 </div>
+		</div>
+	  </header>
+		<div class="z_financial_succeed_con">
+			<img src="../../img/myCenter/recharge/app_succeed.png" />
+			<div class="z_financial_succeed_text color2 font-size3">
+				您的交易申请已成功提交<br>
+				<p>请您耐心等待银行处理，大约1~3小时给您反馈。</p>
+			</div>
+		</div>
+		<div class="z_financial_succeed_submit">
+			<div id="back" class="z_succeed_submit_left border-radius font-size3">返回</div>
+			<div class="z_succeed_submit_right border-radius font-size3" id="succeed_submit_right">交易记录</div>
+		</div>
+	</div>
+</body>
+<script src="../../js/includeCommon.js"></script>
+<script type="text/javascript">ImportJS(2)</script>
+<script src="../../js/common/fastclick.js"></script>
+<script type="text/javascript">
+	jsHeight.bodyheight();  //加载页面BODY高度
+	var payType = getQueryString("payType");
+	$(document).ready(function() {
+		var app_bj_raw = document.getElementById('app_bj_raw');
+		FastClick.attach(app_bj_raw);
+		app_bj_raw.addEventListener('click', function(event) {
+			backIndex();
+		}, false);
+
+		var back = document.getElementById('back');
+		FastClick.attach(back);
+		back.addEventListener('click', function(event) {
+			backMyPage();
+		}, false);
+		setBackURL('myCenter/myIndex.htm', '我的', '', 1, '', '1');
+	});
+
+	$("#succeed_submit_right").click(function() {
+		if (payType == "0") {
+			openWindow('myCenter/fundDetail/fundList.htm', '资金明细','payType=0', 1,'myCenter/recharge/financial_recharge.htm');
+		} else if (payType == "1") {
+			var dPage = getQueryString("dPage");
+			if (dPage != null || dPage != undefined || dPage != "") {
+				openWindow('myCenter/fundDetail/fundList.htm','资金明细', "payType=1&dPage=" + dPage, 1,"lend/" + dPage);
+			} else {
+				openWindow('myCenter/fundDetail/fundList.htm','资金明细', 'payType=1', 1, '');
+			}
+		}
+	});
+
+	function backMyPage() {
+		openWindow('myCenter/myIndex.htm', '我的', '', 1, '', '1');
+	}
+
+	function backIndex() {
+		openWindow('myCenter/myIndex.htm', '我的', '', 1, '', '1');
+	}
+</script>
+</html>
